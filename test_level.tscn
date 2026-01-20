@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=4 uid="uid://byjpq3m0t0jvh"]
+
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://tile_map.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="2_1c2mv"]
+
+[node name="Test Level" type="Node2D"]
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_gojnm")]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAD6/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD9/wIAAgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAAAAgAAAAAAAAASAP//AgAAAAAAAAASAP7/AgAAAAAAAAASAP3/AgAAAAAAAAATAP3/AgAAAAAAAAAUAP3/AgAAAAAAAAAVAP3/AgAAAAAAAAAWAP3/AgAAAAAAAAAXAP3/AgAAAAAAAAANAAAAAgAAAAAAAAAOAAAAAgAAAAAAAAAPAAAAAgAAAAAAAAAQAAAAAgAAAAAAAAARAAAAAgAAAAAAAAASAAAAAgAAAAAAAAA=")
+
+[node name="Player" parent="." instance=ExtResource("2_1c2mv")]
+position = Vector2(32, 34)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(132, 0)
+zoom = Vector2(2, 2)
