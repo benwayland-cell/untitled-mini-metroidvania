@@ -33,5 +33,3 @@ texture = ExtResource("1_oul6g")
 light_mask = 2
 visibility_layer = 2
 shape = SubResource("RectangleShape2D_rkbax")
-
-[connection signal="body_entered" from="Sword" to="." method="_on_sword_body_entered"]
