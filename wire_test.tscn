@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://i6g7nq48nk1p"]
+
+[ext_resource type="Script" uid="uid://j36jaqxow13b" path="res://power_component.gd" id="1_hvb5g"]
+[ext_resource type="Script" uid="uid://cm1muy2xirbb5" path="res://input_terminal.gd" id="2_hvb5g"]
+[ext_resource type="Script" uid="uid://faqjvfytect0" path="res://output_terminal.gd" id="4_10g7h"]
+[ext_resource type="Script" uid="uid://bhxko7cm6wc43" path="res://objects/wiring_objects/wire.gd" id="4_udvvw"]
+[ext_resource type="Script" uid="uid://6xv1ogkfd8da" path="res://print_wire_component.gd" id="5_udvvw"]
+
+[node name="WireTest" type="Node2D"]
+
+[node name="Wire" type="Line2D" parent="." node_paths=PackedStringArray("output", "input")]
+points = PackedVector2Array(246, 233, 607, 157)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("4_udvvw")
+output = NodePath("../PowerComponent/OutputTerminal")
+input = NodePath("../PrintWireComponent/InputTerminal")
+metadata/_custom_type_script = "uid://bhxko7cm6wc43"
+metadata/_edit_lock_ = true
+
+[node name="PrintWireComponent" type="Node2D" parent="."]
+position = Vector2(607, 157)
+script = ExtResource("5_udvvw")
+metadata/_custom_type_script = "uid://6xv1ogkfd8da"
+
+[node name="InputTerminal" type="Node2D" parent="PrintWireComponent"]
+script = ExtResource("2_hvb5g")
+metadata/_custom_type_script = "uid://cm1muy2xirbb5"
+metadata/_edit_lock_ = true
+
+[node name="PowerComponent" type="Node2D" parent="."]
+position = Vector2(246, 233)
+script = ExtResource("1_hvb5g")
+metadata/_custom_type_script = "uid://j36jaqxow13b"
+
+[node name="OutputTerminal" type="Node2D" parent="PowerComponent"]
+script = ExtResource("4_10g7h")
+metadata/_custom_type_script = "uid://faqjvfytect0"
+metadata/_edit_lock_ = true
