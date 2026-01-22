@@ -9,7 +9,7 @@ func add_input_wire(wire : Wire):
 func add_output_wire(wire : Wire):
 	output_wires.append(wire)
 
-var output_value = 0:
+var output_value : float = 0:
 	set(value):
 		output_value = value
 		output_sent.emit(value)
@@ -17,7 +17,11 @@ var output_value = 0:
 @export var input_position_node : Node2D = self
 @export var output_position_node : Node2D = self
 
-func recieve_input(_value : int, _from : Wire):
+func _ready():
+	if !input_position_node: input_position_node = self
+	if !output_position_node: output_position_node = self
+
+func recieve_input(_value : float, _from : Wire):
 	pass
 
 signal output_sent()

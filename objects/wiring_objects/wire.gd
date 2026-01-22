@@ -9,6 +9,7 @@ func _ready():
 	#code runs in editor
 	if Engine.is_editor_hint(): 
 		while points.size() < 2: points.append(Vector2.ZERO)
+		set_meta("_edit_lock_", true)
 		return
 	
 	set_process(false)
@@ -20,7 +21,8 @@ func _ready():
 	
 	if output.output_value != 0: recieve_input(output.output_value)
 
-func recieve_input(value : int):
+func recieve_input(value : float):
+	if value == 0: print("It should happen.")
 	default_color = Color(1,1,1)*value
 	output_sent.emit(value, self)
 
@@ -30,8 +32,8 @@ func _process(_delta):
 	if !Engine.is_editor_hint(): return
 	#code runs in editor
 	position = Vector2.ZERO
-	if output: points[0] = output.output_position_node.global_position
-	if input: points[1] = input.input_position_node.global_position
+	if output: points[0] = output.output_position_node.global_position if output.output_position_node else output.global_position
+	if input: points[1] = input.input_position_node.global_position if input.input_position_node else input.global_position
 	
 
 func _set(property: StringName, _value: Variant) -> bool:

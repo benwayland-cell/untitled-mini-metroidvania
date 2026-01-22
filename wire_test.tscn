@@ -1,28 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://i6g7nq48nk1p"]
+[gd_scene load_steps=7 format=3 uid="uid://i6g7nq48nk1p"]
 
-[ext_resource type="Script" uid="uid://j36jaqxow13b" path="res://power_component.gd" id="1_hvb5g"]
+[ext_resource type="Script" uid="uid://j36jaqxow13b" path="res://objects/wiring_objects/power_wiring_component.gd" id="1_hvb5g"]
+[ext_resource type="Script" uid="uid://cv38ot23beu5q" path="res://objects/wiring_objects/merger_condition_wiring_component.gd" id="4_10g7h"]
 [ext_resource type="Script" uid="uid://bhxko7cm6wc43" path="res://objects/wiring_objects/wire.gd" id="4_udvvw"]
-[ext_resource type="Script" uid="uid://6xv1ogkfd8da" path="res://print_wire_component.gd" id="5_udvvw"]
+[ext_resource type="Script" uid="uid://6xv1ogkfd8da" path="res://objects/wiring_objects/print_wiring_component.gd" id="5_udvvw"]
+[ext_resource type="Script" uid="uid://b018ca26fc6ag" path="res://normalize_wiring_component.gd" id="5_y8m8y"]
+[ext_resource type="Script" uid="uid://ba5676tgpjfxf" path="res://objects/wiring_objects/not_wiring_component.gd" id="6_y8m8y"]
 
 [node name="WireTest" type="Node2D"]
 
-[node name="PowerComponent" type="Node2D" parent="." node_paths=PackedStringArray("output_position_node")]
+[node name="PowerComponent" type="Node2D" parent="."]
 position = Vector2(243, 174)
 script = ExtResource("1_hvb5g")
-output_position_node = NodePath(".")
 metadata/_custom_type_script = "uid://j36jaqxow13b"
 
-[node name="PrintWireComponent" type="Node2D" parent="." node_paths=PackedStringArray("input_position_node")]
-position = Vector2(539, 244)
+[node name="PowerComponent2" type="Node2D" parent="."]
+position = Vector2(117, 179)
+script = ExtResource("1_hvb5g")
+metadata/_custom_type_script = "uid://j36jaqxow13b"
+
+[node name="PrintWireComponent" type="Node2D" parent="."]
+position = Vector2(387, 20)
 script = ExtResource("5_udvvw")
-input_position_node = NodePath(".")
 metadata/_custom_type_script = "uid://6xv1ogkfd8da"
 
 [node name="Wire" type="Line2D" parent="." node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(243, 174, 539, 244)
+points = PackedVector2Array(243, 174, 150, 73)
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("4_udvvw")
 output = NodePath("../PowerComponent")
+input = NodePath("../MergerConditionWiringComponent")
+metadata/_custom_type_script = "uid://bhxko7cm6wc43"
+metadata/_edit_lock_ = true
+
+[node name="Wire2" type="Line2D" parent="." node_paths=PackedStringArray("output", "input")]
+points = PackedVector2Array(117, 179, 150, 73)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("4_udvvw")
+output = NodePath("../PowerComponent2")
+input = NodePath("../MergerConditionWiringComponent")
+metadata/_custom_type_script = "uid://bhxko7cm6wc43"
+metadata/_edit_lock_ = true
+
+[node name="Wire3" type="Line2D" parent="." node_paths=PackedStringArray("output", "input")]
+points = PackedVector2Array(150, 73, 269, 75)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("4_udvvw")
+output = NodePath("../MergerConditionWiringComponent")
+input = NodePath("../NotWiringComponent2")
+metadata/_custom_type_script = "uid://bhxko7cm6wc43"
+metadata/_edit_lock_ = true
+
+[node name="Wire4" type="Line2D" parent="." node_paths=PackedStringArray("output", "input")]
+points = PackedVector2Array(269, 75, 387, 20)
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("4_udvvw")
+output = NodePath("../NotWiringComponent2")
 input = NodePath("../PrintWireComponent")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
 metadata/_edit_lock_ = true
+
+[node name="MergerConditionWiringComponent" type="Node2D" parent="."]
+position = Vector2(150, 73)
+script = ExtResource("4_10g7h")
+metadata/_custom_type_script = "uid://cv38ot23beu5q"
+
+[node name="NormalizeWiringComponent" type="Node2D" parent="."]
+position = Vector2(221, -8)
+script = ExtResource("5_y8m8y")
+metadata/_custom_type_script = "uid://b018ca26fc6ag"
+
+[node name="NotWiringComponent2" type="Node2D" parent="."]
+position = Vector2(269, 75)
+script = ExtResource("6_y8m8y")
+metadata/_custom_type_script = "uid://ba5676tgpjfxf"
