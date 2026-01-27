@@ -9,6 +9,7 @@ size = Vector2(10, 60)
 [node name="DoorWiringComponent" type="Node2D" unique_id=1428165886 node_paths=PackedStringArray("door_origin_node")]
 script = ExtResource("1_vmxfk")
 door_origin_node = NodePath("DoorOrigin")
+door_speed = 1000.0
 metadata/_custom_type_script = "uid://ca20w7ktx4qk3"
 
 [node name="DoorOrigin" type="Node2D" parent="." unique_id=759961574]

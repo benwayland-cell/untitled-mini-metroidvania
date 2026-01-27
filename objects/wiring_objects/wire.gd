@@ -8,6 +8,7 @@ class_name Wire
 func _ready():
 	#code runs in editor
 	if Engine.is_editor_hint(): 
+		width = 1.0
 		points = [Vector2.ZERO,Vector2.ZERO]
 		default_color = Color.BLACK
 		set_meta("_edit_lock_", true)

@@ -1,70 +1,70 @@
 [gd_scene format=3 uid="uid://i6g7nq48nk1p"]
 
-[ext_resource type="Script" uid="uid://j36jaqxow13b" path="res://objects/wiring_objects/power_wiring_component.gd" id="1_rhh0p"]
-[ext_resource type="Script" uid="uid://6xv1ogkfd8da" path="res://objects/wiring_objects/print_wiring_component.gd" id="2_tykpp"]
-[ext_resource type="Script" uid="uid://bhxko7cm6wc43" path="res://objects/wiring_objects/wire.gd" id="3_sqbxe"]
-[ext_resource type="Script" uid="uid://cv38ot23beu5q" path="res://objects/wiring_objects/condition_wiring_component.gd" id="4_lxjh5"]
-[ext_resource type="Script" uid="uid://b018ca26fc6ag" path="res://objects/wiring_objects/normalize_wiring_component.gd" id="5_07xqx"]
-[ext_resource type="Script" uid="uid://ba5676tgpjfxf" path="res://objects/wiring_objects/not_wiring_component.gd" id="6_qebgr"]
-[ext_resource type="Script" uid="uid://nuxod654use1" path="res://objects/wiring_objects/delay_wiring_component.gd" id="7_c8p07"]
+[ext_resource type="Script" uid="uid://j36jaqxow13b" path="res://objects/wiring_objects/power_wiring_component.gd" id="1_nkay1"]
+[ext_resource type="Script" uid="uid://6xv1ogkfd8da" path="res://objects/wiring_objects/print_wiring_component.gd" id="2_fchvj"]
+[ext_resource type="Script" uid="uid://bhxko7cm6wc43" path="res://objects/wiring_objects/wire.gd" id="3_ntgvk"]
+[ext_resource type="Script" uid="uid://cv38ot23beu5q" path="res://objects/wiring_objects/condition_wiring_component.gd" id="4_4675o"]
+[ext_resource type="Script" uid="uid://b018ca26fc6ag" path="res://objects/wiring_objects/normalize_wiring_component.gd" id="5_yhp3l"]
+[ext_resource type="Script" uid="uid://ba5676tgpjfxf" path="res://objects/wiring_objects/not_wiring_component.gd" id="6_4ifxs"]
+[ext_resource type="Script" uid="uid://nuxod654use1" path="res://objects/wiring_objects/delay_wiring_component.gd" id="7_hjps6"]
 
 [node name="WireTest" type="Node2D" unique_id=1426610970]
 
 [node name="PowerComponent" type="Node2D" parent="." unique_id=876321130]
 position = Vector2(240, 205)
-script = ExtResource("1_rhh0p")
+script = ExtResource("1_nkay1")
 metadata/_custom_type_script = "uid://j36jaqxow13b"
 
 [node name="PowerComponent2" type="Node2D" parent="." unique_id=1384161192]
 position = Vector2(117, 179)
-script = ExtResource("1_rhh0p")
+script = ExtResource("1_nkay1")
 metadata/_custom_type_script = "uid://j36jaqxow13b"
 
 [node name="PrintWireComponent" type="Node2D" parent="." unique_id=1233764555]
 position = Vector2(563, 112)
-script = ExtResource("2_tykpp")
+script = ExtResource("2_fchvj")
 metadata/_custom_type_script = "uid://6xv1ogkfd8da"
 
 [node name="Wire" type="Line2D" parent="." unique_id=967497453 node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(240, 205, 150, 73)
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("3_sqbxe")
+script = ExtResource("3_ntgvk")
 output = NodePath("../PowerComponent")
 input = NodePath("../MergerConditionWiringComponent")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
 metadata/_edit_lock_ = true
 
 [node name="Wire2" type="Line2D" parent="." unique_id=2050304587 node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(117, 179, 150, 73)
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("3_sqbxe")
+script = ExtResource("3_ntgvk")
 output = NodePath("../PowerComponent2")
 input = NodePath("../MergerConditionWiringComponent")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
 metadata/_edit_lock_ = true
 
 [node name="Wire3" type="Line2D" parent="." unique_id=553988962 node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(150, 73, 269, 75)
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("3_sqbxe")
+script = ExtResource("3_ntgvk")
 output = NodePath("../MergerConditionWiringComponent")
 input = NodePath("../NotWiringComponent2")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
 metadata/_edit_lock_ = true
 
 [node name="Wire4" type="Line2D" parent="." unique_id=1852354287 node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(269, 75, 380, 140)
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("3_sqbxe")
+script = ExtResource("3_ntgvk")
 output = NodePath("../NotWiringComponent2")
 input = NodePath("../DelayWiringComponent")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
 metadata/_edit_lock_ = true
 
 [node name="Wire5" type="Line2D" parent="." unique_id=930003823 node_paths=PackedStringArray("output", "input")]
-points = PackedVector2Array(0, 0, 0, 0)
+points = PackedVector2Array(380, 140, 563, 112)
 default_color = Color(0, 0, 0, 1)
-script = ExtResource("3_sqbxe")
+script = ExtResource("3_ntgvk")
 output = NodePath("../DelayWiringComponent")
 input = NodePath("../PrintWireComponent")
 metadata/_custom_type_script = "uid://bhxko7cm6wc43"
@@ -72,21 +72,21 @@ metadata/_edit_lock_ = true
 
 [node name="MergerConditionWiringComponent" type="Node2D" parent="." unique_id=971127450]
 position = Vector2(150, 73)
-script = ExtResource("4_lxjh5")
+script = ExtResource("4_4675o")
 comparison_value = 3.0
 metadata/_custom_type_script = "uid://cv38ot23beu5q"
 
 [node name="NormalizeWiringComponent" type="Node2D" parent="." unique_id=1211140551]
 position = Vector2(221, -8)
-script = ExtResource("5_07xqx")
+script = ExtResource("5_yhp3l")
 metadata/_custom_type_script = "uid://b018ca26fc6ag"
 
 [node name="NotWiringComponent2" type="Node2D" parent="." unique_id=1046022245]
 position = Vector2(269, 75)
-script = ExtResource("6_qebgr")
+script = ExtResource("6_4ifxs")
 metadata/_custom_type_script = "uid://ba5676tgpjfxf"
 
 [node name="DelayWiringComponent" type="Node2D" parent="." unique_id=1080650024]
 position = Vector2(380, 140)
-script = ExtResource("7_c8p07")
+script = ExtResource("7_hjps6")
 metadata/_custom_type_script = "uid://nuxod654use1"
