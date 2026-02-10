@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://pbb26gkp48yw"]
+
+[ext_resource type="Script" uid="uid://b1e1fff6jk2fq" path="res://upgrades/double_jump_upgrade.gd" id="1_cecab"]
+[ext_resource type="Texture2D" uid="uid://cxkt6o3i3ugrp" path="res://upgrades/sprites/double_jump_upgrade.png" id="2_ssrm6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8q3s"]
+size = Vector2(10, 10)
+
+[node name="DoubleJumpUpgrade" type="Area2D" unique_id=1088017582]
+script = ExtResource("1_cecab")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1504178478]
+texture = ExtResource("2_ssrm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=639282595]
+shape = SubResource("RectangleShape2D_x8q3s")

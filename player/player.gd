@@ -1,11 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
-@export var jump_grav :int= 700
-@export var fall_grav :int= 1000
+@export var jump_grav :int= 1500
+@export var fall_grav :int= 2500
 @export var speed :int= 10000
-@export var jump_velocity :int= 300
-@export var min_jump_velocity :int= 50
+@export var jump_velocity :int= 500
+@export var min_jump_velocity :int= 0
 
 @export var sword_cooldown_time :float= 0.1
 
@@ -21,15 +21,20 @@ var has_dash :bool= false
 enum PlayerState {ON_GROUND, JUMPING, FALLING, DASHING}
 enum PlayerLeftRight {LEFT, RIGHT}
 
-var player_state := PlayerState.FALLING
+var player_state := PlayerState.ON_GROUND
 var player_left_right_state := PlayerLeftRight.RIGHT
 var left_right_direction :int= 0
 
 var sword_cooldown_done :bool= true
+var sword_offset : Vector2
 var can_double_jump :bool= true
 var can_dash :bool= true
 var dash_time_done :bool= true
 var dash_cooldown_done :bool= true
+
+
+func _ready() -> void:
+	sword_offset = %Sword.position
 
 
 func _process(delta: float) -> void:
@@ -51,10 +56,16 @@ func _handle_animation() -> void:
 	# flip the sword's position depending on which way we're going
 	if (%Sword.visible): # don't change it when it's visible
 		return
-	if player_left_right_state == PlayerLeftRight.LEFT:
-		%Sword.position = -abs(%Sword.position)
+	
+	if Input.is_action_pressed("down"):
+		%Sword.position = Vector2(0, sword_offset.x)
+		%Sword.rotation = deg_to_rad(90)
+	elif player_left_right_state == PlayerLeftRight.LEFT:
+		%Sword.position = -sword_offset
+		%Sword.rotation = 0
 	elif player_left_right_state == PlayerLeftRight.RIGHT:
-		%Sword.position = abs(%Sword.position)
+		%Sword.position = sword_offset
+		%Sword.rotation = 0
 
 
 func _update_player_state() -> void:
@@ -106,7 +117,10 @@ func _handle_jumping() -> void:
 	if not can_jump:
 		return
 	
-	# jump
+	jump()
+
+
+func jump() -> void:
 	velocity.y = -jump_velocity
 	player_state = PlayerState.JUMPING
 
@@ -129,7 +143,7 @@ func _handle_sword() -> void:
 	%Sword.show()
 	for body in %Sword.get_overlapping_bodies():
 		if body.is_in_group("enemies"):
-			body.take_damage(1)
+			body.take_damage(1, self)
 	
 	# wait until the sword should be hidden
 	await get_tree().create_timer(0.1).timeout

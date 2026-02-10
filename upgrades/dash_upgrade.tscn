@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://codac1uvx58lj"]
+
+[ext_resource type="Script" uid="uid://cqhpsu3a8mcsg" path="res://upgrades/dash_upgrade.gd" id="1_o07eo"]
+[ext_resource type="Texture2D" uid="uid://l3f3rwvaij1d" path="res://upgrades/sprites/dash_ability.png" id="2_o07eo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8q3s"]
+size = Vector2(10, 10)
+
+[node name="DashUpgrade" type="Area2D" unique_id=1088017582]
+script = ExtResource("1_o07eo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1504178478]
+texture = ExtResource("2_o07eo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=639282595]
+shape = SubResource("RectangleShape2D_x8q3s")

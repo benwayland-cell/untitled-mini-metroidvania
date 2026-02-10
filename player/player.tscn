@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cddi0r54m7fcc"]
+[gd_scene format=3 uid="uid://cddi0r54m7fcc"]
 
 [ext_resource type="Texture2D" uid="uid://bfti1kuomulq8" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dhajmv7qcth4x" path="res://player/player.gd" id="1_rkbax"]
@@ -8,28 +8,28 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 size = Vector2(20, 12)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1589719963]
 script = ExtResource("1_rkbax")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=2134549919]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_oul6g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=14214993]
 shape = SubResource("RectangleShape2D_oul6g")
 
-[node name="Sword" type="Area2D" parent="."]
+[node name="Sword" type="Area2D" parent="." unique_id=947079242]
 unique_name_in_owner = true
 visible = false
 light_mask = 2
 visibility_layer = 2
 position = Vector2(21, 0)
 
-[node name="SwordSprite" type="Sprite2D" parent="Sword"]
+[node name="SwordSprite" type="Sprite2D" parent="Sword" unique_id=13025497]
 scale = Vector2(0.16015624, 0.09375)
 texture = ExtResource("1_oul6g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword" unique_id=468202222]
 light_mask = 2
 visibility_layer = 2
 shape = SubResource("RectangleShape2D_rkbax")

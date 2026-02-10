@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://chck5ehekinur"]
+
+[ext_resource type="Texture2D" uid="uid://dccykbn0imq2k" path="res://upgrades/sprites/sword_upgrade.png" id="1_nssqe"]
+[ext_resource type="Script" uid="uid://c0basrpn1t2fn" path="res://upgrades/sword_upgrade.gd" id="1_x8q3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8q3s"]
+size = Vector2(10, 10)
+
+[node name="SwordUpgrade" type="Area2D" unique_id=1088017582]
+script = ExtResource("1_x8q3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1504178478]
+texture = ExtResource("1_nssqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=639282595]
+shape = SubResource("RectangleShape2D_x8q3s")
