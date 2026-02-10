@@ -1,0 +1,35 @@
+[gd_scene format=4 uid="uid://gvoi4bc2j8aw"]
+
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://tile_map.tscn" id="1_pdpul"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="2_8hd6v"]
+[ext_resource type="PackedScene" uid="uid://b7k2g55q7p1r" path="res://enemies/test_enemy.tscn" id="3_045es"]
+[ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="4_omn1t"]
+[ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="5_lf3p4"]
+[ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="6_yydhl"]
+
+[node name="Level1" type="Node2D" unique_id=335459430]
+
+[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("1_pdpul")]
+tile_map_data = PackedByteArray("AAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAANAAQAAgAAAAAAAAAOAAQAAgAAAAAAAAAPAAQAAgAAAAAAAAAPAAMAAgAAAAAAAAAQAAMAAgAAAAAAAAD8/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD6/wQAAgAAAAAAAAD6/wMAAgAAAAAAAAD6/wIAAgAAAAAAAAD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//7/AgAAAAAAAAD6//3/AgAAAAAAAAD5//3/AgAAAAAAAAD4//3/AgAAAAAAAAD3//3/AgAAAAAAAAD2//3/AgAAAAAAAAD1//3/AgAAAAAAAAD0//3/AgAAAAAAAAA=")
+
+[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("2_8hd6v")]
+position = Vector2(48, 54)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
+position = Vector2(50, 6)
+zoom = Vector2(2, 2)
+
+[node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("3_045es")]
+position = Vector2(-63, 51)
+drop = ExtResource("4_omn1t")
+
+[node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("5_lf3p4")]
+position = Vector2(159, 56)
+
+[node name="TestEnemy2" parent="." unique_id=1058339062 instance=ExtResource("3_045es")]
+position = Vector2(-68, 8)
+drop = ExtResource("6_yydhl")
+
+[node name="TestEnemy3" parent="." unique_id=690668143 instance=ExtResource("3_045es")]
+position = Vector2(200, 57)
+health = 999

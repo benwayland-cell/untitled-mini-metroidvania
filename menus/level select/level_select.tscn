@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cubj81h5nwvec"]
+
+[ext_resource type="Script" uid="uid://dw277ymm836v1" path="res://menus/level select/level_select.gd" id="1_ofcge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8s8hf"]
+font_size = 40
+
+[node name="LevelSelect" type="Control" unique_id=404393818]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ofcge")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=780977866]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1380422179]
+layout_mode = 2
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=756887727]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1985945602]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Select"
+label_settings = SubResource("LabelSettings_8s8hf")
+
+[node name="LevelRows" type="VBoxContainer" parent="VBoxContainer" unique_id=26010344]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
