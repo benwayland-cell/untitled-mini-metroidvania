@@ -13,23 +13,23 @@
 tile_map_data = PackedByteArray("AAD6/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD9/wIAAgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAEAAgAAAAAAAAANAAEAAgAAAAAAAAAOAAEAAgAAAAAAAAAPAAEAAgAAAAAAAAAQAAEAAgAAAAAAAAARAAEAAgAAAAAAAAARAAAAAgAAAAAAAAARAP//AgAAAAAAAAARAP7/AgAAAAAAAAASAP7/AgAAAAAAAAATAP7/AgAAAAAAAAAUAP7/AgAAAAAAAAAVAP7/AgAAAAAAAAAWAP7/AgAAAAAAAAA=")
 
 [node name="Player" parent="." unique_id=1532672824 instance=ExtResource("2_1c2mv")]
-position = Vector2(48, 54)
+position = Vector2(48, 56)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 position = Vector2(132, 0)
 zoom = Vector2(2, 2)
 
 [node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("3_f7g2b")]
-position = Vector2(295, -41)
+position = Vector2(288, -40)
 drop = ExtResource("5_sb12i")
 
 [node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("4_4ptq8")]
-position = Vector2(159, 56)
+position = Vector2(146, 58)
 
 [node name="TestEnemy2" parent="." unique_id=1058339062 instance=ExtResource("3_f7g2b")]
-position = Vector2(340, -42)
+position = Vector2(344, -40)
 drop = ExtResource("6_gbhdq")
 
 [node name="TestEnemy3" parent="." unique_id=690668143 instance=ExtResource("3_f7g2b")]
-position = Vector2(-66, 23)
+position = Vector2(-72, 24)
 health = 999

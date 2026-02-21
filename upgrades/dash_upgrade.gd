@@ -1,7 +1,4 @@
-extends Area2D
+extends UpgradeClass
 
-func _process(_delta: float) -> void:
-	for body in get_overlapping_bodies():
-		if body is Player:
-			body.has_dash = true
-			queue_free()
+func update_player(player_to_update: Player) -> void:
+	player_to_update.has_dash = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkheuco5fglkp"]
+[gd_scene format=3 uid="uid://bkheuco5fglkp"]
 
 [ext_resource type="Texture2D" uid="uid://i35salr1i01l" path="res://test-tile-map.png" id="1_7yhko"]
 
@@ -12,5 +12,5 @@ texture = ExtResource("1_7yhko")
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_1n30v")
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="TileMapLayer" type="TileMapLayer" unique_id=1835214899]
 tile_set = SubResource("TileSet_35kre")
