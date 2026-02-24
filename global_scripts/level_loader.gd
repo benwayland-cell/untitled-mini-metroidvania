@@ -34,5 +34,10 @@ func unlock_level() -> void:
 
 
 func load_next_level() -> void:
+	#print(current_level)
+	if current_level == LEVEL_STRINGS.size():
+		load_main_menu()
+		return
+	
 	get_tree().change_scene_to_file(LEVEL_STRINGS[current_level])
 	current_level += 1

@@ -11,7 +11,6 @@ size = Vector2(26, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=1589719963]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource("1_rkbax")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=2134549919]
