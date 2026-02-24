@@ -3,8 +3,8 @@ class_name TestEnemy
 
 signal died
 
-@export var health :int= 1
-@export var drop : PackedScene = null
+@export var health: int = 1
+@export var drop: PackedScene = null
 
 @onready var hurt_box: Area2D = %HurtBox
 
@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 			body.kill()
 
 
-func take_damage(damage_amount: int, player : Player) -> void:
+func take_damage(damage_amount: int, player: Player) -> void:
 	health -= damage_amount
 	
 	if Input.is_action_pressed("down") and player.global_position.y < global_position.y:

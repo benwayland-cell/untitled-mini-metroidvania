@@ -28,6 +28,13 @@ SaverLoader="*uid://bc888idwxrr3t"
 
 gdscript/warnings/unused_signal=0
 
+[display]
+
+window/size/viewport_width=576
+window/size/viewport_height=324
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

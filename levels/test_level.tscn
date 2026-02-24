@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="5_sb12i"]
 [ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="6_gbhdq"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ur00s"]
+font_size = 32
+
 [node name="Test Level" type="Node2D" unique_id=335459430]
 script = ExtResource("1_ur00s")
 
@@ -19,7 +22,6 @@ position = Vector2(48, 56)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 position = Vector2(132, 0)
-zoom = Vector2(2, 2)
 
 [node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("3_f7g2b")]
 position = Vector2(288, -40)
@@ -34,6 +36,43 @@ drop = ExtResource("6_gbhdq")
 
 [node name="TestEnemy3" parent="." unique_id=690668143 instance=ExtResource("3_f7g2b")]
 position = Vector2(-72, 24)
-health = 999
+
+[node name="WinScreen" type="CanvasLayer" parent="." unique_id=70198599]
+unique_name_in_owner = true
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="WinScreen" unique_id=374503218]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WinScreen/PanelContainer" unique_id=1970582796]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen/PanelContainer/MarginContainer" unique_id=341960994]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WinScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=1536223345]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Win"
+label_settings = SubResource("LabelSettings_ur00s")
+
+[node name="Label2" type="Label" parent="WinScreen/PanelContainer/MarginContainer/VBoxContainer" unique_id=997084276]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press any button"
 
 [connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
