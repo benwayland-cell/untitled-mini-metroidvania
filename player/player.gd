@@ -3,6 +3,10 @@ class_name Player
 
 signal player_killed
 
+@onready var sprite: Sprite2D = %PlayerSprite
+@onready var sword: Area2D = %Sword
+
+# movement numbers
 @export var jump_grav :int= 1500
 @export var fall_grav :int= 2500
 @export var speed :int= 10000
@@ -15,8 +19,6 @@ signal player_killed
 @export var dash_time :float= 0.1
 @export var dash_cooldown :float= 0.2
 
-@onready var sprite: Sprite2D = %PlayerSprite
-
 var disabled: bool = false
 
 
@@ -25,6 +27,7 @@ var has_sword :bool= false
 var has_double_jump_ability :bool= false
 var has_dash :bool= false
 
+# player states
 enum PlayerState {ON_GROUND, JUMPING, FALLING, DASHING}
 enum PlayerLeftRight {LEFT, RIGHT}
 
@@ -32,6 +35,7 @@ var player_state := PlayerState.ON_GROUND
 var player_left_right_state := PlayerLeftRight.RIGHT
 var left_right_direction :int= 0
 
+# variables used by abilities
 var sword_cooldown_done :bool= true
 var sword_offset : Vector2
 var can_double_jump :bool= true
@@ -39,12 +43,18 @@ var can_dash :bool= true
 var dash_time_done :bool= true
 var dash_cooldown_done :bool= true
 
-var sprite_frame_as_float: float
+# used by the eye movement
+var sprite_frame_as_float: float 
+
+# used by squash and stretch
+const UNSTRETCH_SPEED: float = 3
+const SQUASH_STRETCH_AMOUNT: float = 0.3
+var was_airbourne: bool = false
 
 
 func _ready() -> void:
 	sprite_frame_as_float = sprite.frame
-	sword_offset = %Sword.position
+	sword_offset = sword.position
 
 
 func _process(delta: float) -> void:
@@ -60,7 +70,7 @@ func _process(delta: float) -> void:
 	_handle_animation(delta)
 	_handle_debug()
 	
-	%Sword.get_overlapping_bodies()
+	sword.get_overlapping_bodies()
 	
 	move_and_slide()
 
@@ -68,22 +78,23 @@ func _process(delta: float) -> void:
 func _handle_animation(delta: float) -> void:
 	_handle_sword_animation()
 	_handle_eye_movement(delta)
+	_handle_squash_and_stretch(delta)
 
 
 func _handle_sword_animation() -> void:
 	# flip the sword's position depending on which way we're going
-	if (%Sword.visible): # don't change it when it's visible
+	if (sword.visible): # don't change it when it's visible
 		return
 	
 	if Input.is_action_pressed("down"):
-		%Sword.position = Vector2(0, sword_offset.x)
-		%Sword.rotation = deg_to_rad(90)
+		sword.position = Vector2(0, sword_offset.x)
+		sword.rotation = deg_to_rad(90)
 	elif player_left_right_state == PlayerLeftRight.LEFT:
-		%Sword.position = -sword_offset
-		%Sword.rotation = 0
+		sword.position = -sword_offset
+		sword.rotation = 0
 	elif player_left_right_state == PlayerLeftRight.RIGHT:
-		%Sword.position = sword_offset
-		%Sword.rotation = 0
+		sword.position = sword_offset
+		sword.rotation = 0
 
 
 # note that this assumes 8 frames
@@ -114,16 +125,24 @@ func _handle_eye_movement(delta: float) -> void:
 		sprite_frame_as_float = sprite.frame
 		return
 	
-	if sprite_frame_as_float < target_frame:
-		sprite_frame_as_float += frame_speed * delta
-		print(frame_speed * delta)
-		sprite_frame_as_float = min(sprite_frame_as_float, target_frame)
-		
-	else:
-		sprite_frame_as_float -= frame_speed * delta
-		sprite_frame_as_float = max(sprite_frame_as_float, target_frame)
+	sprite_frame_as_float = move_toward(sprite_frame_as_float, target_frame, frame_speed * delta)
 	
 	sprite.frame = int(sprite_frame_as_float)
+
+
+func _handle_squash_and_stretch(delta: float) -> void:
+	# note that the stretch is in jump()
+	
+	if is_on_floor():
+		if was_airbourne:
+			was_airbourne = false
+			sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
+	else:
+		was_airbourne = true
+	
+	# revert to normal
+	sprite.scale.x = move_toward(sprite.scale.x, 1, UNSTRETCH_SPEED * delta)
+	sprite.scale.y = move_toward(sprite.scale.y, 1, UNSTRETCH_SPEED * delta)
 
 
 func _update_player_state() -> void:
@@ -181,6 +200,8 @@ func _handle_jumping() -> void:
 func jump() -> void:
 	velocity.y = -jump_velocity
 	player_state = PlayerState.JUMPING
+	
+	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
 
 
 func _handle_grav(delta: float) -> void:
@@ -198,14 +219,14 @@ func _handle_sword() -> void:
 	
 	#swing the sword
 	sword_cooldown_done = false
-	%Sword.show()
-	for body in %Sword.get_overlapping_bodies():
+	sword.show()
+	for body in sword.get_overlapping_bodies():
 		if body.is_in_group("enemies"):
 			body.take_damage(1, self)
 	
 	# wait until the sword should be hidden
 	await get_tree().create_timer(0.1).timeout
-	%Sword.hide()
+	sword.hide()
 	
 	await get_tree().create_timer(sword_cooldown_time).timeout
 	sword_cooldown_done = true
