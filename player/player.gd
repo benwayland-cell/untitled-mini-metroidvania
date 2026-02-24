@@ -3,21 +3,27 @@ class_name Player
 
 signal player_killed
 
-@onready var sprite: Sprite2D = %PlayerSprite
-@onready var sword: Area2D = %Sword
+@export_category("Movement")
 
-# movement numbers
+@export_group("Gravity")
 @export var jump_grav :int= 1500
 @export var fall_grav :int= 2500
+@export_group("Speed")
 @export var speed :int= 10000
+@export_group("Jump Velocity")
 @export var jump_velocity :int= 500
 @export var min_jump_velocity :int= 0
 
+@export_category("Sword")
 @export var sword_cooldown_time :float= 0.1
 
+@export_category("Dash")
 @export var dash_velocity :int= 800
 @export var dash_time :float= 0.1
 @export var dash_cooldown :float= 0.2
+
+@onready var sprite: Sprite2D = %PlayerSprite
+@onready var sword: Area2D = %Sword
 
 var disabled: bool = false
 
