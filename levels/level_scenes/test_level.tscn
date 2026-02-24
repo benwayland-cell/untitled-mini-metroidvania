@@ -1,0 +1,42 @@
+[gd_scene format=4 uid="uid://byjpq3m0t0jvh"]
+
+[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_thsn3"]
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_wj73v"]
+[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/win_screen.tscn" id="3_53eta"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_27atv"]
+[ext_resource type="PackedScene" uid="uid://b7k2g55q7p1r" path="res://enemies/test_enemy.tscn" id="5_t5wpt"]
+[ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="6_wi2fd"]
+[ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="7_53eta"]
+
+[node name="Test Level" type="Node2D" unique_id=1329338849 node_paths=PackedStringArray("player")]
+script = ExtResource("1_thsn3")
+player = NodePath("Player")
+metadata/_custom_type_script = "uid://d0blb1vna8rxt"
+
+[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_wj73v")]
+tile_map_data = PackedByteArray("AAD6/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD9/wIAAgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAEAAgAAAAAAAAANAAEAAgAAAAAAAAAOAAEAAgAAAAAAAAAPAAEAAgAAAAAAAAAQAAEAAgAAAAAAAAARAAEAAgAAAAAAAAARAAAAAgAAAAAAAAARAP//AgAAAAAAAAARAP7/AgAAAAAAAAASAP7/AgAAAAAAAAATAP7/AgAAAAAAAAAUAP7/AgAAAAAAAAAVAP7/AgAAAAAAAAAWAP7/AgAAAAAAAAA=")
+
+[node name="WinScreen" parent="." unique_id=1335365444 instance=ExtResource("3_53eta")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_27atv")]
+position = Vector2(48, 56)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
+position = Vector2(132, 0)
+
+[node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("6_wi2fd")]
+position = Vector2(146, 58)
+
+[node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("5_t5wpt")]
+position = Vector2(288, -40)
+drop = ExtResource("7_53eta")
+
+[node name="TestEnemy2" parent="." unique_id=1058339062 instance=ExtResource("5_t5wpt")]
+position = Vector2(344, -40)
+drop = ExtResource("7_53eta")
+
+[node name="TestEnemy3" parent="." unique_id=690668143 instance=ExtResource("5_t5wpt")]
+position = Vector2(-72, 24)
+
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]

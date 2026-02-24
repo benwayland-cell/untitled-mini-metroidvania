@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkheuco5fglkp"]
 
-[ext_resource type="Texture2D" uid="uid://i35salr1i01l" path="res://test-tile-map.png" id="1_7yhko"]
+[ext_resource type="Texture2D" uid="uid://i35salr1i01l" path="res://levels/tile_map/test-tile-map.png" id="1_7yhko"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1n30v"]
 texture = ExtResource("1_7yhko")

@@ -20,6 +20,9 @@ func _ready() -> void:
 		
 		current_h_box.add_child(new_button)
 		buttons_in_row += 1
+		
+		if level_num > LevelLoader.last_unlocked_level:
+			new_button.disabled = true
 	
 	%LevelRows.add_child(current_h_box)
 

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://lflfkoygygy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ur00s"]
+font_size = 32
+
+[node name="WinScreen" type="CanvasLayer" unique_id=1335365444]
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1186327912]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=937719696]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1428209173]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=911832310]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Level Win"
+label_settings = SubResource("LabelSettings_ur00s")
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=499621066]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press any button"

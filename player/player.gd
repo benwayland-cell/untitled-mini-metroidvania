@@ -15,6 +15,9 @@ signal player_killed
 @export var dash_time :float= 0.1
 @export var dash_cooldown :float= 0.2
 
+var disabled: bool = false
+
+
 # abililities unlocked
 var has_sword :bool= false
 var has_double_jump_ability :bool= false
@@ -40,6 +43,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if disabled:
+		return
+	
 	_update_player_state()
 	_handle_jumping()
 	_handle_left_right(delta)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://oigmf8excuue" path="res://menus/main_menu/main_menu.gd" id="1_xbn2l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8s8hf"]
-font_size = 40
+font_size = 30
 
 [node name="MainMenu" type="Control" unique_id=339179881]
 layout_mode = 3
@@ -30,6 +30,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=2017467485]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Main Menu"
 label_settings = SubResource("LabelSettings_8s8hf")
 

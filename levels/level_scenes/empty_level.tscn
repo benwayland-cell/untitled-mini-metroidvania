@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://2jvcoqwpkv6y"]
+
+[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_fofvs"]
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_fmbec"]
+[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/win_screen.tscn" id="3_agmb1"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_tboci"]
+
+[node name="EmptyLevel" type="Node2D" unique_id=1329338849 node_paths=PackedStringArray("player")]
+script = ExtResource("1_fofvs")
+player = NodePath("Player")
+metadata/_custom_type_script = "uid://d0blb1vna8rxt"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
+
+[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_fmbec")]
+
+[node name="WinScreen" parent="." unique_id=1335365444 instance=ExtResource("3_agmb1")]
+unique_name_in_owner = true
+
+[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_tboci")]
+
+[connection signal="player_killed" from="Player" to="." method="_on_player_player_killed"]
