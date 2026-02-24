@@ -15,6 +15,8 @@ signal player_killed
 @export var dash_time :float= 0.1
 @export var dash_cooldown :float= 0.2
 
+@onready var sprite: Sprite2D = %PlayerSprite
+
 var disabled: bool = false
 
 
@@ -37,8 +39,11 @@ var can_dash :bool= true
 var dash_time_done :bool= true
 var dash_cooldown_done :bool= true
 
+var sprite_frame_as_float: float
+
 
 func _ready() -> void:
+	sprite_frame_as_float = sprite.frame
 	sword_offset = %Sword.position
 
 
@@ -52,7 +57,7 @@ func _process(delta: float) -> void:
 	_handle_grav(delta)
 	_handle_sword()
 	_handle_dash(delta)
-	_handle_animation()
+	_handle_animation(delta)
 	_handle_debug()
 	
 	%Sword.get_overlapping_bodies()
@@ -60,7 +65,12 @@ func _process(delta: float) -> void:
 	move_and_slide()
 
 
-func _handle_animation() -> void:
+func _handle_animation(delta: float) -> void:
+	_handle_sword_animation()
+	_handle_eye_movement(delta)
+
+
+func _handle_sword_animation() -> void:
 	# flip the sword's position depending on which way we're going
 	if (%Sword.visible): # don't change it when it's visible
 		return
@@ -74,6 +84,46 @@ func _handle_animation() -> void:
 	elif player_left_right_state == PlayerLeftRight.RIGHT:
 		%Sword.position = sword_offset
 		%Sword.rotation = 0
+
+
+# note that this assumes 8 frames
+func _handle_eye_movement(delta: float) -> void:
+	const FAST_SPEED: float = 50
+	const SLOW_SPEED: float = 25
+	
+	var target_frame: float
+	var frame_speed: float
+	
+	if Input.is_action_pressed("right"):
+		target_frame = 7
+		frame_speed = FAST_SPEED
+	elif Input.is_action_pressed("left"):
+		target_frame = 0
+		frame_speed = FAST_SPEED
+	elif player_left_right_state == PlayerLeftRight.LEFT:
+		target_frame = 3
+		frame_speed = SLOW_SPEED
+	elif player_left_right_state == PlayerLeftRight.RIGHT:
+		target_frame = 4
+		frame_speed = SLOW_SPEED
+	else:
+		target_frame = sprite.frame
+		frame_speed = 0
+	
+	if sprite.frame == int(target_frame):
+		sprite_frame_as_float = sprite.frame
+		return
+	
+	if sprite_frame_as_float < target_frame:
+		sprite_frame_as_float += frame_speed * delta
+		print(frame_speed * delta)
+		sprite_frame_as_float = min(sprite_frame_as_float, target_frame)
+		
+	else:
+		sprite_frame_as_float -= frame_speed * delta
+		sprite_frame_as_float = max(sprite_frame_as_float, target_frame)
+	
+	sprite.frame = int(sprite_frame_as_float)
 
 
 func _update_player_state() -> void:
