@@ -1,10 +1,19 @@
-extends StaticBody2D
+extends CharacterBody2D
 class_name TestEnemy
+
+signal died
 
 @export var health :int= 1
 @export var drop : PackedScene = null
 
-signal died
+@onready var hurt_box: Area2D = %HurtBox
+
+
+func _process(_delta: float) -> void:
+	for body in hurt_box.get_overlapping_bodies():
+		if body is Player:
+			body.kill()
+
 
 func take_damage(damage_amount: int, player : Player) -> void:
 	health -= damage_amount

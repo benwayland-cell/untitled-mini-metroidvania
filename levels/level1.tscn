@@ -32,4 +32,3 @@ drop = ExtResource("6_yydhl")
 
 [node name="TestEnemy3" parent="." unique_id=690668143 instance=ExtResource("3_045es")]
 position = Vector2(200, 57)
-health = 999

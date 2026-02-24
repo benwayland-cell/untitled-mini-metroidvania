@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+signal player_killed
+
 @export var jump_grav :int= 1500
 @export var fall_grav :int= 2500
 @export var speed :int= 10000
@@ -192,3 +194,7 @@ func _handle_debug() -> void:
 	if Input.is_action_just_pressed("debug 3"):
 		has_dash = !has_dash
 		print("Dash: " + str(has_dash))
+
+
+func kill() -> void:
+	player_killed.emit()
