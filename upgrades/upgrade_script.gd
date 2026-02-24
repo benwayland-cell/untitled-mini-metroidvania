@@ -8,9 +8,6 @@ const BOUNCE_LOSS_FACTOR: float= 0.9
 
 @export var area2D: Area2D
 
-func _ready() -> void:
-	velocity.y = -INITIAL_VELOCITY
-
 func _physics_process(delta: float) -> void:
 	_check_for_player_collision()
 	_update_movement(delta)
@@ -30,6 +27,8 @@ func _update_movement(delta: float) -> void:
 		velocity = velocity.bounce(collision_info.get_normal())
 		velocity.y *= BOUNCE_LOSS_FACTOR
 
+func give_velocity() -> void:
+	velocity.y = -INITIAL_VELOCITY
 
 func update_player(player_to_update: Player) -> void:
 	assert(false, str(player_to_update))

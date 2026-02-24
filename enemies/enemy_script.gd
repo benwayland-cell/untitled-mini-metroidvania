@@ -30,5 +30,8 @@ func take_damage(damage_amount: int, player: Player) -> void:
 			var drop_scene : Node2D = drop.instantiate()
 			add_sibling(drop_scene)
 			drop_scene.global_position = global_position
+			
+			if drop_scene is UpgradeClass:
+				drop_scene.give_velocity()
 		
 		queue_free()
