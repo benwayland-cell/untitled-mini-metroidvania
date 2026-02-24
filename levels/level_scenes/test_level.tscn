@@ -21,7 +21,7 @@ tile_map_data = PackedByteArray("AAD6/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAA
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_53eta")]
 
 [node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_27atv")]
-position = Vector2(48, 56)
+position = Vector2(54, 64)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 position = Vector2(132, 0)
