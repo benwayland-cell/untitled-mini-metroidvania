@@ -41,3 +41,7 @@ func load_next_level() -> void:
 	
 	get_tree().change_scene_to_file(LEVEL_STRINGS[current_level])
 	current_level += 1
+
+
+func reset() -> void:
+	get_tree().reload_current_scene()

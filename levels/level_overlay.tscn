@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://lflfkoygygy"]
 
+[ext_resource type="Script" uid="uid://e74efnxfodlk" path="res://levels/level_overlay.gd" id="1_2lw0x"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_ur00s"]
 font_size = 32
 
-[node name="WinScreen" type="CanvasLayer" unique_id=1335365444]
+[node name="LevelOverlay" type="CanvasLayer" unique_id=1335365444]
 visible = false
+script = ExtResource("1_2lw0x")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1186327912]
 anchors_preset = 8
@@ -29,13 +32,14 @@ theme_override_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1428209173]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=911832310]
+[node name="VariableLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=911832310]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Level Win"
 label_settings = SubResource("LabelSettings_ur00s")
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=499621066]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=499621066]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Press any button"
