@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="7_m8pcy"]
 [ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="8_tpsat"]
 
-[node name="Level1" type="Node2D" unique_id=1895910609 node_paths=PackedStringArray("player")]
+[node name="Level1" type="Node2D" unique_id=1747674981 node_paths=PackedStringArray("player")]
 script = ExtResource("1_u4424")
 player = NodePath("Player")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"

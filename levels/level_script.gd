@@ -1,4 +1,3 @@
-@abstract
 class_name Level
 extends Node2D
 
@@ -8,7 +7,9 @@ extends Node2D
 @export var end_level_slomo_time: float = 1.0
 
 @onready var win_screen: CanvasLayer = %WinScreen
-var nothing_is_pressed: bool = true # used by win_screen after it shows up
+# used by win_screen after it shows up
+var all_released: bool = false
+var button_pressed_after_released: bool = false
 
 
 func _process(_delta: float) -> void:
@@ -17,10 +18,22 @@ func _process(_delta: float) -> void:
 	
 	if not win_screen.visible:
 		return
-	if not Input.is_anything_pressed():
-		nothing_is_pressed = true
 	
-	if not nothing_is_pressed and Input.is_anything_pressed():
+	var is_anything_pressed: bool = Input.is_anything_pressed()
+	
+	#print(all_released)
+	#print(button_pressed_after_released)
+	#print()
+	
+	if not all_released and not is_anything_pressed:
+		all_released = true
+		return
+	
+	if not button_pressed_after_released and all_released and is_anything_pressed:
+		button_pressed_after_released = true
+		return
+	
+	if button_pressed_after_released and not is_anything_pressed:
 		win_screen_button_pressed()
 
 

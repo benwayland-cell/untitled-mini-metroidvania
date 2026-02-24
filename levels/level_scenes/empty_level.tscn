@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/win_screen.tscn" id="3_agmb1"]
 [ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_tboci"]
 
-[node name="EmptyLevel" type="Node2D" unique_id=1329338849 node_paths=PackedStringArray("player")]
+[node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("player")]
 script = ExtResource("1_fofvs")
 player = NodePath("Player")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"
