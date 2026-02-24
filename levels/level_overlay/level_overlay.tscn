@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://lflfkoygygy"]
 
-[ext_resource type="Script" uid="uid://e74efnxfodlk" path="res://levels/level_overlay.gd" id="1_2lw0x"]
+[ext_resource type="Script" uid="uid://e74efnxfodlk" path="res://levels/level_overlay/level_overlay.gd" id="1_2lw0x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ur00s"]
 font_size = 32

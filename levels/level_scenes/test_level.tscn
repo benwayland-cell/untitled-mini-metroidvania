@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_thsn3"]
 [ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_wj73v"]
-[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay.tscn" id="3_53eta"]
+[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_53eta"]
 [ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_27atv"]
 [ext_resource type="PackedScene" uid="uid://b7k2g55q7p1r" path="res://enemies/test_enemy.tscn" id="5_t5wpt"]
 [ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="6_wi2fd"]
