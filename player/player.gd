@@ -3,8 +3,10 @@ class_name Player
 
 signal player_killed
 
-@export_category("Movement")
+@export_category("Initalizations")
+@export var level_overlay: LevelOverlay
 
+@export_category("Movement")
 @export_group("Gravity")
 @export var jump_grav :int= 1500
 @export var fall_grav :int= 2500
@@ -27,6 +29,9 @@ signal player_killed
 
 var disabled: bool = false
 
+enum Consumables {DOUBLE_JUMP, DASH}
+
+var current_consumables: Array[Consumables] = []
 
 # abililities unlocked
 var has_sword :bool= false
@@ -59,6 +64,8 @@ var was_airbourne: bool = false
 
 
 func _ready() -> void:
+	assert(level_overlay != null, "Forgot to initialize level_overlay for Player")
+	
 	sprite_frame_as_float = sprite.frame
 	sword_offset = sword.position
 
@@ -71,7 +78,8 @@ func _process(delta: float) -> void:
 	_handle_jumping()
 	_handle_left_right(delta)
 	_handle_grav(delta)
-	_handle_sword()
+	_handle_activating_sword()
+	_handle_sword_attacking_enemy_check()
 	_handle_dash(delta)
 	_handle_animation(delta)
 	_handle_debug()
@@ -92,15 +100,29 @@ func _handle_sword_animation() -> void:
 	if (sword.visible): # don't change it when it's visible
 		return
 	
-	if Input.is_action_pressed("down"):
-		sword.position = Vector2(0, sword_offset.x)
-		sword.rotation = deg_to_rad(90)
-	elif player_left_right_state == PlayerLeftRight.LEFT:
-		sword.position = -sword_offset
-		sword.rotation = 0
+	var new_pos: Vector2 = sword.position
+	var new_scale: Vector2 = sword.scale
+	var new_rotation: float = sword.rotation
+	
+	print("ran")
+	
+	if player_left_right_state == PlayerLeftRight.LEFT:
+		new_pos = Vector2(-sword_offset.x, sword_offset.y)
+		new_scale = Vector2(-1, 1)
+		new_rotation = 0
 	elif player_left_right_state == PlayerLeftRight.RIGHT:
-		sword.position = sword_offset
-		sword.rotation = 0
+		new_pos = sword_offset
+		new_scale = Vector2(1, 1)
+		new_rotation = 0
+	
+	if Input.is_action_pressed("down"):
+		new_pos = Vector2.ZERO
+		new_scale = Vector2(new_scale.y, new_scale.x)
+		new_rotation = deg_to_rad(90)
+	
+	sword.position = new_pos
+	sword.scale = new_scale
+	sword.rotation = new_rotation
 
 
 # note that this assumes 8 frames
@@ -219,16 +241,13 @@ func _handle_grav(delta: float) -> void:
 		velocity.y += fall_grav * delta
 
 
-func _handle_sword() -> void:
+func _handle_activating_sword() -> void:
 	if not (Input.is_action_just_pressed("attack") and has_sword and sword_cooldown_done):
 		return
 	
 	#swing the sword
 	sword_cooldown_done = false
 	sword.show()
-	for body in sword.get_overlapping_bodies():
-		if body.is_in_group("enemies"):
-			body.take_damage(1, self)
 	
 	# wait until the sword should be hidden
 	await get_tree().create_timer(0.1).timeout
@@ -236,6 +255,15 @@ func _handle_sword() -> void:
 	
 	await get_tree().create_timer(sword_cooldown_time).timeout
 	sword_cooldown_done = true
+
+
+func _handle_sword_attacking_enemy_check() -> void:
+	if not sword.visible:
+		return
+	
+	for body in sword.get_overlapping_bodies():
+		if body.is_in_group("enemies"):
+			body.take_damage(1, self)
 
 
 func _handle_dash(_delta: float) -> void:
@@ -281,3 +309,13 @@ func _handle_debug() -> void:
 
 func kill() -> void:
 	player_killed.emit()
+
+
+func pop_consumable() -> void:
+	current_consumables.pop_back()
+	level_overlay.pop_upgrade()
+
+
+func add_consumable(consumable: Consumables) -> void:
+	current_consumables.append(consumable)
+	#level_overlay.add_upgrade()

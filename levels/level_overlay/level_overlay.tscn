@@ -6,10 +6,11 @@
 font_size = 32
 
 [node name="LevelOverlay" type="CanvasLayer" unique_id=1335365444]
-visible = false
 script = ExtResource("1_2lw0x")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1186327912]
+[node name="WinLoseContainer" type="PanelContainer" parent="." unique_id=1186327912]
+unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,24 +23,34 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=937719696]
+[node name="MarginContainer" type="MarginContainer" parent="WinLoseContainer" unique_id=937719696]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1428209173]
+[node name="VBoxContainer" type="VBoxContainer" parent="WinLoseContainer/MarginContainer" unique_id=1428209173]
 layout_mode = 2
 
-[node name="VariableLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=911832310]
+[node name="VariableLabel" type="Label" parent="WinLoseContainer/MarginContainer/VBoxContainer" unique_id=911832310]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Level Win"
 label_settings = SubResource("LabelSettings_ur00s")
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=499621066]
+[node name="Label" type="Label" parent="WinLoseContainer/MarginContainer/VBoxContainer" unique_id=499621066]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Press any button"
+
+[node name="UpgradeDisplay" type="HBoxContainer" parent="." unique_id=542435404]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/separation = 10

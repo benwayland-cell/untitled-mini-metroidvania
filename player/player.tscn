@@ -16,23 +16,25 @@ script = ExtResource("1_rkbax")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=2134549919]
 unique_name_in_owner = true
-position = Vector2(0, -8)
 texture = ExtResource("2_g1dw6")
+offset = Vector2(0, -8)
 hframes = 8
 frame = 4
 
 [node name="Sword" type="Area2D" parent="PlayerSprite" unique_id=947079242]
 unique_name_in_owner = true
 visible = false
-position = Vector2(21, 0)
+position = Vector2(8, -8)
 collision_layer = 0
 collision_mask = 4
 
 [node name="SwordSprite" type="Sprite2D" parent="PlayerSprite/Sword" unique_id=13025497]
+position = Vector2(13, 0)
 scale = Vector2(0.16015624, 0.09375)
 texture = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/Sword" unique_id=468202222]
+position = Vector2(13, 0)
 shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=14214993]

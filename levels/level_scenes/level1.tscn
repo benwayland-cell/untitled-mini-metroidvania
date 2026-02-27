@@ -23,8 +23,9 @@ tile_map_data = PackedByteArray("AAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAA
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_vhrw6")]
 
-[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_h0rrk")]
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_h0rrk")]
 position = Vector2(48, 56)
+level_overlay = NodePath("../LevelOverlay")
 
 [node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("5_giilw")]
 position = Vector2(-64, 56)

@@ -17,4 +17,5 @@ metadata/_custom_type_script = "uid://d0blb1vna8rxt"
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_agmb1")]
 
-[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_tboci")]
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_tboci")]
+level_overlay = NodePath("../LevelOverlay")

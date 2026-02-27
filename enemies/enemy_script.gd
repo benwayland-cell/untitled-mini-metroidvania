@@ -4,14 +4,26 @@ extends CharacterBody2D
 
 signal died
 
+
+@export var drop: PackedScene = null
+@export var health: int = 1
+@export var invincibility_time: float = 0.5
+
+@export_group("Private Nodes")
 @export var hurt_box: Area2D
 
-@export var health: int = 1
-@export var drop: PackedScene = null
+var invinciblity_timer: Timer = Timer.new()
+var invincible: bool = false
 
+
+func _ready() -> void:
+	invinciblity_timer.wait_time
 
 
 func _process(_delta: float) -> void:
+	if invincible:
+		return
+	
 	for body in hurt_box.get_overlapping_bodies():
 		if body is Player:
 			body.kill()

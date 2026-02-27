@@ -20,14 +20,15 @@ tile_map_data = PackedByteArray("AAD6/wIAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAA
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_53eta")]
 
-[node name="Player" parent="." unique_id=1532672824 instance=ExtResource("4_27atv")]
-position = Vector2(54, 64)
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_27atv")]
+position = Vector2(56, 64)
+level_overlay = NodePath("../LevelOverlay")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 position = Vector2(132, 0)
 
 [node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("6_wi2fd")]
-position = Vector2(146, 58)
+position = Vector2(146, 59)
 
 [node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("5_t5wpt")]
 position = Vector2(288, -40)
