@@ -30,12 +30,15 @@ func _process(_delta: float) -> void:
 			body.kill()
 
 
-func take_damage(damage_amount: int, player: Player) -> void:
+func take_damage(damage_amount: int, damaging_object: Node) -> void:
 	health -= damage_amount
 	
-	if Input.is_action_pressed("down") and player.global_position.y < global_position.y:
-		player.jump()
-		player.can_double_jump = true
+	
+	if damaging_object is Player:
+		var player: Player = damaging_object
+		if Input.is_action_pressed("down") and player.global_position.y < global_position.y:
+			player.jump()
+			player.can_double_jump = true
 	
 	if health <= 0:
 		died.emit()
