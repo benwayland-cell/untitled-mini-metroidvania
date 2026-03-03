@@ -4,8 +4,10 @@ extends Enemy
 @export var gravity: float = 800.0
 @export var speed: float = 30.0
 
-@export var time_between_jumps: float = 5.0
+@export var time_between_jumps: float = 1
 @export var target_distance_from_player: float = 75
+
+@export var jump_vector := Vector2(200, -200)
 
 @onready var vision: Area2D = %Vision
 @onready var jump_timer: Timer = %JumpTimer
@@ -19,14 +21,18 @@ var position_padding: float = 1.0
 var player_is_visible: bool = false:
 	set = set_player_is_visible
 ## If we are in the middle of jumping
-var is_jumping: bool = false
+var is_jumping: bool = false:
+	set = _set_is_jumping
+
+var was_airbourne: bool = false
 
 
 func _ready() -> void:
 	super._ready()
 	starting_pos = position
 	jump_timer.wait_time = time_between_jumps
-	position.x += 100
+	jump_timer.timeout.connect(_on_jump_timer_timeout)
+	#position.x += 100
 	#position.y -= 100
 
 
@@ -36,12 +42,15 @@ func _process(delta: float) -> void:
 	
 	_handle_gravity(delta)
 	
-	if player_is_visible:
-		_go_to_player()
+	if is_jumping:
+		if is_on_floor() and was_airbourne:
+			is_jumping = false
 	else:
-		_go_to_starting_pos()
+		_handle_x_velocity()
 	
 	move_and_slide()
+	
+	was_airbourne = is_jumping
 
 
 ## Applies gravity
@@ -59,6 +68,13 @@ func _check_if_player_visible() -> void:
 			return
 	
 	player_is_visible = false
+
+
+func _handle_x_velocity() -> void:
+	if player_is_visible:
+		_go_to_player()
+	else:
+		_go_to_starting_pos()
 
 
 ## Makes the slime go towards where it started
@@ -105,3 +121,23 @@ func set_player_is_visible(new_value: bool) -> void:
 		jump_timer.stop()
 	
 	player_is_visible = new_value
+
+
+## Jumps if set to true
+func _set_is_jumping(new_value: bool) -> void:
+	if new_value == is_jumping:
+		return
+	is_jumping = new_value
+	
+	if not is_jumping:
+		jump_timer.start()
+		return
+	
+	if position.x < player.position.x:
+		velocity = jump_vector
+	else:
+		velocity = Vector2(-jump_vector.x, jump_vector.y)
+
+
+func _on_jump_timer_timeout() -> void:
+	is_jumping = true

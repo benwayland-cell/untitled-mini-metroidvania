@@ -15,7 +15,7 @@ script = ExtResource("1_2bghh")
 hurt_box = NodePath("HurtBox")
 metadata/_custom_type_script = "uid://n8p2x2fsbqug"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=480914051]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=480914051 groups=["enemies"]]
 position = Vector2(4.7683716e-07, -4.7683716e-07)
 rotation = -3.1415925
 scale = Vector2(0.125, 0.125)

@@ -12,7 +12,7 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5816"]
 size = Vector2(400, 50)
 
-[node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box")]
+[node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box") groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_6jm6h")
 hurt_box = NodePath("HurtBox")
@@ -43,3 +43,4 @@ shape = SubResource("RectangleShape2D_h5816")
 
 [node name="JumpTimer" type="Timer" parent="." unique_id=1797217381]
 unique_name_in_owner = true
+one_shot = true
