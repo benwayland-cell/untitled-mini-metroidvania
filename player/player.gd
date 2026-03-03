@@ -58,8 +58,8 @@ var dash_cooldown_done :bool= true
 var sprite_frame_as_float: float 
 
 # used by squash and stretch
-const UNSTRETCH_SPEED: float = 3
-const SQUASH_STRETCH_AMOUNT: float = 0.3
+const UNSTRETCH_SPEED: float = 2
+const SQUASH_STRETCH_AMOUNT: float = 0.5
 var was_airbourne: bool = false
 
 
@@ -103,8 +103,6 @@ func _handle_sword_animation() -> void:
 	var new_pos: Vector2 = sword.position
 	var new_scale: Vector2 = sword.scale
 	var new_rotation: float = sword.rotation
-	
-	print("ran")
 	
 	if player_left_right_state == PlayerLeftRight.LEFT:
 		new_pos = Vector2(-sword_offset.x, sword_offset.y)

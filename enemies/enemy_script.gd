@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 signal died
 
-
 @export var drop: PackedScene = null
 @export var health: int = 1
 @export var invincibility_time: float = 0.5
@@ -17,7 +16,9 @@ var invincible: bool = false
 
 
 func _ready() -> void:
-	invinciblity_timer.wait_time
+	assert(hurt_box != null, "Forgot to initialize hurt box in: " + name)
+	
+	invinciblity_timer.wait_time = invincibility_time
 
 
 func _process(_delta: float) -> void:
