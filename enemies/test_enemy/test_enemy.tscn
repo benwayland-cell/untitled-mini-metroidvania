@@ -9,10 +9,11 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bghh"]
 size = Vector2(16, 16)
 
-[node name="TestEnemy" type="CharacterBody2D" unique_id=592405806 node_paths=PackedStringArray("hurt_box")]
+[node name="TestEnemy" type="CharacterBody2D" unique_id=592405806 node_paths=PackedStringArray("hurt_box", "vision")]
 collision_layer = 4
 script = ExtResource("1_2bghh")
 hurt_box = NodePath("HurtBox")
+vision = NodePath("HurtBox")
 metadata/_custom_type_script = "uid://n8p2x2fsbqug"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=480914051]

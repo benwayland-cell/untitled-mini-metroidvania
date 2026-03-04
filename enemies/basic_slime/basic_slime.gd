@@ -1,15 +1,12 @@
 class_name BasicSlime
 extends Enemy
 
-@export var gravity: float = 800.0
-@export var speed: float = 30.0
 
 @export var time_between_jumps: float = 1
 @export var target_distance_from_player: float = 75
 
 @export var jump_vector := Vector2(200, -200)
 
-@onready var vision: Area2D = %Vision
 @onready var jump_timer: Timer = %JumpTimer
 
 var player: Player
@@ -17,9 +14,6 @@ var starting_pos: Vector2
 
 var position_padding: float = 1.0
 
-## If the player is within the vision Area2D
-var player_is_visible: bool = false:
-	set = set_player_is_visible
 ## If we are in the middle of jumping
 var is_jumping: bool = false:
 	set = _set_is_jumping
@@ -32,15 +26,10 @@ func _ready() -> void:
 	starting_pos = position
 	jump_timer.wait_time = time_between_jumps
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
-	#position.x += 100
-	#position.y -= 100
 
 
 func _process(delta: float) -> void:
 	super._process(delta)
-	_check_if_player_visible()
-	
-	_handle_gravity(delta)
 	
 	if is_jumping:
 		if is_on_floor() and was_airbourne:
@@ -51,23 +40,6 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	
 	was_airbourne = is_jumping
-
-
-## Applies gravity
-func _handle_gravity(delta: float) -> void:
-	velocity.y += gravity * delta
-
-
-## Sets player_is_visible to true or false
-## Also sets player if setting player_is_visible to true
-func _check_if_player_visible() -> void:
-	for body in vision.get_overlapping_bodies():
-		if body is Player:
-			player = body
-			player_is_visible = true
-			return
-	
-	player_is_visible = false
 
 
 func _handle_x_velocity() -> void:
@@ -112,7 +84,11 @@ func set_player_is_visible(new_value: bool) -> void:
 	if player_is_visible == new_value:
 		return
 	
-	assert(player != null, "Did not set player before making player_is_visible true")
+	# set player if it is null
+	if new_value and player == null:
+		for body in vision.get_overlapping_bodies():
+			if body is Player:
+				player = body
 	
 	# start or stop the timer if the player is visible
 	if new_value:

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b1q55pgbvks8q"]
+
+[ext_resource type="Script" uid="uid://bxs3abq2vspox" path="res://enemies/sword_enemy/sword_enemy.gd" id="1_c2shx"]
+[ext_resource type="Texture2D" uid="uid://bfti1kuomulq8" path="res://icon.svg" id="2_0ud2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdp64"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ud2n"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sej6"]
+size = Vector2(300, 50)
+
+[node name="SwordEnemy" type="CharacterBody2D" unique_id=1370522136 node_paths=PackedStringArray("hurt_box", "vision")]
+script = ExtResource("1_c2shx")
+hurt_box = NodePath("HurtBox")
+vision = NodePath("Vision")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1433344245]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_0ud2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=351489806]
+shape = SubResource("RectangleShape2D_jdp64")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1088140215]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=919870571]
+shape = SubResource("RectangleShape2D_0ud2n")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Vision" type="Area2D" parent="." unique_id=124097149]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision" unique_id=738263968]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_8sej6")
+debug_color = Color(0, 0.6, 0.69803923, 0)
