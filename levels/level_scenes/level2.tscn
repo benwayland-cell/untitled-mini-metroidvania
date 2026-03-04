@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cab16ngxrc4jo"]
+
+[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_py88r"]
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_g1dg4"]
+[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_s1bpp"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_76ugp"]
+
+[node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("player", "level_overlay")]
+script = ExtResource("1_py88r")
+player = NodePath("Player")
+level_overlay = NodePath("LevelOverlay")
+metadata/_custom_type_script = "uid://d0blb1vna8rxt"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
+
+[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_g1dg4")]
+
+[node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_s1bpp")]
+
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_76ugp")]
+level_overlay = NodePath("../LevelOverlay")
