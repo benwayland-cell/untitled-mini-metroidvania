@@ -4,8 +4,8 @@ const MAIN_MENU_FILE : String = "res://menus/main_menu/main_menu.tscn"
 const LEVEL_SELECT_FILE : String = "res://menus/level select/level_select.tscn"
 
 const LEVEL_STRINGS : Array[String] = [
-	"uid://byjpq3m0t0jvh", # is currently test_level
-	"uid://gvoi4bc2j8aw", # level 1
+	"uid://gvoi4bc2j8aw",
+	
 ]
 
 var current_level: int

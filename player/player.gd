@@ -26,6 +26,7 @@ signal player_killed
 
 @onready var sprite: Sprite2D = %PlayerSprite
 @onready var sword: Area2D = %Sword
+@onready var death_sprite: AnimatedSprite2D = %DeathSprite
 
 var disabled: bool = false
 
@@ -260,7 +261,7 @@ func _handle_sword_attacking_enemy_check() -> void:
 		return
 	
 	for body in sword.get_overlapping_bodies():
-		if body.is_in_group("enemies"):
+		if body is Enemy:
 			body.take_damage(1, self)
 
 
@@ -305,7 +306,18 @@ func _handle_debug() -> void:
 		print("Dash: " + str(has_dash))
 
 
+## Kills the player
 func kill() -> void:
+	if disabled:
+		return
+	
+	disabled = true
+	
+	# start death animation
+	sprite.hide()
+	death_sprite.show()
+	death_sprite.play("death")
+	
 	player_killed.emit()
 
 

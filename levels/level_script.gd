@@ -13,18 +13,19 @@ signal any_button_pressed
 var won_game: bool = false
 var player_dead: bool = false
 
+var enemy_count: int
 
 func _ready() -> void:
 	assert(player != null, "You forgot to add the player in %s" % name)
 	assert(level_overlay != null, "You forgot to add the level_overlay in %s" % name)
 	
 	player.player_killed.connect(_on_player_player_killed)
-
-
-func _process(_delta: float) -> void:
-	if get_tree().get_nodes_in_group("enemies").size() == 0 and not won_game:
-		await win_game()
-		return
+	
+	enemy_count = 0
+	for child in get_children():
+		if child is Enemy:
+			child.died.connect(_on_enemy_killed)
+			enemy_count += 1
 
 
 func win_game() -> void:
@@ -49,8 +50,13 @@ func _on_player_player_killed() -> void:
 		return
 	player_dead = true
 	
-	player.disabled = true
-	
 	await level_overlay.wait_for_loss_screen()
 	
 	LevelLoader.reset()
+
+
+func _on_enemy_killed() -> void:
+	enemy_count -= 1
+	
+	if enemy_count == 0:
+		await win_game()
