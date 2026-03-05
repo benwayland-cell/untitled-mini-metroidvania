@@ -38,8 +38,12 @@ func _ready() -> void:
 	assert(hurt_box != null, "Forgot to initialize hurt box in: " + name)
 	
 	starting_pos = position
-	invinciblity_timer.wait_time = invincibility_time
 	add_child(visibility_ray)
+	
+	invinciblity_timer.wait_time = invincibility_time
+	invinciblity_timer.one_shot = true
+	invinciblity_timer.timeout.connect(_on_invinciblity_timer_timeout)
+	add_child(invinciblity_timer)
 
 
 func _process(delta: float) -> void:
@@ -55,7 +59,14 @@ func _process(delta: float) -> void:
 
 
 func take_damage(damage_amount: int, damaging_object: Node) -> void:
+	#don't take damage if it is currently invincible
+	if invincible:
+		return
+	
 	_health -= damage_amount
+	
+	invincible = true
+	invinciblity_timer.start()
 	
 	if damaging_object is Player:
 		if Input.is_action_pressed("down") and damaging_object.global_position.y < global_position.y:
@@ -129,3 +140,7 @@ func get_player_offset_pos(offset: float) -> float:
 		return player.position.x - offset
 	else:
 		return player.position.x + offset
+
+
+func _on_invinciblity_timer_timeout() -> void:
+	invincible = false
