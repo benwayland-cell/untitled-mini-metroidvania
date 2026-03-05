@@ -10,17 +10,16 @@ extends Enemy
 
 @onready var jump_timer: Timer = %JumpTimer
 
-## If we are in the middle of jumping
-var is_jumping: bool = false:
-	set = _set_is_jumping
-
-var was_airbourne: bool = false
+enum State {DEFAULT, APROACHING, JUMPING}
+var state: State:
+	set = _set_state
 
 
 func _ready() -> void:
 	super._ready()
 	current_speed = speed
 	_health = health
+	state = State.DEFAULT
 	
 	jump_timer.wait_time = time_between_jumps
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
@@ -29,57 +28,69 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
-	if is_jumping:
-		if is_on_floor() and was_airbourne:
-			is_jumping = false
-	else:
-		_handle_x_velocity()
+	_state_process()
 	
 	move_and_slide()
+
+
+func _set_state(new_state: State) -> void:
+	state = new_state
 	
-	was_airbourne = is_jumping
+	match state:
+		State.DEFAULT:
+			_default_ready()
+		State.APROACHING:
+			_aproaching_ready()
+		State.JUMPING:
+			_jumping_ready()
 
 
-func _handle_x_velocity() -> void:
+func _state_process() -> void:
+	match state:
+		State.DEFAULT:
+			_default_process()
+		State.APROACHING:
+			_aproaching_process()
+		State.JUMPING:
+			_jumping_process()
+
+
+################    Default
+## Do nothing
+## When the player is visible, go into the aproaching state
+
+func _default_ready() -> void:
+	velocity.x = 0
+
+
+func _default_process() -> void:
 	if player_is_visible:
-		_go_to_player()
-	else:
-		_go_to_starting_pos()
+		state = State.APROACHING
 
 
-## Makes the slime go towards where it started
-func _go_to_starting_pos() -> void:
-	go_to_x_cor(starting_pos.x)
+################    Aproaching
+## Go to target_distance_from_player
+
+func _aproaching_ready() -> void:
+	current_speed = speed
+	jump_timer.start()
 
 
-## Makes the slime try to go to target_distance_from_player away from the player
-func _go_to_player() -> void:
+func _aproaching_process() -> void:
 	go_to_x_cor(get_player_offset_pos(target_distance_from_player))
 
 
-func set_player_is_visible(new_value: bool) -> void:
-	# do nothing if it isn't changing
-	if player_is_visible == new_value:
-		return
-	
-	# start or stop the timer if the player is visible
-	if new_value:
-		jump_timer.start()
-	else:
-		jump_timer.stop()
-	
-	player_is_visible = new_value
+func _on_jump_timer_timeout() -> void:
+	state = State.JUMPING
 
 
-## Jumps if set to true
-func _set_is_jumping(new_value: bool) -> void:
-	if new_value == is_jumping:
-		return
-	is_jumping = new_value
-	
-	if not is_jumping:
-		jump_timer.start()
-		return
+################    Jumping
+## Start by jumping at the player and do nothing until it reaches the ground
+
+var was_airbourne: bool
+
+func _jumping_ready() -> void:
+	was_airbourne = false
 	
 	if position.x < player.position.x:
 		velocity = jump_vector
@@ -87,5 +98,8 @@ func _set_is_jumping(new_value: bool) -> void:
 		velocity = Vector2(-jump_vector.x, jump_vector.y)
 
 
-func _on_jump_timer_timeout() -> void:
-	is_jumping = true
+func _jumping_process() -> void:
+	if is_on_floor() and was_airbourne:
+		state = State.APROACHING
+	else:
+		was_airbourne = true
