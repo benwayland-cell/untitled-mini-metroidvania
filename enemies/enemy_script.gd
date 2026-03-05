@@ -17,6 +17,8 @@ signal died
 @export var hurt_box: Area2D
 @export var vision: Area2D
 
+@onready var visibility_ray := RayCast2D.new()
+
 var starting_pos: Vector2
 var position_padding: float = 1.0
 
@@ -37,6 +39,7 @@ func _ready() -> void:
 	
 	starting_pos = position
 	invinciblity_timer.wait_time = invincibility_time
+	add_child(visibility_ray)
 
 
 func _process(delta: float) -> void:
@@ -93,13 +96,20 @@ func go_to_x_cor(target_x: float) -> void:
 ## Sets player_is_visible to true or false
 ## Also sets player if setting player_is_visible to true
 func _check_if_player_visible() -> void:
+	player_is_visible = false
+	
+	var player_is_in_vision: bool = false
+	
 	for body in vision.get_overlapping_bodies():
 		if body is Player:
 			player = body
-			player_is_visible = true
-			return
+			player_is_in_vision = true
+			# make the ray point to the player
+			visibility_ray.target_position = player.position - position
 	
-	player_is_visible = false
+	if player_is_in_vision:
+		player_is_visible = not visibility_ray.is_colliding()
+
 
 
 func set_player_is_visible(new_value: bool) -> void:

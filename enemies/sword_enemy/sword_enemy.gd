@@ -9,13 +9,14 @@ extends Enemy
 
 @export_group("Base Stats")
 @export var health: int = 2
+
+@export_group("Speed")
 @export var default_speed: float = 30.0
 @export var approaching_speed: float = 50.0
 @export var flee_speed: float = 100.0
 
 @export_group("Spacing")
 @export var distance_when_approaching: float = 20.0
-@export var attack_offset: float = 25.0
 
 @export_group("Timing")
 @export var windup_time: float = 0.5
@@ -23,6 +24,7 @@ extends Enemy
 @export var flee_time: float = 2.0
 
 @onready var sword: Area2D = %Sword
+@onready var attack_range: Area2D = %AttackRange
 @onready var timer: Timer = %Timer
 
 enum State {DEFAULT, APPROACHING, WINDUP, ATTACKING, FLEEING}
@@ -115,8 +117,9 @@ func _approaching_process() -> void:
 	go_to_x_cor(get_player_offset_pos(distance_when_approaching))
 	
 	# check if we're close enough to the player to attack
-	if get_distance_from_player().abs().x < attack_offset:
-		state = State.WINDUP
+	for body in attack_range.get_overlapping_bodies():
+		if body is Player:
+			state = State.WINDUP
 
 
 ################    Windup
