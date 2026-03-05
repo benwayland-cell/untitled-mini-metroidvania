@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="7_0vv12"]
 [ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="8_o5yuq"]
 [ext_resource type="PackedScene" uid="uid://df02p20s4jrqc" path="res://spike/spike.tscn" id="9_wjuib"]
+[ext_resource type="PackedScene" uid="uid://b1q55pgbvks8q" path="res://enemies/sword_enemy/sword_enemy.tscn" id="10_4n8tn"]
 
 [node name="Test Level" type="Node2D" unique_id=1175710397 node_paths=PackedStringArray("player", "level_overlay")]
 script = ExtResource("1_ly3hx")
@@ -41,3 +42,6 @@ drop = ExtResource("8_o5yuq")
 
 [node name="Spike" parent="." unique_id=1215871189 instance=ExtResource("9_wjuib")]
 position = Vector2(184, 56)
+
+[node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("10_4n8tn")]
+position = Vector2(-108, 56)

@@ -12,7 +12,11 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8sej6"]
 size = Vector2(300, 50)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a7qu"]
+size = Vector2(26, 16)
+
 [node name="SwordEnemy" type="CharacterBody2D" unique_id=1370522136 node_paths=PackedStringArray("hurt_box", "vision")]
+collision_layer = 4
 script = ExtResource("1_c2shx")
 hurt_box = NodePath("HurtBox")
 vision = NodePath("Vision")
@@ -25,6 +29,8 @@ texture = ExtResource("2_0ud2n")
 shape = SubResource("RectangleShape2D_jdp64")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1088140215]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=919870571]
 shape = SubResource("RectangleShape2D_0ud2n")
@@ -38,3 +44,24 @@ collision_mask = 2
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_8sej6")
 debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="Sword" type="Area2D" parent="." unique_id=280852950]
+unique_name_in_owner = true
+position = Vector2(8, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="SwordSprite" type="Sprite2D" parent="Sword" unique_id=983842429]
+position = Vector2(13, 0)
+scale = Vector2(0.16015624, 0.09375)
+texture = ExtResource("2_0ud2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword" unique_id=164071672]
+position = Vector2(13, 0)
+shape = SubResource("RectangleShape2D_7a7qu")
+
+[node name="Timer" type="Timer" parent="." unique_id=616160776]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

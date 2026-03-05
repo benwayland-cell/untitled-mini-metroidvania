@@ -7,16 +7,22 @@ signal died
 @export var drop: PackedScene = null
 
 @export_group("Damage")
-@export var health: int = 1
+@export var _health: int = 1
 @export var invincibility_time: float = 0.5
 
 @export_group("Movement")
 @export var gravity: float = 800.0
-@export var speed: float = 30.0
 
 @export_group("Private Nodes")
 @export var hurt_box: Area2D
 @export var vision: Area2D
+
+var starting_pos: Vector2
+var position_padding: float = 1.0
+
+var player: Player
+
+var current_speed: float = 50.0
 
 var invinciblity_timer: Timer = Timer.new()
 var invincible: bool = false
@@ -29,6 +35,7 @@ var player_is_visible: bool = false:
 func _ready() -> void:
 	assert(hurt_box != null, "Forgot to initialize hurt box in: " + name)
 	
+	starting_pos = position
 	invinciblity_timer.wait_time = invincibility_time
 
 
@@ -45,15 +52,14 @@ func _process(delta: float) -> void:
 
 
 func take_damage(damage_amount: int, damaging_object: Node) -> void:
-	health -= damage_amount
+	_health -= damage_amount
 	
 	if damaging_object is Player:
-		var player: Player = damaging_object
-		if Input.is_action_pressed("down") and player.global_position.y < global_position.y:
-			player.jump()
-			player.can_double_jump = true
+		if Input.is_action_pressed("down") and damaging_object.global_position.y < global_position.y:
+			damaging_object.jump()
+			damaging_object.can_double_jump = true
 	
-	if health <= 0:
+	if _health <= 0:
 		died.emit()
 		if drop != null:
 			var drop_scene : Node2D = drop.instantiate()
@@ -71,11 +77,25 @@ func _handle_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
 
 
+## Makes the enemy go to the target_x coordinate
+func go_to_x_cor(target_x: float) -> void:
+	if target_x + position_padding < position.x:
+		velocity.x = -current_speed
+	
+	elif position.x < target_x - position_padding:
+		velocity.x = current_speed
+	
+	else:
+		velocity.x = 0
+		position.x = target_x
+
+
 ## Sets player_is_visible to true or false
 ## Also sets player if setting player_is_visible to true
 func _check_if_player_visible() -> void:
 	for body in vision.get_overlapping_bodies():
 		if body is Player:
+			player = body
 			player_is_visible = true
 			return
 	
@@ -84,3 +104,18 @@ func _check_if_player_visible() -> void:
 
 func set_player_is_visible(new_value: bool) -> void:
 	player_is_visible = new_value
+
+
+## Gets a vector from the enemy to the player
+func get_distance_from_player() -> Vector2:
+	assert(player != null, "Player was null when get_distance_from_player was called")
+	return player.position - position
+
+
+## Returns the x coordinate that is 'offset' distance from player
+## Gives the coordinate on the side that is closer
+func get_player_offset_pos(offset: float) -> float:
+	if position.x < player.position.x:
+		return player.position.x - offset
+	else:
+		return player.position.x + offset
