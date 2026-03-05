@@ -41,10 +41,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
-	# go to default state if it can't see the player
-	if state != State.DEFAULT and not player_is_visible:
-		state = State.DEFAULT
-	
 	_run_state_process()
 	
 	move_and_slide()
