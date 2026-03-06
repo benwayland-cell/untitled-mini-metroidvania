@@ -9,7 +9,7 @@ const JUMP_TEXT := "Z Jump"
 const SLASH_TEXT := "X Slash"
 
 
-enum Tutorial {NONE, MOVEMENT, JUMP, WAIT_FOR_SLASH, SLASH}
+enum Tutorial {NONE, MOVEMENT, JUMP, WAIT_FOR_ATTACK, ATTACK}
 var current_tutorial: Tutorial
 
 
@@ -30,15 +30,15 @@ func _process(_delta: float) -> void:
 		Tutorial.JUMP:
 			if Input.is_action_just_pressed("jump"):
 				tutorial_label.text = ""
-				current_tutorial = Tutorial.WAIT_FOR_SLASH
+				current_tutorial = Tutorial.WAIT_FOR_ATTACK
 		
-		Tutorial.WAIT_FOR_SLASH:
+		Tutorial.WAIT_FOR_ATTACK:
 			# if sword_upgrade was freed
 			if not is_instance_valid(sword_upgrade):
 				tutorial_label.text = SLASH_TEXT
-				current_tutorial = Tutorial.SLASH
+				current_tutorial = Tutorial.ATTACK
 		
-		Tutorial.SLASH:
+		Tutorial.ATTACK:
 			if Input.is_action_just_pressed("attack"):
 				tutorial_label.text = ""
 				current_tutorial = Tutorial.NONE
