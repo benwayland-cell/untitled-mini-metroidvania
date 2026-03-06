@@ -19,8 +19,6 @@ var button_pressed_after_released: bool = false
 
 func _process(_delta: float) -> void:
 	_handle_wait_for_any_button_pressed()
-	
-	
 
 
 ############## Win / Lose Screen
@@ -70,6 +68,9 @@ func wait_for_loss_screen() -> void:
 
 
 func pause() -> void:
+	if win_lose_container.visible:
+		return
+	
 	get_tree().paused = true
 	pause_menu.show()
 
@@ -77,6 +78,11 @@ func pause() -> void:
 func _on_continue_button_pressed() -> void:
 	get_tree().paused = false
 	pause_menu.hide()
+
+
+func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
+	LevelLoader.reset()
 
 
 func _on_level_select_button_pressed() -> void:
