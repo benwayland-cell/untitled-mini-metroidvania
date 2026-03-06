@@ -4,16 +4,20 @@ extends StaticBody2D
 
 ## Will be deleted with the wall
 @export var attatched_node: Node
-@export var texture: Texture2D
+@export var texture: Texture2D:
+	set = _set_sprite
 
 @onready var sprite: Sprite2D = %Sprite2D
 
 const DISTANCE_TO_ANOTHER_BLOCK: float = 16.0
 
+var default_texture: Texture2D
 var deleted: bool = false
 
 
 func _ready() -> void:
+	default_texture = sprite.texture
+	
 	if texture != null:
 		sprite.texture = texture
 
@@ -44,3 +48,15 @@ func _check_if_neighbor(breakable_wall: BreakableWall) -> void:
 		or other_wall_pos.y == position.y - DISTANCE_TO_ANOTHER_BLOCK
 	):
 		breakable_wall.destroy()
+
+
+func _set_sprite(new_texture: Texture2D) -> void:
+	texture = new_texture
+	
+	if sprite == null:
+		return
+	
+	if texture == null:
+		sprite.texture = default_texture
+	else:
+		sprite.texture = texture
