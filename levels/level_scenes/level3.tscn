@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="5_tdvsv"]
 [ext_resource type="PackedScene" uid="uid://glyi2gedwf0m" path="res://enemies/basic_slime/basic_slime.tscn" id="6_6kcp3"]
 [ext_resource type="PackedScene" uid="uid://b8alcuq83ls44" path="res://breakable_wall/breakable_wall.tscn" id="7_woqxp"]
+[ext_resource type="Texture2D" uid="uid://djhmb2nk61xcj" path="res://breakable_wall/black_square.png" id="8_bc8eo"]
 
 [node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("player", "level_overlay")]
 script = ExtResource("1_0fm5q")
@@ -35,7 +36,7 @@ position = Vector2(40, 88)
 position = Vector2(248, 88)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1295048991]
-offset_left = 64.0
+offset_left = 80.0
 offset_top = -16.0
 offset_right = 256.0
 offset_bottom = 96.0
@@ -44,3 +45,33 @@ color = Color(0, 0, 0, 1)
 [node name="BreakableWall" parent="." unique_id=1555298093 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
 position = Vector2(72, 88)
 attatched_node = NodePath("../ColorRect")
+
+[node name="BreakableWall2" parent="." unique_id=122015646 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, 72)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
+
+[node name="BreakableWall3" parent="." unique_id=1607598080 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, 56)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
+
+[node name="BreakableWall4" parent="." unique_id=306246898 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, 40)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
+
+[node name="BreakableWall5" parent="." unique_id=1591101889 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, 24)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
+
+[node name="BreakableWall6" parent="." unique_id=721700789 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, 8)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
+
+[node name="BreakableWall7" parent="." unique_id=62120152 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+position = Vector2(72, -8)
+attatched_node = NodePath("../ColorRect")
+texture = ExtResource("8_bc8eo")
