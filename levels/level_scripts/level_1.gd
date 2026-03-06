@@ -19,7 +19,9 @@ func _ready() -> void:
 	current_tutorial = Tutorial.MOVEMENT
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super._process(delta)
+	
 	match current_tutorial:
 		Tutorial.MOVEMENT:
 			if (Input.is_action_just_pressed("left")

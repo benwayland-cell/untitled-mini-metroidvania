@@ -28,6 +28,11 @@ func _ready() -> void:
 			enemy_count += 1
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		level_overlay.pause()
+
+
 func win_game() -> void:
 	won_game = true
 	LevelLoader.unlock_level()

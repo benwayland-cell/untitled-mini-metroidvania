@@ -9,7 +9,7 @@ const LOSS_SCREEN_TEXT: String = "You Died"
 @onready var win_lose_container: PanelContainer = %WinLoseContainer
 @onready var variable_label: Label = %VariableLabel
 
-@onready var upgrade_display: HBoxContainer = %UpgradeDisplay
+@onready var pause_menu: MarginContainer = %PauseMenu
 
 var wait_for_any_button_pressed: bool = false
 
@@ -18,6 +18,15 @@ var button_pressed_after_released: bool = false
 
 
 func _process(_delta: float) -> void:
+	_handle_wait_for_any_button_pressed()
+	
+	
+
+
+############## Win / Lose Screen
+
+
+func _handle_wait_for_any_button_pressed() -> void:
 	if not wait_for_any_button_pressed:
 		return
 	
@@ -57,12 +66,19 @@ func wait_for_loss_screen() -> void:
 	await _wait_for_button_press()
 
 
-func pop_upgrade() -> void:
-	if upgrade_display.get_child_count() > 0:
-		upgrade_display.get_child(-1).queue_free()
+############## Pause Menu
 
 
-func add_upgrade(texture: Texture2D) -> void:
-	var new_upgrade: Sprite2D = Sprite2D.new()
-	new_upgrade.texture = texture
-	upgrade_display.add_child(new_upgrade)
+func pause() -> void:
+	get_tree().paused = true
+	pause_menu.show()
+
+
+func _on_continue_button_pressed() -> void:
+	get_tree().paused = false
+	pause_menu.hide()
+
+
+func _on_level_select_button_pressed() -> void:
+	get_tree().paused = false
+	LevelLoader.load_level_select()
