@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b8alcuq83ls44"]
+
+[ext_resource type="Script" uid="uid://dnbgk6wgnrsai" path="res://breakable_wall/breakable_wall.gd" id="1_8sj5r"]
+[ext_resource type="Texture2D" uid="uid://xv2p16epxxe" path="res://breakable_wall/breakable_wall.png" id="1_oi0rd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8sj5r"]
+size = Vector2(16, 16)
+
+[node name="BreakableWall" type="StaticBody2D" unique_id=1555298093 groups=["breakable_wall"]]
+collision_layer = 9
+collision_mask = 0
+script = ExtResource("1_8sj5r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1866937925]
+texture = ExtResource("1_oi0rd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1449982752]
+shape = SubResource("RectangleShape2D_8sj5r")

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="7_0vv12"]
 [ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="8_o5yuq"]
 [ext_resource type="PackedScene" uid="uid://df02p20s4jrqc" path="res://spike/spike.tscn" id="9_wjuib"]
+[ext_resource type="PackedScene" uid="uid://b8alcuq83ls44" path="res://breakable_wall/breakable_wall.tscn" id="10_4n8tn"]
 
 [node name="Test Level" type="Node2D" unique_id=1175710397 node_paths=PackedStringArray("player", "level_overlay")]
 script = ExtResource("1_ly3hx")
@@ -17,26 +18,44 @@ level_overlay = NodePath("LevelOverlay")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"
 
 [node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_4n8tn")]
-tile_map_data = PackedByteArray("AAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAIAAQAAgAAAAAAAAAJAAQAAgAAAAAAAAAKAAQAAgAAAAAAAAALAAQAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAEAAgAAAAAAAAANAAEAAgAAAAAAAAAOAAEAAgAAAAAAAAAPAAEAAgAAAAAAAAAQAAEAAgAAAAAAAAARAAEAAgAAAAAAAAARAAAAAgAAAAAAAAARAP//AgAAAAAAAAARAP7/AgAAAAAAAAASAP7/AgAAAAAAAAATAP7/AgAAAAAAAAAUAP7/AgAAAAAAAAAVAP7/AgAAAAAAAAAWAP7/AgAAAAAAAAD8/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD6/wQAAgAAAAAAAAD5/wQAAgAAAAAAAAD4/wQAAgAAAAAAAAD3/wQAAgAAAAAAAAD2/wQAAgAAAAAAAAD1/wQAAgAAAAAAAAD0/wQAAgAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD0/wQAAgAAAAAAAAD1/wQAAgAAAAAAAAD2/wQAAgAAAAAAAAD3/wQAAgAAAAAAAAD4/wQAAgAAAAAAAAD5/wQAAgAAAAAAAAD6/wQAAgAAAAAAAAD7/wQAAgAAAAAAAAD8/wQAAgAAAAAAAAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAAAAAAAAAQAAgAAAAAAAAABAAQAAgAAAAAAAAACAAQAAgAAAAAAAAADAAQAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAAQAAgAAAAAAAAAGAAQAAgAAAAAAAAAHAAQAAgAAAAAAAAAMAAEAAgAAAAAAAAARAP7/AgAAAAAAAADv/wQAAgAAAAAAAADw/wQAAgAAAAAAAADx/wQAAgAAAAAAAADy/wQAAgAAAAAAAADz/wQAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAIAAEAAgAAAAAAAAAJAAEAAgAAAAAAAAAKAAEAAgAAAAAAAAALAAEAAgAAAAAAAAAMAP7/AgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAAANAP7/AgAAAAAAAAAOAP7/AgAAAAAAAAAPAP7/AgAAAAAAAAAQAP7/AgAAAAAAAAA=")
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_wkb0e")]
 
 [node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_paa45")]
-position = Vector2(88, 64)
+position = Vector2(-8, 64)
 level_overlay = NodePath("../LevelOverlay")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 
 [node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("5_axl34")]
-position = Vector2(120, 56)
+position = Vector2(24, 56)
 
 [node name="TestEnemy" parent="." unique_id=936692288 instance=ExtResource("6_8hjdj")]
-position = Vector2(304, -40)
+position = Vector2(208, -40)
 drop = ExtResource("7_0vv12")
 
 [node name="TestEnemy2" parent="." unique_id=1058339062 instance=ExtResource("6_8hjdj")]
-position = Vector2(352, -40)
+position = Vector2(272, -40)
 drop = ExtResource("8_o5yuq")
 
 [node name="Spike" parent="." unique_id=1215871189 instance=ExtResource("9_wjuib")]
-position = Vector2(184, 56)
+position = Vector2(104, 56)
+
+[node name="BreakableWall" parent="." unique_id=1555298093 node_paths=PackedStringArray("attatched_node") instance=ExtResource("10_4n8tn")]
+position = Vector2(-80, 56)
+attatched_node = NodePath("../ColorRect")
+
+[node name="BreakableWall2" parent="." unique_id=1417311526 instance=ExtResource("10_4n8tn")]
+position = Vector2(-80, 40)
+
+[node name="BreakableWall3" parent="." unique_id=869621963 node_paths=PackedStringArray("attatched_node") instance=ExtResource("10_4n8tn")]
+position = Vector2(-80, 24)
+attatched_node = NodePath("../ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1636148400]
+offset_left = -136.0
+offset_top = 16.0
+offset_right = -88.0
+offset_bottom = 64.0
+color = Color(0, 0, 0, 1)

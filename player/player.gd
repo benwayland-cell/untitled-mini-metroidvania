@@ -261,8 +261,12 @@ func _handle_sword_attacking_enemy_check() -> void:
 		return
 	
 	for body in sword.get_overlapping_bodies():
+		if not is_instance_valid(body):
+			continue
 		if body is Enemy:
 			body.take_damage(1, self)
+		elif body is BreakableWall:
+			body.destroy()
 
 
 func _handle_dash(_delta: float) -> void:

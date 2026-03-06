@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://gvoi4bc2j8aw"]
 
-[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_u4424"]
+[ext_resource type="Script" uid="uid://now34aylxmwt" path="res://levels/level_scenes/level_1.gd" id="1_i5um2"]
 [ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_tkox1"]
 [ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_vhrw6"]
 [ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_h0rrk"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="7_m8pcy"]
 
 [node name="Level1" type="Node2D" unique_id=1523622052 node_paths=PackedStringArray("player", "level_overlay")]
-script = ExtResource("1_u4424")
+script = ExtResource("1_i5um2")
 player = NodePath("Player")
 level_overlay = NodePath("LevelOverlay")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"
@@ -21,11 +21,23 @@ tile_map_data = PackedByteArray("AAD9/wQAAgAAAAAAAAD+/wQAAgAAAAAAAAD//wQAAgAAAAA
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_vhrw6")]
 
+[node name="TutorialLabel" type="Label" parent="." unique_id=143690518]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 119.0
+grow_vertical = 0
+
 [node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_h0rrk")]
 position = Vector2(-40, 64)
 level_overlay = NodePath("../LevelOverlay")
 
 [node name="SwordUpgrade" parent="." unique_id=1468340133 instance=ExtResource("7_m8pcy")]
+unique_name_in_owner = true
 position = Vector2(0, 56)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("6_i5um2")]
