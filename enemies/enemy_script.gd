@@ -50,9 +50,6 @@ func _process(delta: float) -> void:
 	_check_if_player_visible()
 	_handle_gravity(delta)
 	
-	if invincible:
-		return
-	
 	for body in hurt_box.get_overlapping_bodies():
 		if body is Player:
 			body.kill()
