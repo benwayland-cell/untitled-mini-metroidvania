@@ -7,6 +7,8 @@ const LEVEL_STRINGS : Array[String] = [
 	"res://levels/level_scenes/level1.tscn",
 	"res://levels/level_scenes/level2.tscn",
 	"res://levels/level_scenes/level3.tscn",
+	"res://levels/level_scenes/level4.tscn",
+	"res://levels/level_scenes/level5.tscn",
 	
 ]
 
