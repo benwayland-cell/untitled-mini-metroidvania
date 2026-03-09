@@ -9,15 +9,22 @@ extends Enemy
 @export var jump_vector := Vector2(200, -200)
 
 @onready var sprite: Sprite2D = %Sprite2D
+@onready var eye_sprite: Sprite2D = %EyeSprite
 @onready var jump_timer: Timer = %JumpTimer
 
 enum State {DEFAULT, APROACHING, JUMPING}
 var state: State:
 	set = _set_state
 
-const FACING_CENTER_FRAME: int = 1
-const FACING_LEFT_FRAME: int = 2
-const FACING_RIGHT_FRAME: int = 0
+# eye animation
+const EYE_SPEED: float = 50.0
+const EYE_LEFT_POS: float = -3
+const EYE_RIGHT_POS: float = 3
+const EYE_MIDDLE_POS: float = 0
+
+# used by squash and stretch
+const UNSTRETCH_SPEED: float = 2
+const SQUASH_STRETCH_AMOUNT: float = 0.5
 
 
 func _ready() -> void:
@@ -34,22 +41,44 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	
 	_state_process()
-	_handle_animation()
+	_handle_animation(delta)
 	
 	move_and_slide()
 
 
-func _handle_animation() -> void:
+func _handle_animation(delta: float) -> void:
+	_handle_eye_animation(delta)
+	_handle_squash_and_stretch(delta)
+
+
+func _handle_eye_animation(delta: float):
 	# don't change anything if we can't see the player
 	# or we are in the middle of jumping
 	if state == State.JUMPING or not player_is_visible:
 		return
 	
+	var target_eye_pos := Vector2(0, eye_sprite.position.y)
+	
 	if position.x < player.position.x:
-		sprite.frame = FACING_RIGHT_FRAME
+		target_eye_pos.x = EYE_RIGHT_POS
 	else:
-		sprite.frame = FACING_LEFT_FRAME
+		target_eye_pos.x = EYE_LEFT_POS
+	
+	eye_sprite.position = eye_sprite.position.move_toward(target_eye_pos, EYE_SPEED * delta)
 
+
+func _handle_squash_and_stretch(delta: float) -> void:
+	# revert to normal
+	sprite.scale.x = move_toward(sprite.scale.x, 1, UNSTRETCH_SPEED * delta)
+	sprite.scale.y = move_toward(sprite.scale.y, 1, UNSTRETCH_SPEED * delta)
+
+
+func squash() -> void:
+	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
+
+
+func stretch() -> void:
+	sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
 
 ################    States
 
@@ -110,6 +139,7 @@ func _on_jump_timer_timeout() -> void:
 var was_airbourne: bool
 
 func _jumping_ready() -> void:
+	squash()
 	was_airbourne = false
 	
 	if position.x < player.position.x:
@@ -121,5 +151,6 @@ func _jumping_ready() -> void:
 func _jumping_process() -> void:
 	if is_on_floor() and was_airbourne:
 		state = State.APROACHING
+		stretch() # give the landing impact
 	else:
 		was_airbourne = true

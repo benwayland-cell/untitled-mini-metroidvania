@@ -29,6 +29,13 @@ signal player_killed
 @onready var sword: Area2D = %Sword
 @onready var death_sprite: AnimatedSprite2D = %DeathSprite
 
+# eye animation
+const EYE_FAST_SPEED: float = 50.0
+const EYE_SLOW_SPEED: float = 25.0
+const EYE_LEFT_POS: float = -3
+const EYE_RIGHT_POS: float = 3
+const EYE_MIDDLE_POS: float = 0
+
 var disabled: bool = false
 
 enum Consumables {DOUBLE_JUMP, DASH}
@@ -130,26 +137,18 @@ func _handle_sword_animation() -> void:
 
 # note that this assumes 8 frames
 func _handle_eye_movement(delta: float) -> void:
-	const FAST_SPEED: float = 50
-	const SLOW_SPEED: float = 25
-	
 	var target_pos: Vector2 = Vector2(0, eye_sprite.position.y)
 	var eye_speed: float
 	
 	if Input.is_action_pressed("right"):
-		target_pos.x = 3
-		eye_speed = FAST_SPEED
+		target_pos.x = EYE_RIGHT_POS
+		eye_speed = EYE_FAST_SPEED
 	elif Input.is_action_pressed("left"):
-		target_pos.x = -3
-		eye_speed = FAST_SPEED
+		target_pos.x = EYE_LEFT_POS
+		eye_speed = EYE_FAST_SPEED
 	else:
-		target_pos.x = 0
-		eye_speed = SLOW_SPEED
-	
-	
-	#if sprite.frame == int(target_pos):
-		#sprite_frame_as_float = sprite.frame
-		#return
+		target_pos.x = EYE_MIDDLE_POS
+		eye_speed = EYE_SLOW_SPEED
 	
 	eye_sprite.position = eye_sprite.position.move_toward(target_pos, eye_speed * delta)
 
