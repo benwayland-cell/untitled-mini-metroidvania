@@ -25,6 +25,7 @@ signal player_killed
 @export var dash_cooldown :float= 0.2
 
 @onready var sprite: Sprite2D = %PlayerSprite
+@onready var eye_sprite: Sprite2D = %PlayerEyes
 @onready var sword: Area2D = %Sword
 @onready var death_sprite: AnimatedSprite2D = %DeathSprite
 
@@ -62,9 +63,6 @@ var can_dash :bool= true
 var dash_time_done :bool= true
 var dash_cooldown_done :bool= true
 
-# used by the eye movement
-var sprite_frame_as_float: float 
-
 # used by squash and stretch
 const UNSTRETCH_SPEED: float = 2
 const SQUASH_STRETCH_AMOUNT: float = 0.5
@@ -74,7 +72,6 @@ var was_airbourne: bool = false
 func _ready() -> void:
 	assert(level_overlay != null, "Forgot to initialize level_overlay for Player")
 	
-	sprite_frame_as_float = sprite.frame
 	sword_offset = sword.position
 
 
@@ -136,32 +133,25 @@ func _handle_eye_movement(delta: float) -> void:
 	const FAST_SPEED: float = 50
 	const SLOW_SPEED: float = 25
 	
-	var target_frame: float
-	var frame_speed: float
+	var target_pos: Vector2 = Vector2(0, eye_sprite.position.y)
+	var eye_speed: float
 	
 	if Input.is_action_pressed("right"):
-		target_frame = 7
-		frame_speed = FAST_SPEED
+		target_pos.x = 3
+		eye_speed = FAST_SPEED
 	elif Input.is_action_pressed("left"):
-		target_frame = 0
-		frame_speed = FAST_SPEED
-	elif player_left_right_state == PlayerLeftRight.LEFT:
-		target_frame = 3
-		frame_speed = SLOW_SPEED
-	elif player_left_right_state == PlayerLeftRight.RIGHT:
-		target_frame = 4
-		frame_speed = SLOW_SPEED
+		target_pos.x = -3
+		eye_speed = FAST_SPEED
 	else:
-		target_frame = sprite.frame
-		frame_speed = 0
+		target_pos.x = 0
+		eye_speed = SLOW_SPEED
 	
-	if sprite.frame == int(target_frame):
-		sprite_frame_as_float = sprite.frame
-		return
 	
-	sprite_frame_as_float = move_toward(sprite_frame_as_float, target_frame, frame_speed * delta)
+	#if sprite.frame == int(target_pos):
+		#sprite_frame_as_float = sprite.frame
+		#return
 	
-	sprite.frame = int(sprite_frame_as_float)
+	eye_sprite.position = eye_sprite.position.move_toward(target_pos, eye_speed * delta)
 
 
 func _handle_squash_and_stretch(delta: float) -> void:
