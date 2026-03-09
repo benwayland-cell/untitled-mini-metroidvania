@@ -38,7 +38,6 @@ func unlock_level() -> void:
 
 
 func load_next_level() -> void:
-	print(current_level)
 	if current_level == null:
 		load_main_menu()
 		return

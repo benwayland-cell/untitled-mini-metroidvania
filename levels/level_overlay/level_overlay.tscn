@@ -76,6 +76,20 @@ text = "Restart"
 layout_mode = 2
 text = "Level Select"
 
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=998304972]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="UpgradeDisplay" type="HBoxContainer" parent="MarginContainer" unique_id=1176312754]
+unique_name_in_owner = true
+layout_mode = 2
+
 [connection signal="pressed" from="PauseMenu/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]

@@ -35,9 +35,16 @@ enum Consumables {DOUBLE_JUMP, DASH}
 var current_consumables: Array[Consumables] = []
 
 # abililities unlocked
-var has_sword :bool= false
-var has_double_jump_ability :bool= false
-var has_dash :bool= false
+var has_sword :bool= false:
+	set = _set_has_sword
+var has_double_jump_ability :bool= false:
+	set = _set_has_double_jump_ability
+var has_dash :bool= false:
+	set = _set_has_dash
+
+signal has_sword_activated
+signal has_double_jump_ability_activated
+signal has_dash_activated
 
 # player states
 enum PlayerState {ON_GROUND, JUMPING, FALLING, DASHING}
@@ -325,11 +332,16 @@ func kill() -> void:
 	player_killed.emit()
 
 
-func pop_consumable() -> void:
-	current_consumables.pop_back()
-	level_overlay.pop_upgrade()
+func _set_has_sword(new_state: bool) -> void:
+	has_sword = new_state
+	has_sword_activated.emit()
 
 
-func add_consumable(consumable: Consumables) -> void:
-	current_consumables.append(consumable)
-	#level_overlay.add_upgrade()
+func _set_has_double_jump_ability(new_state: bool) -> void:
+	has_double_jump_ability = new_state
+	has_double_jump_ability_activated.emit()
+
+
+func _set_has_dash(new_state: bool) -> void:
+	has_dash = new_state
+	has_dash_activated.emit()

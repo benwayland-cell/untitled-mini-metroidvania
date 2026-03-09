@@ -20,6 +20,9 @@ func _ready() -> void:
 	assert(level_overlay != null, "You forgot to add the level_overlay in %s" % name)
 	
 	player.player_killed.connect(_on_player_player_killed)
+	player.has_sword_activated.connect(_on_player_has_sword_activated)
+	player.has_double_jump_ability_activated.connect(has_double_jump_ability_activated)
+	player.has_dash_activated.connect(_on_has_dash_activated)
 	
 	enemy_count = 0
 	for child in get_children():
@@ -65,3 +68,15 @@ func _on_enemy_killed() -> void:
 	
 	if enemy_count == 0:
 		await win_game()
+
+
+func _on_player_has_sword_activated() -> void:
+	level_overlay.add_upgrade(LevelOverlay.Upgrades.SWORD)
+
+
+func has_double_jump_ability_activated() -> void:
+	level_overlay.add_upgrade(LevelOverlay.Upgrades.DOUBLE_JUMP)
+
+
+func _on_has_dash_activated() -> void:
+	level_overlay.add_upgrade(LevelOverlay.Upgrades.DASH)
