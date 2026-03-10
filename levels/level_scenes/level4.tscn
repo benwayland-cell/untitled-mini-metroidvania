@@ -40,7 +40,7 @@ texture = ExtResource("7_6diw3")
 position = Vector2(-136, 120)
 
 [node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("8_6diw3")]
-position = Vector2(256, 56)
+position = Vector2(256, 64)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("9_vx6g7")]
 position = Vector2(-256, 24)

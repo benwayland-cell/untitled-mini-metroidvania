@@ -24,6 +24,7 @@ var starting_pos: Vector2
 var position_padding: float = 1.0
 
 var player: Player
+var last_seen_player_pos: Vector2
 
 var current_speed: float = 50.0
 
@@ -52,6 +53,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if player_is_visible:
+		last_seen_player_pos = player.position
+	
 	_check_if_player_visible()
 	_handle_gravity(delta)
 	

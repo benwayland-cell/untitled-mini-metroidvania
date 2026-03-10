@@ -54,12 +54,12 @@ func _handle_animation(delta: float) -> void:
 func _handle_eye_animation(delta: float):
 	# don't change anything if we can't see the player
 	# or we are in the middle of jumping
-	if state == State.JUMPING or not player_is_visible:
+	if state == State.JUMPING or state == State.DEFAULT:
 		return
 	
 	var target_eye_pos := Vector2(0, eye_sprite.position.y)
 	
-	if position.x < player.position.x:
+	if position.x < last_seen_player_pos.x:
 		target_eye_pos.x = EYE_RIGHT_POS
 	else:
 		target_eye_pos.x = EYE_LEFT_POS
@@ -127,7 +127,10 @@ func _aproaching_ready() -> void:
 
 
 func _aproaching_process() -> void:
-	go_to_x_cor(get_player_offset_pos(target_distance_from_player))
+	if player_is_visible:
+		go_to_x_cor(get_player_offset_pos(target_distance_from_player))
+	else:
+		go_to_x_cor(last_seen_player_pos.x)
 
 
 func _on_jump_timer_timeout() -> void:
@@ -143,7 +146,7 @@ func _jumping_ready() -> void:
 	stretch()
 	was_airbourne = false
 	
-	if position.x < player.position.x:
+	if position.x < last_seen_player_pos.x:
 		velocity = jump_vector
 	else:
 		velocity = Vector2(-jump_vector.x, jump_vector.y)
