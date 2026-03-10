@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_ur00s")
 [node name="Label" type="Label" parent="WinLoseContainer/MarginContainer/VBoxContainer" unique_id=499621066]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Press any button"
+text = "Press Z"
 
 [node name="PauseMenu" type="MarginContainer" parent="." unique_id=2010926353]
 unique_name_in_owner = true

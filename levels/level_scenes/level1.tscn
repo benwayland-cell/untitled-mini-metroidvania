@@ -41,7 +41,7 @@ unique_name_in_owner = true
 position = Vector2(0, 56)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("6_i5um2")]
-position = Vector2(280, 56)
+position = Vector2(280, 64)
 
 [node name="BasicSlime2" parent="." unique_id=617451395 instance=ExtResource("6_i5um2")]
-position = Vector2(408, 56)
+position = Vector2(408, 64)
