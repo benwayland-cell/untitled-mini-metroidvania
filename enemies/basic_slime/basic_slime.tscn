@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blcx3eyhw8hjq" path="res://enemies/basic_slime/basic_slime.gd" id="1_6jm6h"]
 [ext_resource type="Texture2D" uid="uid://dtcn76fe0tyfg" path="res://enemies/basic_slime/enemy_slime_no_eyes.png" id="2_5of5o"]
 [ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/player_eyes.png" id="3_lgtvi"]
+[ext_resource type="Texture2D" uid="uid://by3app1ab76jp" path="res://enemies/highlight.png" id="4_h5816"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgtvi"]
 size = Vector2(16, 16)
@@ -13,11 +14,12 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5816"]
 size = Vector2(400, 100)
 
-[node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box", "vision")]
+[node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box", "vision", "highlight")]
 collision_layer = 4
 script = ExtResource("1_6jm6h")
 hurt_box = NodePath("HurtBox")
 vision = NodePath("Vision")
+highlight = NodePath("Sprite2D/HighlightSprite")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=18585269]
 unique_name_in_owner = true
@@ -28,6 +30,11 @@ offset = Vector2(0, -8)
 unique_name_in_owner = true
 position = Vector2(0, -10)
 texture = ExtResource("3_lgtvi")
+
+[node name="HighlightSprite" type="Sprite2D" parent="Sprite2D" unique_id=1103468997]
+visible = false
+position = Vector2(0, -8)
+texture = ExtResource("4_h5816")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1199725223]
 position = Vector2(0, -8)

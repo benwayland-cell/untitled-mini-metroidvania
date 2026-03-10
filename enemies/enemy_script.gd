@@ -16,6 +16,7 @@ signal died
 @export_group("Private Nodes")
 @export var hurt_box: Area2D
 @export var vision: Area2D
+@export var highlight: Sprite2D
 
 @onready var visibility_ray := RayCast2D.new()
 
@@ -36,6 +37,7 @@ var player_is_visible: bool = false:
 
 func _ready() -> void:
 	assert(hurt_box != null, "Forgot to initialize hurt box in: " + name)
+	assert(highlight != null, "Didn't initialize highlight in: " + name)
 	
 	starting_pos = position
 	add_child(visibility_ray)
@@ -44,6 +46,9 @@ func _ready() -> void:
 	invinciblity_timer.one_shot = true
 	invinciblity_timer.timeout.connect(_on_invinciblity_timer_timeout)
 	add_child(invinciblity_timer)
+	
+	if drop != null:
+		highlight.show()
 
 
 func _process(delta: float) -> void:

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccuch6xesehke" path="res://enemies/test_enemy/test_enemy.gd" id="1_2bghh"]
 [ext_resource type="Texture2D" uid="uid://bfti1kuomulq8" path="res://icon.svg" id="1_lcl3f"]
+[ext_resource type="Texture2D" uid="uid://by3app1ab76jp" path="res://enemies/highlight.png" id="3_jj07p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lcl3f"]
 size = Vector2(16, 16)
@@ -9,11 +10,12 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bghh"]
 size = Vector2(16, 16)
 
-[node name="TestEnemy" type="CharacterBody2D" unique_id=592405806 node_paths=PackedStringArray("hurt_box", "vision")]
+[node name="TestEnemy" type="CharacterBody2D" unique_id=592405806 node_paths=PackedStringArray("hurt_box", "vision", "highlight")]
 collision_layer = 4
 script = ExtResource("1_2bghh")
 hurt_box = NodePath("HurtBox")
 vision = NodePath("HurtBox")
+highlight = NodePath("Sprite2D/HighlightSprite")
 metadata/_custom_type_script = "uid://n8p2x2fsbqug"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=480914051]
@@ -21,6 +23,12 @@ position = Vector2(4.7683716e-07, -4.7683716e-07)
 rotation = -3.1415925
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_lcl3f")
+
+[node name="HighlightSprite" type="Sprite2D" parent="Sprite2D" unique_id=1401799215]
+visible = false
+position = Vector2(0.084117204, -0.031734943)
+scale = Vector2(7.9855275, 8.002041)
+texture = ExtResource("3_jj07p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1546532796]
 light_mask = 3
