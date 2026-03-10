@@ -23,10 +23,19 @@ extends Enemy
 @export var sword_active_time: float = 0.5
 @export var flee_time: float = 2.0
 
+@export_group("Squash and Stretch")
+# used by squash and stretch
+@export var squash_speed: float = 2.0
+@export var unsquash_speed: float = 5.0
+@export var squash_stretch_amount: float = 0.5
+
+
+@onready var sprite: Sprite2D = %Sprite2D
+@onready var eye_sprite: Sprite2D = %EyeSprite
 @onready var sword: Area2D = %Sword
 @onready var attack_range: Area2D = %AttackRange
 @onready var timer: Timer = %Timer
-@onready var eye_sprite: Sprite2D = %EyeSprite
+
 
 enum State {DEFAULT, APPROACHING, WINDUP, ATTACKING, FLEEING}
 var state: State:
@@ -39,6 +48,8 @@ const EYE_RIGHT_POS: float = 3
 const EYE_MIDDLE_POS: float = 0
 @onready var target_eye_pos := eye_sprite.position
 
+var squashed_vector: Vector2 = Vector2(1 + squash_stretch_amount, 1 - squash_stretch_amount)
+
 
 func _ready() -> void:
 	super._ready()
@@ -50,7 +61,7 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	
 	_handle_eye_animation(delta)
-	_run_state_process()
+	_run_state_process(delta)
 	
 	move_and_slide()
 
@@ -88,16 +99,16 @@ func _set_state(new_state: State) -> void:
 			_fleeing_ready()
 
 
-func _run_state_process() -> void:
+func _run_state_process(delta: float) -> void:
 	match state:
 		State.DEFAULT:
 			_default_process()
 		State.APPROACHING:
 			_approaching_process()
 		State.WINDUP:
-			_windup_process()
+			_windup_process(delta)
 		State.ATTACKING:
-			_attacking_process()
+			_attacking_process(delta)
 		State.FLEEING:
 			_fleeing_process()
 
@@ -152,8 +163,9 @@ func _windup_ready() -> void:
 
 
 
-func _windup_process() -> void:
-	pass
+func _windup_process(delta) -> void:
+	# squash
+	sprite.scale = sprite.scale.move_toward(squashed_vector, squash_speed * delta)
 
 
 func _on_windup_timer_timeout() -> void:
@@ -179,11 +191,15 @@ func _attacking_ready() -> void:
 	timer.start()
 
 
-func _attacking_process() -> void:
+func _attacking_process(delta: float) -> void:
 	# kill the player if they are in the sword
 	for body in sword.get_overlapping_bodies():
 		if body is Player:
 			body.kill()
+	
+	# unsquash from winding up
+	sprite.scale.x = move_toward(sprite.scale.x, 1, unsquash_speed * delta)
+	sprite.scale.y = move_toward(sprite.scale.y, 1, unsquash_speed * delta)
 
 
 func _on_attacking_timer_timeout() -> void:

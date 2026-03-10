@@ -25,10 +25,10 @@ position = Vector2(-216, 96)
 level_overlay = NodePath("../LevelOverlay")
 
 [node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("5_1wilb")]
-position = Vector2(16, 88)
+position = Vector2(16, 96)
 
 [node name="SwordEnemy2" parent="." unique_id=1485636063 instance=ExtResource("5_1wilb")]
-position = Vector2(152, 88)
+position = Vector2(152, 96)
 
-[node name="SwordUpgrade" parent="SwordEnemy2" unique_id=1993593463 instance=ExtResource("6_q7crk")]
-position = Vector2(-328, 0)
+[node name="SwordUpgrade" parent="." unique_id=1993593463 instance=ExtResource("6_q7crk")]
+position = Vector2(-176, 88)
