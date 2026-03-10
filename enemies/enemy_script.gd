@@ -53,6 +53,9 @@ func _process(delta: float) -> void:
 	for body in hurt_box.get_overlapping_bodies():
 		if body is Player:
 			body.kill()
+	
+	if invincible:
+		visible = not visible
 
 
 func take_damage(damage_amount: int, damaging_object: Node) -> void:
@@ -141,3 +144,4 @@ func get_player_offset_pos(offset: float) -> float:
 
 func _on_invinciblity_timer_timeout() -> void:
 	invincible = false
+	show()

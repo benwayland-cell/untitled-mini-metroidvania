@@ -50,6 +50,7 @@ var has_double_jump_ability :bool= false:
 var has_dash :bool= false:
 	set = _set_has_dash
 
+# signals when the abililities are unlocked
 signal has_sword_activated
 signal has_double_jump_ability_activated
 signal has_dash_activated

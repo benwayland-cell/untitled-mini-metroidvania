@@ -169,7 +169,7 @@ position = Vector2(8, -8)
 collision_layer = 0
 collision_mask = 12
 
-[node name="SwordSprite" type="Sprite2D" parent="PlayerSprite/Sword" unique_id=13025497]
+[node name="SwordSprite" type="Sprite2D" parent="PlayerSprite/Sword" unique_id=349718740]
 position = Vector2(13, 0)
 scale = Vector2(0.16015624, 0.09375)
 texture = ExtResource("1_oul6g")

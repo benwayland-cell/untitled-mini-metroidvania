@@ -26,10 +26,18 @@ extends Enemy
 @onready var sword: Area2D = %Sword
 @onready var attack_range: Area2D = %AttackRange
 @onready var timer: Timer = %Timer
+@onready var eye_sprite: Sprite2D = %EyeSprite
 
 enum State {DEFAULT, APPROACHING, WINDUP, ATTACKING, FLEEING}
 var state: State:
 	set = _set_state
+
+# eye animation
+const EYE_SPEED: float = 50.0
+const EYE_LEFT_POS: float = -3
+const EYE_RIGHT_POS: float = 3
+const EYE_MIDDLE_POS: float = 0
+@onready var target_eye_pos := eye_sprite.position
 
 
 func _ready() -> void:
@@ -41,9 +49,23 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
+	_handle_eye_animation(delta)
 	_run_state_process()
 	
 	move_and_slide()
+
+
+func _handle_eye_animation(delta: float):
+	if velocity.x > 0:
+		target_eye_pos.x = EYE_RIGHT_POS
+	elif velocity.x < 0:
+		target_eye_pos.x = EYE_LEFT_POS
+	
+	eye_sprite.position = eye_sprite.position.move_toward(target_eye_pos, EYE_SPEED * delta)
+
+
+
+################    States
 
 
 func _set_state(new_state: State) -> void:
