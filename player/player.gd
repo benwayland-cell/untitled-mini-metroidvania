@@ -156,16 +156,25 @@ func _handle_eye_movement(delta: float) -> void:
 func _handle_squash_and_stretch(delta: float) -> void:
 	# note that the stretch is in jump()
 	
+	# if we just landed, squash
 	if is_on_floor():
 		if was_airbourne:
 			was_airbourne = false
-			sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
+			squash()
 	else:
 		was_airbourne = true
 	
 	# revert to normal
 	sprite.scale.x = move_toward(sprite.scale.x, 1, UNSTRETCH_SPEED * delta)
 	sprite.scale.y = move_toward(sprite.scale.y, 1, UNSTRETCH_SPEED * delta)
+
+
+func squash() -> void:
+	sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
+
+
+func stretch() -> void:
+	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
 
 
 func _update_player_state() -> void:
@@ -224,7 +233,7 @@ func jump() -> void:
 	velocity.y = -jump_velocity
 	player_state = PlayerState.JUMPING
 	
-	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
+	stretch()
 
 
 func _handle_grav(delta: float) -> void:
@@ -280,6 +289,7 @@ func _handle_dash(_delta: float) -> void:
 		velocity = Vector2(-1 * dash_velocity, 0)
 	elif player_left_right_state == PlayerLeftRight.RIGHT:
 		velocity = Vector2(dash_velocity, 0)
+	squash()
 	
 	# wait for the dash to be done
 	dash_time_done = false

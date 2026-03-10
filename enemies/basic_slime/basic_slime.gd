@@ -74,11 +74,11 @@ func _handle_squash_and_stretch(delta: float) -> void:
 
 
 func squash() -> void:
-	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
+	sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
 
 
 func stretch() -> void:
-	sprite.scale = Vector2(1 + SQUASH_STRETCH_AMOUNT, 1 - SQUASH_STRETCH_AMOUNT)
+	sprite.scale = Vector2(1.0 - SQUASH_STRETCH_AMOUNT, 1.0 + SQUASH_STRETCH_AMOUNT)
 
 ################    States
 
@@ -139,7 +139,7 @@ func _on_jump_timer_timeout() -> void:
 var was_airbourne: bool
 
 func _jumping_ready() -> void:
-	squash()
+	stretch()
 	was_airbourne = false
 	
 	if position.x < player.position.x:
@@ -151,6 +151,6 @@ func _jumping_ready() -> void:
 func _jumping_process() -> void:
 	if is_on_floor() and was_airbourne:
 		state = State.APROACHING
-		stretch() # give the landing impact
+		squash() # give the landing impact
 	else:
 		was_airbourne = true
