@@ -7,7 +7,6 @@ extends Enemy
 ## When it is close enough, it starts to windup, and then attack
 ## It then runs away and loops back
 
-@export_group("Base Stats")
 @export var health: int = 2
 
 @export_group("Speed")

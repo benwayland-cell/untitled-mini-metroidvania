@@ -3,8 +3,9 @@ extends Enemy
 
 @export var health: int = 1
 @export var speed: float = 30.0
-@export var time_between_jumps: float = 1
 @export var target_distance_from_player: float = 75
+@export var time_between_jumps: float = 1.0
+@export var time_random_margin: float = 0.5
 
 @export var jump_vector := Vector2(200, -200)
 
@@ -33,7 +34,6 @@ func _ready() -> void:
 	_health = health
 	state = State.DEFAULT
 	
-	jump_timer.wait_time = time_between_jumps
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 
 
@@ -122,6 +122,7 @@ func _default_process() -> void:
 
 func _aproaching_ready() -> void:
 	current_speed = speed
+	jump_timer.wait_time = (time_between_jumps + randf_range(-time_random_margin, time_random_margin))
 	jump_timer.start()
 
 
