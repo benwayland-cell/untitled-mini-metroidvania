@@ -24,23 +24,14 @@ tile_map_data = PackedByteArray("AADu//X/AgAAAAAAAADu//b/AgAAAAAAAADu//f/AgAAAAA
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_8s3b3")]
 
 [node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_cc5tm")]
-position = Vector2(-176, 128)
+position = Vector2(-112, 128)
 level_overlay = NodePath("../LevelOverlay")
 
-[node name="BreakableWall" parent="." unique_id=1555298093 node_paths=PackedStringArray("attatched_node") instance=ExtResource("6_gy05f")]
-position = Vector2(-48, 32)
-attatched_node = NodePath("../ColorRect")
-
-[node name="BreakableWall2" parent="." unique_id=1901249580 instance=ExtResource("6_gy05f")]
-position = Vector2(-48, 16)
-scale = Vector2(1, 3)
-texture = ExtResource("7_6diw3")
-
 [node name="SwordUpgrade" parent="." unique_id=1993593463 instance=ExtResource("5_kus6h")]
-position = Vector2(-136, 120)
+position = Vector2(32, 24)
 
 [node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("8_6diw3")]
-position = Vector2(256, 64)
+position = Vector2(-216, 128)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("9_vx6g7")]
 position = Vector2(-256, 24)
@@ -63,9 +54,15 @@ position = Vector2(-136, 24)
 [node name="BasicSlime7" parent="." unique_id=1418701374 instance=ExtResource("9_vx6g7")]
 position = Vector2(-112, 24)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=698762350]
-offset_left = -272.0
-offset_top = -32.0
-offset_right = -48.0
-offset_bottom = 32.0
+[node name="BreakableWall" parent="." unique_id=1555298093 instance=ExtResource("6_gy05f")]
+position = Vector2(-48, 32)
+
+[node name="ColorRect" type="ColorRect" parent="BreakableWall" unique_id=698762350]
+offset_left = -224.0
+offset_top = -64.0
 color = Color(0, 0, 0, 1)
+
+[node name="BreakableWall2" parent="." unique_id=1901249580 instance=ExtResource("6_gy05f")]
+position = Vector2(-48, 16)
+scale = Vector2(1, 3)
+texture = ExtResource("7_6diw3")

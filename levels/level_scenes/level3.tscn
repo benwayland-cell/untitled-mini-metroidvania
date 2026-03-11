@@ -30,24 +30,21 @@ level_overlay = NodePath("../LevelOverlay")
 position = Vector2(-168, 88)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("6_6kcp3")]
-position = Vector2(40, 88)
+position = Vector2(40, 96)
 
 [node name="BasicSlime2" parent="." unique_id=1578080466 instance=ExtResource("6_6kcp3")]
-position = Vector2(248, 88)
+position = Vector2(232, 96)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1295048991]
-offset_left = 80.0
-offset_top = -16.0
-offset_right = 256.0
-offset_bottom = 96.0
+[node name="BreakableWall" parent="." unique_id=1555298093 instance=ExtResource("7_woqxp")]
+position = Vector2(64, 96)
+
+[node name="ColorRect" type="ColorRect" parent="BreakableWall" unique_id=1295048991]
+offset_left = 16.0
+offset_top = -112.0
+offset_right = 192.0
 color = Color(0, 0, 0, 1)
 
-[node name="BreakableWall" parent="." unique_id=1555298093 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
-position = Vector2(64, 96)
-attatched_node = NodePath("../ColorRect")
-
-[node name="BreakableWall2" parent="." unique_id=122015646 node_paths=PackedStringArray("attatched_node") instance=ExtResource("7_woqxp")]
+[node name="BreakableWall2" parent="." unique_id=122015646 instance=ExtResource("7_woqxp")]
 position = Vector2(64, 80)
 scale = Vector2(1, 6)
-attatched_node = NodePath("../ColorRect")
 texture = ExtResource("8_bc8eo")

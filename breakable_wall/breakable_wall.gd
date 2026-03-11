@@ -3,7 +3,6 @@ class_name BreakableWall
 extends StaticBody2D
 
 ## Will be deleted with the wall
-@export var attatched_node: Node
 @export var texture: Texture2D:
 	set = _set_sprite
 
@@ -30,9 +29,6 @@ func destroy() -> void:
 	for breakable_wall in get_tree().get_nodes_in_group("breakable_wall"):
 		if breakable_wall is BreakableWall:
 			_check_if_neighbor(breakable_wall)
-	
-	if attatched_node != null:
-		attatched_node.queue_free()
 
 
 func _check_if_neighbor(breakable_wall: BreakableWall) -> void:

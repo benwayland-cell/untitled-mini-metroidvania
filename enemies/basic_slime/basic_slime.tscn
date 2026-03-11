@@ -12,7 +12,7 @@ size = Vector2(16, 16)
 size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5816"]
-size = Vector2(400, 100)
+size = Vector2(300, 100)
 
 [node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box", "vision", "highlight")]
 collision_layer = 4

@@ -10,7 +10,6 @@ size = Vector2(16, 16)
 collision_layer = 9
 collision_mask = 0
 script = ExtResource("1_8sj5r")
-dimensions = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1866937925]
 unique_name_in_owner = true
