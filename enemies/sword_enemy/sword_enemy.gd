@@ -152,6 +152,12 @@ func _approaching_process() -> void:
 
 ################    Windup
 
+
+# used by Windup and Attacking to determine where to attack
+enum AttackDirection {LEFT, RIGHT}
+var attack_direction: AttackDirection
+
+
 func _windup_ready() -> void:
 	current_speed = 0
 	velocity.x = 0
@@ -159,7 +165,13 @@ func _windup_ready() -> void:
 	# wait for 'windup_time' seconds and go into attacking
 	timer.wait_time = windup_time
 	timer.start()
-
+	
+	# set the attack direction
+	var x_offset_from_player: float = get_distance_from_player().x
+	if x_offset_from_player < 0:
+		attack_direction = AttackDirection.LEFT
+	else:
+		attack_direction = AttackDirection.RIGHT
 
 
 func _windup_process(delta) -> void:
@@ -179,12 +191,14 @@ func _attacking_ready() -> void:
 	
 	# init sword
 	sword.visible = true
-	if position.x < player.position.x:
-		sword.position.x = abs(sword.position.x)
-		sword.scale.x = 1
-	else:
-		sword.position.x = -abs(sword.position.x)
-		sword.scale.x = -1
+	match attack_direction:
+		AttackDirection.LEFT:
+			sword.position.x = -abs(sword.position.x)
+			sword.scale.x = -1
+		
+		AttackDirection.RIGHT:
+			sword.position.x = abs(sword.position.x)
+			sword.scale.x = 1
 	
 	timer.wait_time = sword_active_time
 	timer.start()
