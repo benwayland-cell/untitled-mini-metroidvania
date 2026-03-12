@@ -2,6 +2,7 @@ extends Node
 
 const MAIN_MENU_FILE : String = "res://menus/main_menu/main_menu.tscn"
 const LEVEL_SELECT_FILE : String = "res://menus/level select/level_select.tscn"
+const SETTINGS_FILE: String = "res://menus/settings/settings.tscn"
 
 const LEVEL_STRINGS : Array[String] = [
 	"res://levels/level_scenes/level1.tscn",
@@ -16,7 +17,12 @@ const LEVEL_STRINGS : Array[String] = [
 ]
 
 var current_level: int
-var last_unlocked_level: int = 1
+var last_unlocked_level: int = 1:
+	set = _set_last_unlocked_level
+
+
+func _ready() -> void:
+	SaverLoader.load_game()
 
 
 func load_main_menu() -> void:
@@ -27,6 +33,11 @@ func load_main_menu() -> void:
 func load_level_select() -> void:
 	current_level = -1
 	get_tree().change_scene_to_file(LEVEL_SELECT_FILE)
+
+
+func load_settings() -> void:
+	current_level = -1
+	get_tree().change_scene_to_file(SETTINGS_FILE)
 
 
 func load_level(level_num : int) -> void:
@@ -55,3 +66,8 @@ func load_next_level() -> void:
 
 func reset() -> void:
 	get_tree().reload_current_scene()
+
+
+func _set_last_unlocked_level(new_value: int) -> void:
+	last_unlocked_level = new_value
+	SaverLoader.save_game()

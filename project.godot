@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelLoader="*uid://bqw58hiplvpee"
+SaverLoader="*uid://bc888idwxrr3t"
 
 [debug]
 

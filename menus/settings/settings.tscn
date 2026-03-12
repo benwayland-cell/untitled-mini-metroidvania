@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://bpy7fl3gjmly5"]
+
+[ext_resource type="Script" uid="uid://dimvu5kfyo544" path="res://menus/settings/settings.gd" id="1_2e4a5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2v7s5"]
+font_size = 32
+
+[node name="Settings" type="Control" unique_id=392844407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2e4a5")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=944896569]
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 51.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1368316816]
+layout_mode = 2
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1946085175]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=584889723]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Settings"
+label_settings = SubResource("LabelSettings_2v7s5")
+
+[node name="ResetButton" type="Button" parent="VBoxContainer" unique_id=1786562418]
+layout_mode = 2
+text = "Reset Save"
+
+[node name="GrayingColorRect" type="ColorRect" parent="." unique_id=100359320]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="ResetGameConfirmation" type="MarginContainer" parent="." unique_id=556471605]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -64.5
+offset_right = 92.0
+offset_bottom = 64.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ResetGameConfirmation" unique_id=1322886756]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ResetGameConfirmation" unique_id=1010276077]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResetGameConfirmation/MarginContainer" unique_id=492197044]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ResetGameConfirmation/MarginContainer/VBoxContainer" unique_id=1579280100]
+layout_mode = 2
+text = "Are you sure you want
+To Reset game?"
+horizontal_alignment = 1
+
+[node name="DoResetButton" type="Button" parent="ResetGameConfirmation/MarginContainer/VBoxContainer" unique_id=181416232]
+layout_mode = 2
+text = "Reset Game"
+
+[node name="NotResetButton" type="Button" parent="ResetGameConfirmation/MarginContainer/VBoxContainer" unique_id=650434509]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="ResetGameConfirmation/MarginContainer/VBoxContainer/DoResetButton" to="." method="_on_do_reset_button_pressed"]
+[connection signal="pressed" from="ResetGameConfirmation/MarginContainer/VBoxContainer/NotResetButton" to="." method="_on_not_reset_button_pressed"]

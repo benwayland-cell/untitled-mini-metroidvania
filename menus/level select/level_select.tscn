@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dw277ymm836v1" path="res://menus/level select/level_select.gd" id="1_ofcge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8s8hf"]
-font_size = 30
+font_size = 32
 
 [node name="LevelSelect" type="Control" unique_id=404393818]
 layout_mode = 3
