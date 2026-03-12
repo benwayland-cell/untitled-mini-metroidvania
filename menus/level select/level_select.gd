@@ -9,7 +9,7 @@ func _ready() -> void:
 	var buttons_in_row : int = 0
 	
 	# for every level
-	for level_num in range(1, LevelLoader.LEVEL_STRINGS.size() + 1):
+	for level_num in range(1, LevelLoader.level_strings.size() + 1):
 		# if we need to wrap around
 		if buttons_in_row >= WRAP_NUMBER:
 			%LevelRows.add_child(current_h_box)

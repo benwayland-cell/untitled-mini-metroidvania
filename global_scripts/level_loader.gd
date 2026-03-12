@@ -1,20 +1,12 @@
 extends Node
 
-const MAIN_MENU_FILE : String = "res://menus/main_menu/main_menu.tscn"
-const LEVEL_SELECT_FILE : String = "res://menus/level select/level_select.tscn"
+const LEVELS_FOLDER_PATH: String = "res://levels/level_scenes"
+
+const MAIN_MENU_FILE: String = "res://menus/main_menu/main_menu.tscn"
+const LEVEL_SELECT_FILE: String = "res://menus/level select/level_select.tscn"
 const SETTINGS_FILE: String = "res://menus/settings/settings.tscn"
 
-const LEVEL_STRINGS : Array[String] = [
-	"res://levels/level_scenes/level1.tscn",
-	"res://levels/level_scenes/level2.tscn",
-	"res://levels/level_scenes/level3.tscn",
-	"res://levels/level_scenes/level4.tscn",
-	"res://levels/level_scenes/level5.tscn",
-	"res://levels/level_scenes/level6.tscn",
-	"res://levels/level_scenes/level7.tscn",
-	"res://levels/level_scenes/level8.tscn",
-	
-]
+var level_strings : Array[String] = []
 
 var current_level: int
 var last_unlocked_level: int = 1:
@@ -23,6 +15,19 @@ var last_unlocked_level: int = 1:
 
 func _ready() -> void:
 	SaverLoader.load_game()
+	
+	var dir = DirAccess.open(LEVELS_FOLDER_PATH)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				assert(false, "There was a directory found in the levels folder")
+			else:
+				level_strings.append(LEVELS_FOLDER_PATH + "/" + file_name)
+			file_name = dir.get_next()
+	else:
+		assert(false, "An error occurred when trying to access the path in level loader.")
 
 
 func load_main_menu() -> void:
@@ -42,7 +47,7 @@ func load_settings() -> void:
 
 func load_level(level_num : int) -> void:
 	current_level = level_num
-	var level_to_load : String = LEVEL_STRINGS[level_num - 1]
+	var level_to_load : String = level_strings[level_num - 1]
 	get_tree().change_scene_to_file(level_to_load)
 
 
@@ -56,11 +61,11 @@ func load_next_level() -> void:
 		load_main_menu()
 		return
 	
-	if current_level == LEVEL_STRINGS.size():
+	if current_level == level_strings.size():
 		load_main_menu()
 		return
 	
-	get_tree().change_scene_to_file(LEVEL_STRINGS[current_level])
+	get_tree().change_scene_to_file(level_strings[current_level])
 	current_level += 1
 
 
