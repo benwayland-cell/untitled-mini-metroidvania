@@ -20,7 +20,7 @@ extends Enemy
 @export_group("Timing")
 @export var windup_time: float = 0.5
 @export var sword_active_time: float = 0.5
-@export var flee_time: float = 2.0
+@export var flee_time: float = 1.0
 
 @export_group("Squash and Stretch")
 # used by squash and stretch
