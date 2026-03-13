@@ -24,11 +24,21 @@ func _ready() -> void:
 	player.has_double_jump_ability_activated.connect(has_double_jump_ability_activated)
 	player.has_dash_activated.connect(_on_has_dash_activated)
 	
+	
 	enemy_count = 0
 	for child in get_children():
 		if child is Enemy:
-			child.died.connect(_on_enemy_killed)
-			enemy_count += 1
+			_add_enemy(child)
+		else:
+			if child.get_class() == "Node":
+				for child2 in child.get_children():
+					if child2 is Enemy:
+						_add_enemy(child2)
+
+
+func _add_enemy(enemy: Enemy) -> void:
+	enemy.died.connect(_on_enemy_killed)
+	enemy_count += 1
 
 
 func _process(_delta: float) -> void:
