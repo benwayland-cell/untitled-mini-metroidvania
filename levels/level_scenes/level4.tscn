@@ -34,22 +34,24 @@ position = Vector2(32, 24)
 position = Vector2(-216, 128)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("9_vx6g7")]
-position = Vector2(-256, 32)
+position = Vector2(-248, 32)
 
-[node name="BasicSlime3" parent="." unique_id=2101013415 instance=ExtResource("9_vx6g7")]
+[node name="BasicSlime1" parent="." unique_id=2101013415 instance=ExtResource("9_vx6g7")]
 position = Vector2(-208, 32)
 
-[node name="BasicSlime5" parent="." unique_id=1433975288 instance=ExtResource("9_vx6g7")]
-position = Vector2(-160, 32)
+[node name="BasicSlime2" parent="." unique_id=1433975288 instance=ExtResource("9_vx6g7")]
+position = Vector2(-168, 32)
 
-[node name="BasicSlime7" parent="." unique_id=1418701374 instance=ExtResource("9_vx6g7")]
-position = Vector2(-112, 32)
+[node name="BasicSlime3" parent="." unique_id=1418701374 instance=ExtResource("9_vx6g7")]
+position = Vector2(-128, 32)
+
+[node name="BasicSlime4" parent="." unique_id=1366514933 instance=ExtResource("9_vx6g7")]
+position = Vector2(-88, 32)
 
 [node name="BreakableWall" parent="." unique_id=1555298093 instance=ExtResource("6_gy05f")]
 position = Vector2(-48, 32)
 
 [node name="ColorRect" type="ColorRect" parent="BreakableWall" unique_id=698762350]
-visible = false
 offset_left = -224.0
 offset_top = -64.0
 color = Color(0, 0, 0, 1)
