@@ -135,6 +135,12 @@ func _default_process() -> void:
 		state = State.APPROACHING
 
 
+func _on_go_to_default_timer_timeout() -> void:
+	super._on_go_to_default_timer_timeout()
+	print("ran 4")
+	state = State.DEFAULT
+
+
 ################    Aproaching
 
 func _approaching_ready() -> void:

@@ -12,6 +12,7 @@ signal died
 
 @export_group("Movement")
 @export var gravity: float = 800.0
+@export var time_until_going_to_default: float = 10.0
 
 @export_group("Private Nodes")
 @export var hurt_box: Area2D
@@ -31,8 +32,11 @@ var current_speed: float = 50.0
 var invinciblity_timer: Timer = Timer.new()
 var invincible: bool = false
 
+var going_to_default_timer: Timer = Timer.new()
+
 ## If the player is within the vision Area2D
-var player_is_visible: bool = false
+var player_is_visible: bool = false:
+	set = _set_player_is_visible
 var _player_is_in_vision: bool = false
 
 
@@ -47,6 +51,11 @@ func _ready() -> void:
 	invinciblity_timer.one_shot = true
 	invinciblity_timer.timeout.connect(_on_invinciblity_timer_timeout)
 	add_child(invinciblity_timer)
+	
+	going_to_default_timer.wait_time = time_until_going_to_default
+	going_to_default_timer.one_shot = true
+	going_to_default_timer.timeout.connect(_on_go_to_default_timer_timeout)
+	add_child(going_to_default_timer)
 	
 	if drop != null:
 		highlight.show()
@@ -115,10 +124,11 @@ func go_to_x_cor(target_x: float) -> void:
 ## Also sets player if setting player_is_visible to true
 func _check_if_player_visible() -> void:
 	# if the player is in visions, check if there is a line of sight
-	player_is_visible = false
+	var to_be_player_is_visible: bool = false
 	if _player_is_in_vision and player != null:
-		player_is_visible = not visibility_ray.is_colliding()
+		to_be_player_is_visible = not visibility_ray.is_colliding()
 		visibility_ray.target_position = player.position - position
+	player_is_visible = to_be_player_is_visible
 	
 	# check if the player is in vision
 	_player_is_in_vision = false
@@ -128,7 +138,19 @@ func _check_if_player_visible() -> void:
 			_player_is_in_vision = true
 			# make the ray point to the player
 			visibility_ray.target_position = player.position - position
+
+
+func _set_player_is_visible(new_value: bool) -> void:
+	if player_is_visible == new_value:
+		return
+	player_is_visible = new_value
 	
+	if not player_is_visible:
+		print("ran 1")
+		going_to_default_timer.start()
+	else:
+		print("ran 2")
+		going_to_default_timer.stop()
 
 
 ## Gets a vector from the enemy to the player
@@ -150,3 +172,8 @@ func _on_invinciblity_timer_timeout() -> void:
 	modulate.a = 1.0
 	invincible = false
 	show()
+
+
+func _on_go_to_default_timer_timeout() -> void:
+	player = null
+	print("ran 3")

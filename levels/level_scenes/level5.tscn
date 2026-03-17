@@ -53,4 +53,4 @@ position = Vector2(-8, 40)
 position = Vector2(8, 40)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("7_esvaf")]
-position = Vector2(216, 96)
+position = Vector2(208, 96)

@@ -42,16 +42,14 @@ drop = ExtResource("8_o5yuq")
 [node name="Spike" parent="." unique_id=1215871189 instance=ExtResource("9_wjuib")]
 position = Vector2(104, 56)
 
-[node name="BreakableWall" parent="." unique_id=1555298093 node_paths=PackedStringArray("attatched_node") instance=ExtResource("10_4n8tn")]
+[node name="BreakableWall" parent="." unique_id=1555298093 instance=ExtResource("10_4n8tn")]
 position = Vector2(-88, 64)
-attatched_node = NodePath("../ColorRect")
 
 [node name="BreakableWall2" parent="." unique_id=1417311526 instance=ExtResource("10_4n8tn")]
 position = Vector2(-88, 48)
 
-[node name="BreakableWall3" parent="." unique_id=869621963 node_paths=PackedStringArray("attatched_node") instance=ExtResource("10_4n8tn")]
+[node name="BreakableWall3" parent="." unique_id=869621963 instance=ExtResource("10_4n8tn")]
 position = Vector2(-88, 32)
-attatched_node = NodePath("../ColorRect")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1636148400]
 offset_left = -136.0

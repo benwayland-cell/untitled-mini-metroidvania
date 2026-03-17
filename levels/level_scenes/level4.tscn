@@ -35,18 +35,68 @@ position = Vector2(-216, 128)
 
 [node name="BasicSlime" parent="." unique_id=351440243 instance=ExtResource("9_vx6g7")]
 position = Vector2(-248, 32)
+health = null
+speed = null
+target_distance_from_player = null
+time_between_jumps = null
+time_random_margin = null
+jump_vector = null
+_health = null
+invincibility_time = null
+gravity = null
+time_until_going_to_default = null
 
 [node name="BasicSlime1" parent="." unique_id=2101013415 instance=ExtResource("9_vx6g7")]
 position = Vector2(-208, 32)
+health = null
+speed = null
+target_distance_from_player = null
+time_between_jumps = null
+time_random_margin = null
+jump_vector = null
+_health = null
+invincibility_time = null
+gravity = null
+time_until_going_to_default = null
 
 [node name="BasicSlime2" parent="." unique_id=1433975288 instance=ExtResource("9_vx6g7")]
 position = Vector2(-168, 32)
+health = null
+speed = null
+target_distance_from_player = null
+time_between_jumps = null
+time_random_margin = null
+jump_vector = null
+_health = null
+invincibility_time = null
+gravity = null
+time_until_going_to_default = null
 
 [node name="BasicSlime3" parent="." unique_id=1418701374 instance=ExtResource("9_vx6g7")]
 position = Vector2(-128, 32)
+health = null
+speed = null
+target_distance_from_player = null
+time_between_jumps = null
+time_random_margin = null
+jump_vector = null
+_health = null
+invincibility_time = null
+gravity = null
+time_until_going_to_default = null
 
 [node name="BasicSlime4" parent="." unique_id=1366514933 instance=ExtResource("9_vx6g7")]
 position = Vector2(-88, 32)
+health = null
+speed = null
+target_distance_from_player = null
+time_between_jumps = null
+time_random_margin = null
+jump_vector = null
+_health = null
+invincibility_time = null
+gravity = null
+time_until_going_to_default = null
 
 [node name="BreakableWall" parent="." unique_id=1555298093 instance=ExtResource("6_gy05f")]
 position = Vector2(-48, 32)

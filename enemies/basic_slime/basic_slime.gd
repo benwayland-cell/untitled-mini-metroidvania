@@ -108,15 +108,19 @@ func _state_process() -> void:
 ## When the player is visible, go into the aproaching state
 
 func _default_ready() -> void:
-	velocity.x = 0
+	pass
 
 
 func _default_process() -> void:
-	#if name == "BasicSlime7":
-		#print(player_is_visible)
-	
+	go_to_x_cor(starting_pos.x)
 	if player_is_visible:
 		state = State.APROACHING
+
+
+func _on_go_to_default_timer_timeout() -> void:
+	super._on_go_to_default_timer_timeout()
+	print("ran 4")
+	state = State.DEFAULT
 
 
 ################    Aproaching
