@@ -20,33 +20,59 @@ tile_map_data = PackedByteArray("AADu//X/AgAAAAAAAADu//b/AgAAAAAAAADu//f/AgAAAAA
 
 [node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_f5oyx")]
 
-[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_jt2a3")]
-position = Vector2(-104, 48)
-level_overlay = NodePath("../LevelOverlay")
+[node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("8_xcgmm")]
+position = Vector2(56, 48)
 
-[node name="Spike" parent="." unique_id=1215871189 instance=ExtResource("6_2u1q0")]
+[node name="Spikes" type="Node" parent="." unique_id=55841233]
+
+[node name="Spike" parent="Spikes" unique_id=1215871189 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, 40)
 rotation = 1.5707964
 
-[node name="Spike2" parent="." unique_id=731578572 instance=ExtResource("6_2u1q0")]
+[node name="Spike2" parent="Spikes" unique_id=731578572 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, 24)
 rotation = 1.5707964
 
-[node name="Spike3" parent="." unique_id=1107857977 instance=ExtResource("6_2u1q0")]
+[node name="Spike3" parent="Spikes" unique_id=1107857977 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, 8)
 rotation = 1.5707964
 
-[node name="Spike4" parent="." unique_id=517913252 instance=ExtResource("6_2u1q0")]
+[node name="Spike4" parent="Spikes" unique_id=517913252 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, -8)
 rotation = 1.5707964
 
-[node name="Spike5" parent="." unique_id=1162725424 instance=ExtResource("6_2u1q0")]
+[node name="Spike5" parent="Spikes" unique_id=1162725424 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, -24)
 rotation = 1.5707964
 
-[node name="Spike6" parent="." unique_id=1320638582 instance=ExtResource("6_2u1q0")]
+[node name="Spike6" parent="Spikes" unique_id=1320638582 instance=ExtResource("6_2u1q0")]
 position = Vector2(-152, -40)
 rotation = 1.5707964
 
-[node name="SwordEnemy" parent="." unique_id=1370522136 instance=ExtResource("8_xcgmm")]
-position = Vector2(64, 48)
+[node name="Spike7" parent="Spikes" unique_id=1773156724 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, 40)
+rotation = -1.5707964
+
+[node name="Spike8" parent="Spikes" unique_id=152917465 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, 24)
+rotation = -1.5707964
+
+[node name="Spike9" parent="Spikes" unique_id=1984919534 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, 8)
+rotation = -1.5707964
+
+[node name="Spike10" parent="Spikes" unique_id=1857110271 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, -8)
+rotation = -1.5707964
+
+[node name="Spike11" parent="Spikes" unique_id=59819161 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, -24)
+rotation = -1.5707964
+
+[node name="Spike12" parent="Spikes" unique_id=3665244 instance=ExtResource("6_2u1q0")]
+position = Vector2(120, -40)
+rotation = -1.5707964
+
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_jt2a3")]
+position = Vector2(-104, 48)
+level_overlay = NodePath("../LevelOverlay")

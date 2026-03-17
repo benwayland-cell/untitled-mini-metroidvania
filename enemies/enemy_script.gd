@@ -32,8 +32,8 @@ var invinciblity_timer: Timer = Timer.new()
 var invincible: bool = false
 
 ## If the player is within the vision Area2D
-var player_is_visible: bool = false:
-	set = set_player_is_visible
+var player_is_visible: bool = false
+var _player_is_in_vision: bool = false
 
 
 func _ready() -> void:
@@ -53,11 +53,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if player_is_visible:
-		last_seen_player_pos = player.position
-	
 	_check_if_player_visible()
 	_handle_gravity(delta)
+	
+	if player_is_visible:
+		last_seen_player_pos = player.position
 	
 	for body in hurt_box.get_overlapping_bodies():
 		if body is Player:
@@ -114,24 +114,21 @@ func go_to_x_cor(target_x: float) -> void:
 ## Sets player_is_visible to true or false
 ## Also sets player if setting player_is_visible to true
 func _check_if_player_visible() -> void:
+	# if the player is in visions, check if there is a line of sight
 	player_is_visible = false
+	if _player_is_in_vision and player != null:
+		player_is_visible = not visibility_ray.is_colliding()
+		visibility_ray.target_position = player.position - position
 	
-	var player_is_in_vision: bool = false
-	
+	# check if the player is in vision
+	_player_is_in_vision = false
 	for body in vision.get_overlapping_bodies():
 		if body is Player:
 			player = body
-			player_is_in_vision = true
+			_player_is_in_vision = true
 			# make the ray point to the player
 			visibility_ray.target_position = player.position - position
 	
-	if player_is_in_vision:
-		player_is_visible = not visibility_ray.is_colliding()
-
-
-
-func set_player_is_visible(new_value: bool) -> void:
-	player_is_visible = new_value
 
 
 ## Gets a vector from the enemy to the player

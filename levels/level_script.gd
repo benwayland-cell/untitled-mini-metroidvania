@@ -76,7 +76,7 @@ func _on_player_player_killed() -> void:
 func _on_enemy_killed() -> void:
 	enemy_count -= 1
 	
-	if enemy_count == 0:
+	if enemy_count == 0 and not player_dead:
 		await win_game()
 
 

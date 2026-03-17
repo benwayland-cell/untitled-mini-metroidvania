@@ -14,7 +14,7 @@ extends Enemy
 @onready var jump_timer: Timer = %JumpTimer
 
 enum State {DEFAULT, APROACHING, JUMPING}
-var state: State:
+var state: State = State.DEFAULT:
 	set = _set_state
 
 # eye animation
@@ -32,7 +32,6 @@ func _ready() -> void:
 	super._ready()
 	current_speed = speed
 	_health = health
-	state = State.DEFAULT
 	
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 
@@ -113,6 +112,9 @@ func _default_ready() -> void:
 
 
 func _default_process() -> void:
+	#if name == "BasicSlime7":
+		#print(player_is_visible)
+	
 	if player_is_visible:
 		state = State.APROACHING
 
