@@ -90,7 +90,6 @@ func take_damage(damage_amount: int, damaging_object: Node) -> void:
 			damaging_object.can_double_jump = true
 	
 	if _health <= 0:
-		died.emit()
 		if drop != null:
 			var drop_scene : Node2D = drop.instantiate()
 			add_sibling(drop_scene)
@@ -99,6 +98,7 @@ func take_damage(damage_amount: int, damaging_object: Node) -> void:
 			if drop_scene is UpgradeClass:
 				drop_scene.give_velocity()
 		
+		died.emit()
 		queue_free()
 
 

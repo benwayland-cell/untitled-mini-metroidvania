@@ -1,59 +1,51 @@
 [gd_scene format=4 uid="uid://bj822e1u015ff"]
 
-[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_0gtow"]
-[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_woihn"]
-[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_3qo2i"]
-[ext_resource type="PackedScene" uid="uid://glyi2gedwf0m" path="res://enemies/basic_slime/basic_slime.tscn" id="4_mv8ey"]
-[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_okowm"]
-[ext_resource type="PackedScene" uid="uid://df02p20s4jrqc" path="res://spike/spike.tscn" id="6_3r2vy"]
-[ext_resource type="PackedScene" uid="uid://b8alcuq83ls44" path="res://breakable_wall/breakable_wall.tscn" id="7_p0w58"]
-[ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="8_pxreh"]
-[ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="9_nf8gw"]
-[ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="10_6rd6v"]
+[ext_resource type="Script" uid="uid://b05c5uqngyrs0" path="res://levels/tutorial_scripts/double_jump_tutorial.gd" id="1_46u7m"]
+[ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_bufqw"]
+[ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_0dsjn"]
+[ext_resource type="PackedScene" uid="uid://glyi2gedwf0m" path="res://enemies/basic_slime/basic_slime.tscn" id="4_8gt2k"]
+[ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_ldkys"]
+[ext_resource type="PackedScene" uid="uid://pbb26gkp48yw" path="res://upgrades/double_jump_upgrade.tscn" id="5_3nlwi"]
+[ext_resource type="PackedScene" uid="uid://chck5ehekinur" path="res://upgrades/sword_upgrade.tscn" id="6_fcrg7"]
 
 [node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("player", "level_overlay")]
-script = ExtResource("1_0gtow")
+script = ExtResource("1_46u7m")
 player = NodePath("Player")
 level_overlay = NodePath("LevelOverlay")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1023629569]
 
-[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_woihn")]
+[node name="TileMapLayer" parent="." unique_id=1390801631 instance=ExtResource("2_bufqw")]
 tile_map_data = PackedByteArray("AADu//X/AgAAAAAAAADu//b/AgAAAAAAAADu//f/AgAAAAAAAADu//j/AgAAAAAAAADu//n/AgAAAAAAAADu//r/AgAAAAAAAADu//v/AgAAAAAAAADu//z/AgAAAAAAAADu//3/AgAAAAAAAADu//7/AgAAAAAAAADu////AgAAAAAAAADu/wAAAgAAAAAAAADu/wEAAgAAAAAAAADu/wIAAgAAAAAAAADu/wMAAgAAAAAAAADu/wQAAgAAAAAAAADu/wUAAgAAAAAAAADu/wYAAgAAAAAAAADu/wcAAgAAAAAAAADu/wgAAgAAAAAAAADu/wkAAgAAAAAAAADu/woAAgAAAAAAAADv//X/AgAAAAAAAADv/woAAgAAAAAAAADw//X/AgAAAAAAAADw/woAAgAAAAAAAADx//X/AgAAAAAAAADx/woAAgAAAAAAAADy//X/AgAAAAAAAADy/woAAgAAAAAAAADz//X/AgAAAAAAAADz/woAAgAAAAAAAAD0//X/AgAAAAAAAAD0/woAAgAAAAAAAAD1//X/AgAAAAAAAAD1/woAAgAAAAAAAAD2//X/AgAAAAAAAAD2/woAAgAAAAAAAAD3//X/AgAAAAAAAAD3/woAAgAAAAAAAAD4//X/AgAAAAAAAAD4/woAAgAAAAAAAAD5//X/AgAAAAAAAAD5/woAAgAAAAAAAAD6//X/AgAAAAAAAAD6/woAAgAAAAAAAAD7//X/AgAAAAAAAAD7/woAAgAAAAAAAAD8//X/AgAAAAAAAAD8/woAAgAAAAAAAAD9//X/AgAAAAAAAAD9/woAAgAAAAAAAAD+//X/AgAAAAAAAAD+/woAAgAAAAAAAAD///X/AgAAAAAAAAD//woAAgAAAAAAAAAAAPX/AgAAAAAAAAAAAAoAAgAAAAAAAAABAPX/AgAAAAAAAAABAAoAAgAAAAAAAAACAPX/AgAAAAAAAAACAAoAAgAAAAAAAAADAPX/AgAAAAAAAAADAAoAAgAAAAAAAAAEAPX/AgAAAAAAAAAEAAoAAgAAAAAAAAAFAPX/AgAAAAAAAAAFAAoAAgAAAAAAAAAGAPX/AgAAAAAAAAAGAAoAAgAAAAAAAAAHAPX/AgAAAAAAAAAHAAoAAgAAAAAAAAAIAPX/AgAAAAAAAAAIAAoAAgAAAAAAAAAJAPX/AgAAAAAAAAAJAAoAAgAAAAAAAAAKAPX/AgAAAAAAAAAKAAoAAgAAAAAAAAALAPX/AgAAAAAAAAALAAoAAgAAAAAAAAAMAPX/AgAAAAAAAAAMAAoAAgAAAAAAAAANAPX/AgAAAAAAAAANAAoAAgAAAAAAAAAOAPX/AgAAAAAAAAAOAAoAAgAAAAAAAAAPAPX/AgAAAAAAAAAPAAoAAgAAAAAAAAAQAPX/AgAAAAAAAAAQAAoAAgAAAAAAAAARAPX/AgAAAAAAAAARAPb/AgAAAAAAAAARAPf/AgAAAAAAAAARAPj/AgAAAAAAAAARAPn/AgAAAAAAAAARAPr/AgAAAAAAAAARAPv/AgAAAAAAAAARAPz/AgAAAAAAAAARAP3/AgAAAAAAAAARAP7/AgAAAAAAAAARAP//AgAAAAAAAAARAAAAAgAAAAAAAAARAAEAAgAAAAAAAAARAAIAAgAAAAAAAAARAAMAAgAAAAAAAAARAAQAAgAAAAAAAAARAAUAAgAAAAAAAAARAAYAAgAAAAAAAAARAAcAAgAAAAAAAAARAAgAAgAAAAAAAAARAAkAAgAAAAAAAAARAAoAAgAAAAAAAADv/wYAAgAAAAAAAADv/wcAAgAAAAAAAADv/wgAAgAAAAAAAADv/wkAAgAAAAAAAADw/wYAAgAAAAAAAADw/wcAAgAAAAAAAADw/wgAAgAAAAAAAADw/wkAAgAAAAAAAADx/wYAAgAAAAAAAADx/wcAAgAAAAAAAADx/wgAAgAAAAAAAADx/wkAAgAAAAAAAADy/wYAAgAAAAAAAADy/wcAAgAAAAAAAADy/wgAAgAAAAAAAADy/wkAAgAAAAAAAADz/wYAAgAAAAAAAADz/wcAAgAAAAAAAADz/wgAAgAAAAAAAADz/wkAAgAAAAAAAAD0/wYAAgAAAAAAAAD0/wcAAgAAAAAAAAD0/wgAAgAAAAAAAAD0/wkAAgAAAAAAAAD1/wYAAgAAAAAAAAD1/wcAAgAAAAAAAAD1/wgAAgAAAAAAAAD1/wkAAgAAAAAAAAD2/wYAAgAAAAAAAAD2/wcAAgAAAAAAAAD2/wgAAgAAAAAAAAD2/wkAAgAAAAAAAAD3/wYAAgAAAAAAAAD3/wcAAgAAAAAAAAD3/wgAAgAAAAAAAAD3/wkAAgAAAAAAAAD4/wYAAgAAAAAAAAD4/wcAAgAAAAAAAAD4/wgAAgAAAAAAAAD4/wkAAgAAAAAAAAD5/wYAAgAAAAAAAAD5/wcAAgAAAAAAAAD5/wgAAgAAAAAAAAD5/wkAAgAAAAAAAAD6/wYAAgAAAAAAAAD6/wcAAgAAAAAAAAD6/wgAAgAAAAAAAAD6/wkAAgAAAAAAAAD7/wYAAgAAAAAAAAD7/wcAAgAAAAAAAAD7/wgAAgAAAAAAAAD7/wkAAgAAAAAAAAD8/wYAAgAAAAAAAAD8/wcAAgAAAAAAAAD8/wgAAgAAAAAAAAD8/wkAAgAAAAAAAAD9/wYAAgAAAAAAAAD9/wcAAgAAAAAAAAD9/wgAAgAAAAAAAAD9/wkAAgAAAAAAAAD+/wYAAgAAAAAAAAD+/wcAAgAAAAAAAAD+/wgAAgAAAAAAAAD+/wkAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAD//wgAAgAAAAAAAAD//wkAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAkAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAABAAgAAgAAAAAAAAABAAkAAgAAAAAAAAACAAYAAgAAAAAAAAACAAcAAgAAAAAAAAACAAgAAgAAAAAAAAACAAkAAgAAAAAAAAADAAYAAgAAAAAAAAADAAcAAgAAAAAAAAADAAgAAgAAAAAAAAADAAkAAgAAAAAAAAAEAAYAAgAAAAAAAAAEAAcAAgAAAAAAAAAEAAgAAgAAAAAAAAAEAAkAAgAAAAAAAAAFAAYAAgAAAAAAAAAFAAcAAgAAAAAAAAAFAAgAAgAAAAAAAAAFAAkAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAcAAgAAAAAAAAAGAAgAAgAAAAAAAAAGAAkAAgAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAHAAgAAgAAAAAAAAAHAAkAAgAAAAAAAAAIAAYAAgAAAAAAAAAIAAcAAgAAAAAAAAAIAAgAAgAAAAAAAAAIAAkAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAcAAgAAAAAAAAAJAAgAAgAAAAAAAAAJAAkAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAcAAgAAAAAAAAAKAAgAAgAAAAAAAAAKAAkAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAALAAgAAgAAAAAAAAALAAkAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAcAAgAAAAAAAAAMAAgAAgAAAAAAAAAMAAkAAgAAAAAAAAANAAYAAgAAAAAAAAANAAcAAgAAAAAAAAANAAgAAgAAAAAAAAANAAkAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAcAAgAAAAAAAAAOAAgAAgAAAAAAAAAOAAkAAgAAAAAAAAAPAAYAAgAAAAAAAAAPAAcAAgAAAAAAAAAPAAgAAgAAAAAAAAAPAAkAAgAAAAAAAAAQAAYAAgAAAAAAAAAQAAcAAgAAAAAAAAAQAAgAAgAAAAAAAAAQAAkAAgAAAAAAAAD9//7/AgAAAAAAAAD9////AgAAAAAAAAD9/wAAAgAAAAAAAAD9/wEAAgAAAAAAAAD9/wIAAgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD9/wUAAgAAAAAAAAD+//7/AgAAAAAAAAD+////AgAAAAAAAAD+/wAAAgAAAAAAAAD+/wEAAgAAAAAAAAD+/wIAAgAAAAAAAAD+/wMAAgAAAAAAAAD+/wQAAgAAAAAAAAD+/wUAAgAAAAAAAAD///7/AgAAAAAAAAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAAAAP7/AgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAABAP7/AgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAACAP7/AgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAADAP7/AgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAA=")
 
-[node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_3qo2i")]
+[node name="LevelOverlay" parent="." unique_id=1335365444 instance=ExtResource("3_0dsjn")]
+
+[node name="TutorialLabel" type="Label" parent="." unique_id=1900380224]
+unique_name_in_owner = true
+visible = false
+offset_left = -256.0
+offset_top = 112.0
+offset_right = -173.0
+offset_bottom = 135.0
+text = "Z in midair"
 
 [node name="Enemies" type="Node" parent="." unique_id=1811318194]
+unique_name_in_owner = true
 
-[node name="BasicSlime" parent="Enemies" unique_id=351440243 instance=ExtResource("4_mv8ey")]
+[node name="BasicSlime" parent="Enemies" unique_id=351440243 instance=ExtResource("4_8gt2k")]
+unique_name_in_owner = true
 position = Vector2(-248, 96)
-drop = ExtResource("10_6rd6v")
+drop = ExtResource("5_3nlwi")
 
-[node name="BasicSlime2" parent="Enemies" unique_id=502256533 instance=ExtResource("4_mv8ey")]
+[node name="BasicSlime2" parent="Enemies" unique_id=502256533 instance=ExtResource("4_8gt2k")]
 position = Vector2(176, 96)
-
-[node name="Spikes" type="Node" parent="." unique_id=1891365979]
-
-[node name="Spike" parent="Spikes" unique_id=1215871189 instance=ExtResource("6_3r2vy")]
-position = Vector2(64, 200)
-
-[node name="BreakableWalls" type="Node" parent="." unique_id=513346047]
-
-[node name="BreakableWall" parent="BreakableWalls" unique_id=1555298093 instance=ExtResource("7_p0w58")]
-position = Vector2(112, 208)
 
 [node name="Upgrades" type="Node" parent="." unique_id=506794260]
 
-[node name="SwordUpgrade" parent="Upgrades" unique_id=1993593463 instance=ExtResource("8_pxreh")]
+[node name="SwordUpgrade" parent="Upgrades" unique_id=1993593463 instance=ExtResource("6_fcrg7")]
 position = Vector2(-72, 88)
 
-[node name="DashUpgrade" parent="Upgrades" unique_id=7430734 instance=ExtResource("9_nf8gw")]
-position = Vector2(200, 200)
-
-[node name="DoubleJumpUpgrade" parent="Upgrades" unique_id=1021779511 instance=ExtResource("10_6rd6v")]
-position = Vector2(232, 200)
-
-[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_okowm")]
+[node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_ldkys")]
 position = Vector2(-88, 96)
 level_overlay = NodePath("../LevelOverlay")

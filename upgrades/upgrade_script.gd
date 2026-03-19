@@ -2,6 +2,8 @@
 class_name UpgradeClass
 extends CharacterBody2D
 
+signal collected
+
 const INITIAL_VELOCITY = 100
 const GRAVITY: int= 500
 const BOUNCE_LOSS_FACTOR: float= 0.9
@@ -17,6 +19,7 @@ func _check_for_player_collision() -> void:
 	for body in area2D.get_overlapping_bodies():
 		if body is Player:
 			update_player(body)
+			collected.emit()
 			queue_free()
 
 
