@@ -7,4 +7,4 @@ func _process(_delta: float) -> void:
 		if body is Player:
 			body.kill()
 		elif body is Enemy:
-			body.take_damage(1, self)
+			body.take_damage(999, self)
