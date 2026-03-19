@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cddi0r54m7fcc"]
 
-[ext_resource type="Texture2D" uid="uid://bfti1kuomulq8" path="res://icon.svg" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dhajmv7qcth4x" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://bd3toky1qjxtx" path="res://player/player_with_no_eyes.png" id="2_yw30f"]
+[ext_resource type="Texture2D" uid="uid://4crupqrlag46" path="res://player/attack-sprite.png" id="3_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/player_eyes.png" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://ihgylcm7bwjw" path="res://player/deltarune_explosion.png" id="4_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
-size = Vector2(26, 22)
+size = Vector2(32, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(16, 15)
@@ -170,12 +170,11 @@ collision_layer = 0
 collision_mask = 12
 
 [node name="SwordSprite" type="Sprite2D" parent="PlayerSprite/Sword" unique_id=349718740]
-position = Vector2(13, 0)
-scale = Vector2(0.16015624, 0.09375)
-texture = ExtResource("1_oul6g")
+position = Vector2(10, 0)
+texture = ExtResource("3_qjkh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprite/Sword" unique_id=468202222]
-position = Vector2(13, 0)
+position = Vector2(10, 0)
 shape = SubResource("RectangleShape2D_rkbax")
 
 [node name="PlayerEyes" type="Sprite2D" parent="PlayerSprite" unique_id=675638302]
