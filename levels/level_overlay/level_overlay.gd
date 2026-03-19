@@ -19,10 +19,19 @@ const DASH_UPGRADE_TEXTURE: Texture2D = preload("uid://l3f3rwvaij1d")
 
 var wait_for_jump_button_pressed: bool = false
 
+var paused: bool = false
+var just_paused: bool = false
+
 
 func _process(_delta: float) -> void:
 	if wait_for_jump_button_pressed and Input.is_action_just_pressed("jump"):
 		jump_button_pressed.emit()
+	
+	if paused and Input.is_action_just_pressed("pause"):
+		if not just_paused:
+			unpause()
+		else:
+			just_paused = false
 
 
 ############## Win / Lose Screen
@@ -49,6 +58,8 @@ func _wait_for_button_press() -> void:
 
 
 func pause() -> void:
+	paused = true
+	just_paused = true
 	if win_lose_container.visible:
 		return
 	
@@ -56,18 +67,23 @@ func pause() -> void:
 	pause_menu.show()
 
 
-func _on_continue_button_pressed() -> void:
-	get_tree().paused = false
+func unpause() -> void:
 	pause_menu.hide()
+	get_tree().paused = false
+	paused = false
+
+
+func _on_continue_button_pressed() -> void:
+	unpause()
 
 
 func _on_restart_button_pressed() -> void:
-	get_tree().paused = false
+	unpause()
 	LevelLoader.reset()
 
 
 func _on_level_select_button_pressed() -> void:
-	get_tree().paused = false
+	unpause()
 	LevelLoader.load_level_select()
 
 
