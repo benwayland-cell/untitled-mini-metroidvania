@@ -76,7 +76,21 @@ text = "Restart"
 layout_mode = 2
 text = "Level Select"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=998304972]
+[node name="ControlsContainer" type="MarginContainer" parent="PauseMenu" unique_id=851359414]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="PauseMenu/ControlsContainer" unique_id=1347273657]
+layout_mode = 2
+text = "Move: < >
+Jump: Z
+Attack: X
+Dash: C"
+
+[node name="UpgradeDisplayContainer" type="MarginContainer" parent="." unique_id=998304972]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -86,7 +100,7 @@ grow_vertical = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="UpgradeDisplay" type="HBoxContainer" parent="MarginContainer" unique_id=1176312754]
+[node name="UpgradeDisplay" type="HBoxContainer" parent="UpgradeDisplayContainer" unique_id=1176312754]
 unique_name_in_owner = true
 layout_mode = 2
 
