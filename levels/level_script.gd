@@ -32,7 +32,7 @@ func _ready() -> void:
 		else:
 			if child.get_class() == "Node":
 				for child2 in child.get_children():
-					if child2 is Enemy:
+					if child2 is Enemy and child2.visible:
 						_add_enemy(child2)
 
 

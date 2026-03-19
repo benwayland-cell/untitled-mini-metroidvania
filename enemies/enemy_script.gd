@@ -146,10 +146,8 @@ func _set_player_is_visible(new_value: bool) -> void:
 	player_is_visible = new_value
 	
 	if not player_is_visible:
-		print("ran 1")
 		going_to_default_timer.start()
 	else:
-		print("ran 2")
 		going_to_default_timer.stop()
 
 
@@ -176,4 +174,3 @@ func _on_invinciblity_timer_timeout() -> void:
 
 func _on_go_to_default_timer_timeout() -> void:
 	player = null
-	print("ran 3")

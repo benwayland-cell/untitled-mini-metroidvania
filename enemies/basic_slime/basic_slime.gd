@@ -58,10 +58,15 @@ func _handle_eye_animation(delta: float):
 	
 	var target_eye_pos := Vector2(0, eye_sprite.position.y)
 	
-	if position.x < last_seen_player_pos.x:
-		target_eye_pos.x = EYE_RIGHT_POS
-	else:
+	if state == State.APROACHING:
+		if position.x < last_seen_player_pos.x:
+			target_eye_pos.x = EYE_RIGHT_POS
+		else:
+			target_eye_pos.x = EYE_LEFT_POS
+	elif velocity.x < 0:
 		target_eye_pos.x = EYE_LEFT_POS
+	elif velocity.x > 0:
+		target_eye_pos.x = EYE_RIGHT_POS
 	
 	eye_sprite.position = eye_sprite.position.move_toward(target_eye_pos, EYE_SPEED * delta)
 
