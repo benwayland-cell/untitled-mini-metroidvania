@@ -3,6 +3,8 @@ class_name Player
 
 signal player_killed
 
+@export var color: Color = Color("#32CD32")
+
 @export_category("Initalizations")
 @export var level_overlay: LevelOverlay
 
@@ -24,10 +26,12 @@ signal player_killed
 @export var dash_time :float= 0.1
 @export var dash_cooldown :float= 0.2
 
+
 @onready var sprite: Sprite2D = %PlayerSprite
 @onready var eye_sprite: Sprite2D = %PlayerEyes
 @onready var sword: Area2D = %Sword
-@onready var death_sprite: AnimatedSprite2D = %DeathSprite
+
+const EXPLOSION_SCENE: PackedScene = preload("uid://bs47gptq2q14t")
 
 # eye animation
 const EYE_FAST_SPEED: float = 50.0
@@ -326,8 +330,10 @@ func kill() -> void:
 	
 	# start death animation
 	sprite.hide()
-	death_sprite.show()
-	death_sprite.play("death")
+	var explosion: Explosion = EXPLOSION_SCENE.instantiate()
+	explosion.color = color
+	explosion.position = position
+	add_sibling(explosion)
 	
 	player_killed.emit()
 

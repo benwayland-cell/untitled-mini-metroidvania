@@ -24,6 +24,7 @@ size = Vector2(30, 16)
 [node name="SwordEnemy" type="CharacterBody2D" unique_id=1370522136 node_paths=PackedStringArray("hurt_box", "vision", "highlight")]
 collision_layer = 4
 script = ExtResource("1_c2shx")
+color = Color(1, 0, 0, 1)
 hurt_box = NodePath("HurtBox")
 vision = NodePath("Vision")
 highlight = NodePath("Sprite2D/HighlightSprite")

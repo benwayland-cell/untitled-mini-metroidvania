@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://da4khkeph1ri3"]
+
+[ext_resource type="Script" uid="uid://ckcsgeojkixhc" path="res://explosion_animation/explosion_chunk.gd" id="1_km1be"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_km1be"]
+bounce = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03kh4"]
+size = Vector2(4, 4)
+
+[node name="ExplosionChunk" type="RigidBody2D" unique_id=1356530242]
+collision_layer = 16
+collision_mask = 17
+physics_material_override = SubResource("PhysicsMaterial_km1be")
+gravity_scale = 1.5
+script = ExtResource("1_km1be")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1421899476]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(4, 4)
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+mouse_filter = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1017818386]
+shape = SubResource("RectangleShape2D_03kh4")

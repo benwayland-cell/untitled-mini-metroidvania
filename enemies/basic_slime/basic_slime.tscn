@@ -17,6 +17,7 @@ size = Vector2(300, 100)
 [node name="BasicSlime" type="CharacterBody2D" unique_id=351440243 node_paths=PackedStringArray("hurt_box", "vision", "highlight")]
 collision_layer = 4
 script = ExtResource("1_6jm6h")
+color = Color(0.27450982, 0.72156864, 1, 1)
 hurt_box = NodePath("HurtBox")
 vision = NodePath("Vision")
 highlight = NodePath("Sprite2D/HighlightSprite")

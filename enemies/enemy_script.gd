@@ -5,6 +5,7 @@ extends CharacterBody2D
 signal died
 
 @export var drop: PackedScene = null
+@export var color: Color
 
 @export_group("Damage")
 @export var _health: int = 1
@@ -20,6 +21,8 @@ signal died
 @export var highlight: Sprite2D
 
 @onready var visibility_ray := RayCast2D.new()
+
+const EXPLOSION_SCENE: PackedScene = preload("uid://bs47gptq2q14t")
 
 var starting_pos: Vector2
 var position_padding: float = 1.0
@@ -97,6 +100,11 @@ func take_damage(damage_amount: int, damaging_object: Node) -> void:
 			
 			if drop_scene is UpgradeClass:
 				drop_scene.give_velocity()
+		
+		var explosion: Explosion = EXPLOSION_SCENE.instantiate()
+		explosion.position = position
+		explosion.color = color
+		add_sibling(explosion)
 		
 		died.emit()
 		queue_free()
