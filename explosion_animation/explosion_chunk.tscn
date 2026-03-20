@@ -9,6 +9,7 @@ bounce = 0.3
 size = Vector2(4, 4)
 
 [node name="ExplosionChunk" type="RigidBody2D" unique_id=1356530242]
+z_index = -1
 collision_layer = 16
 collision_mask = 17
 physics_material_override = SubResource("PhysicsMaterial_km1be")

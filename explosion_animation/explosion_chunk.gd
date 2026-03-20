@@ -2,7 +2,7 @@ class_name ExplosionChunk
 extends RigidBody2D
 
 @export var speed: float = 300.0
-@export var spread: float = PI * 0.9
+@export var spread: float = PI * 0.75
 
 @export var time_until_fade: float = 0.5
 @export var fade_speed: float = 1.0
