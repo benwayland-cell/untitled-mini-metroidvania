@@ -7,8 +7,6 @@ extends Enemy
 ## When it is close enough, it starts to windup, and then attack
 ## It then runs away and loops back
 
-@export var health: int = 2
-
 @export_group("Speed")
 @export var default_speed: float = 30.0
 @export var approaching_speed: float = 50.0
@@ -52,7 +50,6 @@ var squashed_vector: Vector2 = Vector2(1 + squash_stretch_amount, 1 - squash_str
 
 func _ready() -> void:
 	super._ready()
-	_health = health
 	state = State.DEFAULT
 
 

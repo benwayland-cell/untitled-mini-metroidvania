@@ -1,7 +1,6 @@
 class_name BasicSlime
 extends Enemy
 
-@export var health: int = 1
 @export var speed: float = 30.0
 @export var target_distance_from_player: float = 75
 @export var time_between_jumps: float = 1.0
@@ -31,7 +30,6 @@ const SQUASH_STRETCH_AMOUNT: float = 0.5
 func _ready() -> void:
 	super._ready()
 	current_speed = speed
-	_health = health
 	
 	jump_timer.timeout.connect(_on_jump_timer_timeout)
 

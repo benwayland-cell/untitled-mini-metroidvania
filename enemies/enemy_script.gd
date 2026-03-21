@@ -8,7 +8,7 @@ signal died
 @export var color: Color
 
 @export_group("Damage")
-@export var _health: int = 1
+@export var health: int = 1
 @export var invincibility_time: float = 0.5
 
 @export_group("Movement")
@@ -81,7 +81,7 @@ func take_damage(damage_amount: int, damaging_object: Node2D) -> void:
 	if invincible:
 		return
 	
-	_health -= damage_amount
+	health -= damage_amount
 	
 	invincible = true
 	modulate.a = 0.5
@@ -92,7 +92,7 @@ func take_damage(damage_amount: int, damaging_object: Node2D) -> void:
 			damaging_object.jump()
 			damaging_object.can_double_jump = true
 	
-	if _health <= 0:
+	if health <= 0:
 		if drop != null:
 			var drop_scene : Node2D = drop.instantiate()
 			add_sibling(drop_scene)

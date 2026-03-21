@@ -25,6 +25,7 @@ size = Vector2(30, 16)
 collision_layer = 4
 script = ExtResource("1_c2shx")
 color = Color(1, 0, 0, 1)
+health = 2
 hurt_box = NodePath("HurtBox")
 vision = NodePath("Vision")
 highlight = NodePath("Sprite2D/HighlightSprite")

@@ -36,7 +36,9 @@ position = Vector2(240, 16)
 
 [node name="SwordEnemy" parent="Enemies" unique_id=1370522136 instance=ExtResource("5_nkhxg")]
 position = Vector2(-240, 16)
+health = 1
 drop = ExtResource("10_u5abf")
+health = 1
 
 [node name="Spikes" type="Node" parent="." unique_id=1891365979]
 
