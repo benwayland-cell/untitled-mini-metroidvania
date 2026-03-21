@@ -43,12 +43,6 @@ position = Vector2(64, 216)
 [node name="BreakableWall" parent="BreakableWalls" unique_id=1555298093 instance=ExtResource("8_feh65")]
 position = Vector2(112, 224)
 
-[node name="ColorRect" type="ColorRect" parent="BreakableWalls/BreakableWall" unique_id=1003473278]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="Upgrades" type="Node" parent="." unique_id=506794260]
 
 [node name="SwordUpgrade" parent="Upgrades" unique_id=1993593463 instance=ExtResource("9_iwat4")]

@@ -1,7 +1,7 @@
 extends Control
 
 
-const WRAP_NUMBER := 5
+@export var wrap_number := 5
 
 
 func _ready() -> void:
@@ -11,7 +11,7 @@ func _ready() -> void:
 	# for every level
 	for level_num in range(1, LevelLoader.level_strings.size() + 1):
 		# if we need to wrap around
-		if buttons_in_row >= WRAP_NUMBER:
+		if buttons_in_row >= wrap_number:
 			%LevelRows.add_child(current_h_box)
 			current_h_box = HBoxContainer.new()
 			buttons_in_row = 0
