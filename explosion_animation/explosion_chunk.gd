@@ -14,8 +14,6 @@ var color: Color
 func _ready() -> void:
 	color_rect.color = color
 	
-	
-	
 	# set inital velocity
 	var angle = randf_range(-spread / 2, spread / 2) - PI / 2
 	var direction = Vector2(cos(angle), sin(angle))

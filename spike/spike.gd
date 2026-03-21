@@ -1,3 +1,4 @@
+class_name Spike
 extends StaticBody2D
 
 @onready var hurt_box: Area2D = %HurtBox

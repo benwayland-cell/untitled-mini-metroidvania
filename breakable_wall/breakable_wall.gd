@@ -38,10 +38,10 @@ func _check_if_neighbor(breakable_wall: BreakableWall) -> void:
 	var other_wall_pos: Vector2 = breakable_wall.position
 	# if the wall is adjacent
 	if (
-		other_wall_pos.x == position.x + DISTANCE_TO_ANOTHER_BLOCK
-		or other_wall_pos.x == position.x - DISTANCE_TO_ANOTHER_BLOCK
-		or other_wall_pos.y == position.y + DISTANCE_TO_ANOTHER_BLOCK
-		or other_wall_pos.y == position.y - DISTANCE_TO_ANOTHER_BLOCK
+		(other_wall_pos.x == position.x + DISTANCE_TO_ANOTHER_BLOCK
+		or other_wall_pos.x == position.x - DISTANCE_TO_ANOTHER_BLOCK)
+		and (other_wall_pos.y == position.y + DISTANCE_TO_ANOTHER_BLOCK
+		or other_wall_pos.y == position.y - DISTANCE_TO_ANOTHER_BLOCK)
 	):
 		breakable_wall.destroy()
 

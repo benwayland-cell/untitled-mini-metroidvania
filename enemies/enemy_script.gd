@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 			body.kill()
 
 
-func take_damage(damage_amount: int, damaging_object: Node) -> void:
+func take_damage(damage_amount: int, damaging_object: Node2D) -> void:
 	#don't take damage if it is currently invincible
 	if invincible:
 		return
@@ -98,8 +98,16 @@ func take_damage(damage_amount: int, damaging_object: Node) -> void:
 			add_sibling(drop_scene)
 			drop_scene.global_position = global_position
 			
+			
 			if drop_scene is UpgradeClass:
-				drop_scene.give_velocity()
+				
+				if damaging_object is Spike:
+					if damaging_object.position.x < 0:
+						drop_scene.give_velocity(UpgradeClass.Direction.LEFT)
+					else:
+						drop_scene.give_velocity(UpgradeClass.Direction.RIGHT)
+				else:
+					drop_scene.give_velocity()
 		
 		var explosion: Explosion = EXPLOSION_SCENE.instantiate()
 		explosion.position = position

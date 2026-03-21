@@ -4,9 +4,13 @@ extends CharacterBody2D
 
 signal collected
 
-const INITIAL_VELOCITY = 100
-const GRAVITY: int= 500
-const BOUNCE_LOSS_FACTOR: float= 0.9
+@export var initial_velocity: float = 100.0
+@export var initial_left_right_velocity: float = 300.0
+@export var gravity: int = 500
+@export var bounce_loss_factor: float = 0.9
+@export var left_right_loss_factor: float = 0.5
+
+enum Direction {NONE, LEFT, RIGHT}
 
 @export var area2D: Area2D
 
@@ -24,14 +28,21 @@ func _check_for_player_collision() -> void:
 
 
 func _update_movement(delta: float) -> void:
-	velocity.y += GRAVITY * delta
+	velocity.y += gravity * delta
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
-		velocity.y *= BOUNCE_LOSS_FACTOR
+		velocity.y *= bounce_loss_factor
+		velocity.x *= left_right_loss_factor
 
-func give_velocity() -> void:
-	velocity.y = -INITIAL_VELOCITY
+func give_velocity(direction: Direction = Direction.NONE) -> void:
+	velocity.y = -initial_velocity
+	
+	match direction:
+		Direction.LEFT:
+			velocity.x = initial_left_right_velocity
+		Direction.RIGHT:
+			velocity.x = -initial_left_right_velocity
 
 func update_player(player_to_update: Player) -> void:
 	assert(false, str(player_to_update))
