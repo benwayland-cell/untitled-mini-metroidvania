@@ -28,6 +28,7 @@ func _ready() -> void:
 			file_name = dir.get_next()
 	else:
 		assert(false, "An error occurred when trying to access the path in level loader.")
+	print(level_strings)
 
 
 func load_main_menu() -> void:

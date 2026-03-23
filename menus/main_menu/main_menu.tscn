@@ -31,7 +31,7 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="HBoxContainer" unique_id=2017467485]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Main Menu"
+text = "Slime-vania"
 label_settings = SubResource("LabelSettings_8s8hf")
 
 [node name="LevelSelectButton" type="Button" parent="HBoxContainer" unique_id=980923488]

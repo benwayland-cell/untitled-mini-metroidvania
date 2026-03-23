@@ -2,6 +2,7 @@
 
 entry_symbol = "git_plugin_init"
 compatibility_minimum = "4.2.0"
+editor_plugin = true
 
 [libraries]
 
