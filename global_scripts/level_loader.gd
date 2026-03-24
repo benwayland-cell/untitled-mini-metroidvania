@@ -6,7 +6,24 @@ const MAIN_MENU_FILE: String = "res://menus/main_menu/main_menu.tscn"
 const LEVEL_SELECT_FILE: String = "res://menus/level select/level_select.tscn"
 const SETTINGS_FILE: String = "res://menus/settings/settings.tscn"
 
-var level_strings : Array[String] = []
+var level_strings : Array[String] = [
+	"res://levels/level_scenes/level01.tscn",
+	"res://levels/level_scenes/level02.tscn",
+	"res://levels/level_scenes/level03.tscn",
+	"res://levels/level_scenes/level04.tscn",
+	"res://levels/level_scenes/level05.tscn",
+	"res://levels/level_scenes/level06.tscn",
+	"res://levels/level_scenes/level07.tscn",
+	"res://levels/level_scenes/level08.tscn",
+	"res://levels/level_scenes/level09.tscn",
+	"res://levels/level_scenes/level10.tscn",
+	"res://levels/level_scenes/level11.tscn",
+	"res://levels/level_scenes/level12.tscn",
+	"res://levels/level_scenes/level13.tscn",
+	"res://levels/level_scenes/level14.tscn",
+	#"res://levels/level_scenes/level15.tscn",
+	
+]
 
 var current_level: int
 var last_unlocked_level: int = 1:
@@ -16,19 +33,19 @@ var last_unlocked_level: int = 1:
 func _ready() -> void:
 	SaverLoader.load_game()
 	
-	var dir = DirAccess.open(LEVELS_FOLDER_PATH)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if dir.current_is_dir():
-				assert(false, "There was a directory found in the levels folder")
-			else:
-				level_strings.append(LEVELS_FOLDER_PATH + "/" + file_name)
-			file_name = dir.get_next()
-	else:
-		assert(false, "An error occurred when trying to access the path in level loader.")
-	print(level_strings)
+	#var dir = DirAccess.open(LEVELS_FOLDER_PATH)
+	#if dir:
+		#dir.list_dir_begin()
+		#var file_name = dir.get_next()
+		#while file_name != "":
+			#if dir.current_is_dir():
+				#assert(false, "There was a directory found in the levels folder")
+			#else:
+				#level_strings.append(LEVELS_FOLDER_PATH + "/" + file_name)
+			#file_name = dir.get_next()
+	#else:
+		#assert(false, "An error occurred when trying to access the path in level loader.")
+	#print(level_strings)
 
 
 func load_main_menu() -> void:
