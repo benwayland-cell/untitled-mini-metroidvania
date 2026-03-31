@@ -32,6 +32,7 @@ extends Enemy
 @onready var sword: Area2D = %Sword
 @onready var attack_range: Area2D = %AttackRange
 @onready var timer: Timer = %Timer
+@onready var attack_audio: AudioStreamPlayer = %AttackAudio
 
 
 enum State {DEFAULT, APPROACHING, WINDUP, ATTACKING, FLEEING}
@@ -188,6 +189,7 @@ func _on_windup_timer_timeout() -> void:
 ################    Attacking
 
 func _attacking_ready() -> void:
+	attack_audio.play()
 	current_speed = 0
 	velocity.x = 0
 	

@@ -12,6 +12,9 @@ extends Enemy
 @onready var eye_sprite: Sprite2D = %EyeSprite
 @onready var jump_timer: Timer = %JumpTimer
 
+@onready var jump_audio: AudioStreamPlayer = %JumpAudio
+@onready var land_audio: AudioStreamPlayer = %LandAudio
+
 enum State {DEFAULT, APROACHING, JUMPING}
 var state: State = State.DEFAULT:
 	set = _set_state
@@ -152,6 +155,7 @@ func _on_jump_timer_timeout() -> void:
 var was_airbourne: bool
 
 func _jumping_ready() -> void:
+	jump_audio.play()
 	stretch()
 	was_airbourne = false
 	
@@ -165,5 +169,6 @@ func _jumping_process() -> void:
 	if is_on_floor() and was_airbourne:
 		state = State.APROACHING
 		squash() # give the landing impact
+		land_audio.play()
 	else:
 		was_airbourne = true

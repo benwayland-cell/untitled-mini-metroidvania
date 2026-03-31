@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd3toky1qjxtx"
-path="res://.godot/imported/player_with_no_eyes.png-18bbdf52aee6c617d25afecc9a257c1d.ctex"
+uid="uid://bb7p5rh4m687k"
+path="res://.godot/imported/sword_anim.png-e4af80507daa0819c38f39e675e0d6f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/player_with_no_eyes.png"
-dest_files=["res://.godot/imported/player_with_no_eyes.png-18bbdf52aee6c617d25afecc9a257c1d.ctex"]
+source_file="res://player/sprites/sword_anim.png"
+dest_files=["res://.godot/imported/sword_anim.png-e4af80507daa0819c38f39e675e0d6f6.ctex"]
 
 [params]
 

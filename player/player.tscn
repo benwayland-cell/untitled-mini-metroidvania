@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cddi0r54m7fcc"]
 
 [ext_resource type="Script" uid="uid://dhajmv7qcth4x" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Texture2D" uid="uid://bd3toky1qjxtx" path="res://player/player_with_no_eyes.png" id="2_yw30f"]
-[ext_resource type="Texture2D" uid="uid://4crupqrlag46" path="res://player/attack-sprite.png" id="3_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/player_eyes.png" id="4_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://bd3toky1qjxtx" path="res://player/sprites/player_with_no_eyes.png" id="2_yw30f"]
+[ext_resource type="Texture2D" uid="uid://4crupqrlag46" path="res://player/sprites/attack-sprite.png" id="3_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/sprites/player_eyes.png" id="4_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://cgxu2uua6fumb" path="res://player/audio/mixkit-fast-transitions-swoosh-3115.wav" id="5_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://dcboy67l6vpfh" path="res://player/audio/mixkit-arrow-whoosh-1491_rOWFM0GT-[AudioTrimmer.com].wav" id="6_g6k8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkbax"]
 size = Vector2(32, 22)
@@ -45,3 +47,23 @@ light_mask = 5
 visibility_layer = 2
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_oul6g")
+
+[node name="AttackAudio" type="AudioStreamPlayer" parent="." unique_id=1644659301]
+unique_name_in_owner = true
+stream = ExtResource("5_g6k8r")
+
+[node name="DashAudio" type="AudioStreamPlayer" parent="." unique_id=1699033694]
+unique_name_in_owner = true
+stream = ExtResource("6_g6k8r")
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="." unique_id=522845657]
+unique_name_in_owner = true
+
+[node name="LandAudio" type="AudioStreamPlayer" parent="." unique_id=1859249956]
+unique_name_in_owner = true
+
+[node name="FreezeFrameTimer" type="Timer" parent="." unique_id=1584143198]
+unique_name_in_owner = true
+wait_time = 0.05
+one_shot = true
+ignore_time_scale = true

@@ -22,6 +22,7 @@ signal died
 
 @onready var visibility_ray := RayCast2D.new()
 
+
 const EXPLOSION_SCENE: PackedScene = preload("uid://bs47gptq2q14t")
 
 var starting_pos: Vector2

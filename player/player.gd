@@ -4,6 +4,7 @@ class_name Player
 signal player_killed
 
 @export var color: Color = Color("#32CD32")
+@export var freeze_frame: bool = false
 
 @export_category("Initalizations")
 @export var level_overlay: LevelOverlay
@@ -30,6 +31,12 @@ signal player_killed
 @onready var sprite: Sprite2D = %PlayerSprite
 @onready var eye_sprite: Sprite2D = %PlayerEyes
 @onready var sword: Area2D = %Sword
+
+@onready var attack_audio: AudioStreamPlayer = %AttackAudio
+@onready var dash_audio: AudioStreamPlayer = %DashAudio
+@onready var jump_audio: AudioStreamPlayer = %JumpAudio
+@onready var land_audio: AudioStreamPlayer = %LandAudio
+const PITCH_VARIANCE: float = 0.1
 
 const EXPLOSION_SCENE: PackedScene = preload("uid://bs47gptq2q14t")
 
@@ -79,6 +86,8 @@ var dash_cooldown_done :bool= true
 const UNSTRETCH_SPEED: float = 2
 const SQUASH_STRETCH_AMOUNT: float = 0.5
 var was_airbourne: bool = false
+
+@onready var freeze_frame_timer: Timer = %FreezeFrameTimer
 
 
 func _ready() -> void:
@@ -165,6 +174,7 @@ func _handle_squash_and_stretch(delta: float) -> void:
 	if is_on_floor():
 		if was_airbourne:
 			was_airbourne = false
+			land_audio.play()
 			squash()
 	else:
 		was_airbourne = true
@@ -235,6 +245,7 @@ func _handle_jumping() -> void:
 
 
 func jump() -> void:
+	jump_audio.play()
 	velocity.y = -jump_velocity
 	player_state = PlayerState.JUMPING
 	
@@ -257,6 +268,7 @@ func _handle_activating_sword() -> void:
 	#swing the sword
 	sword_cooldown_done = false
 	sword.show()
+	_play_attack_audio_randomized()
 	
 	# wait until the sword should be hidden
 	await get_tree().create_timer(0.1).timeout
@@ -274,9 +286,23 @@ func _handle_sword_attacking_enemy_check() -> void:
 		if not is_instance_valid(body):
 			continue
 		if body is Enemy:
-			body.take_damage(1, self)
+			_damage_enemy(body)
 		elif body is BreakableWall:
 			body.destroy()
+
+
+func _damage_enemy(enemy: Enemy) -> void:
+	if enemy.invincible:
+		return
+	enemy.take_damage(1, self)
+	
+	if not freeze_frame:
+		return
+	
+	Engine.time_scale = 0
+	freeze_frame_timer.start()
+	await freeze_frame_timer.timeout
+	Engine.time_scale = 1
 
 
 func _handle_dash(_delta: float) -> void:
@@ -288,6 +314,7 @@ func _handle_dash(_delta: float) -> void:
 		return
 	
 	# start dashing
+	dash_audio.play()
 	player_state = PlayerState.DASHING
 	can_dash = false
 	if player_left_right_state == PlayerLeftRight.LEFT:
@@ -351,3 +378,8 @@ func _set_has_double_jump_ability(new_state: bool) -> void:
 func _set_has_dash(new_state: bool) -> void:
 	has_dash = new_state
 	has_dash_activated.emit()
+
+
+func _play_attack_audio_randomized() -> void:
+	attack_audio.pitch_scale = randf_range(1 - PITCH_VARIANCE, 1 + PITCH_VARIANCE)
+	attack_audio.play()

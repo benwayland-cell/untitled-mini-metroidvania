@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4crupqrlag46"
-path="res://.godot/imported/attack-sprite.png-8c22cb6db4015479941624755bb82906.ctex"
+uid="uid://bd3toky1qjxtx"
+path="res://.godot/imported/player_with_no_eyes.png-d645b515e69be5cc8f8dd729525155d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/attack-sprite.png"
-dest_files=["res://.godot/imported/attack-sprite.png-8c22cb6db4015479941624755bb82906.ctex"]
+source_file="res://player/sprites/player_with_no_eyes.png"
+dest_files=["res://.godot/imported/player_with_no_eyes.png-d645b515e69be5cc8f8dd729525155d0.ctex"]
 
 [params]
 

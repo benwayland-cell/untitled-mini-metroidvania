@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blcx3eyhw8hjq" path="res://enemies/basic_slime/basic_slime.gd" id="1_6jm6h"]
 [ext_resource type="Texture2D" uid="uid://dtcn76fe0tyfg" path="res://enemies/basic_slime/enemy_slime_no_eyes.png" id="2_5of5o"]
-[ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/player_eyes.png" id="3_lgtvi"]
+[ext_resource type="Texture2D" uid="uid://xvnc3al768cg" path="res://player/sprites/player_eyes.png" id="3_lgtvi"]
 [ext_resource type="Texture2D" uid="uid://by3app1ab76jp" path="res://enemies/highlight.png" id="4_h5816"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgtvi"]
@@ -62,3 +62,9 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 [node name="JumpTimer" type="Timer" parent="." unique_id=1797217381]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="." unique_id=1849310950]
+unique_name_in_owner = true
+
+[node name="LandAudio" type="AudioStreamPlayer" parent="." unique_id=839620012]
+unique_name_in_owner = true
