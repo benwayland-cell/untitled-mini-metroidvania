@@ -9,8 +9,8 @@ signal any_button_pressed
 @export var end_level_time_scale: float = 0.5
 @export var end_level_slomo_time: float = 1.0
 
-@export var camera_shake_strength: float = 30.0
-@export var camera_shake_fade: float = 5.0
+#@export var camera_shake_strength: float = 5.0
+#@export var camera_shake_fade: float = 100.0
 
 var current_camera_shake_strenth: float = 0.0
 
@@ -65,36 +65,34 @@ func _add_enemy(enemy: Enemy) -> void:
 	enemy_count += 1
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		level_overlay.pause()
 	
-	if Input.is_action_just_pressed("debug 1"):
-		shake_camera()
-	
-	# handle returning camera
-	if current_camera_shake_strenth > 0:
-		current_camera_shake_strenth = lerpf(current_camera_shake_strenth, 0, camera_shake_fade * delta)
-		
-		camera.offset = Vector2(
-			randf_range(-camera_shake_strength, camera_shake_strength),
-			randf_range(-camera_shake_strength, camera_shake_strength)
-		)
+	#if Input.is_action_just_pressed("attack"):
+		#shake_camera()
+	#
+	## handle returning camera
+	#if current_camera_shake_strenth > 0:
+		#current_camera_shake_strenth = lerpf(current_camera_shake_strenth, 0, camera_shake_fade * delta)
+		#
+		#camera.offset = Vector2(
+			#randf_range(-current_camera_shake_strenth, current_camera_shake_strenth),
+			#randf_range(-current_camera_shake_strenth, current_camera_shake_strenth)
+		#)
+	#else:
+		#camera.offset = Vector2.ZERO
 
 
-func shake_camera() -> void:
-	current_camera_shake_strenth = camera_shake_strength
+#func shake_camera() -> void:
+	#current_camera_shake_strenth = camera_shake_strength
 
 
 func win_game() -> void:
 	won_game = true
 	LevelLoader.unlock_level()
 	
-	# slomo
-	slomo_audio.play()
-	Engine.time_scale = end_level_time_scale
-	await get_tree().create_timer(end_level_slomo_time * end_level_time_scale).timeout
-	Engine.time_scale = 1
+	await _run_slomo()
 	
 	# disable the player and show the win screen
 	player.disabled = true
@@ -102,6 +100,13 @@ func win_game() -> void:
 	await level_overlay.wait_for_win_screen()
 	
 	LevelLoader.load_next_level()
+
+
+func _run_slomo() -> void:
+	slomo_audio.play()
+	Engine.time_scale = end_level_time_scale
+	await get_tree().create_timer(end_level_slomo_time * end_level_time_scale).timeout
+	Engine.time_scale = 1
 
 
 func _on_player_player_killed() -> void:

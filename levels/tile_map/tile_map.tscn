@@ -14,3 +14,11 @@ sources/2 = SubResource("TileSetAtlasSource_1n30v")
 
 [node name="TileMapLayer" type="TileMapLayer" unique_id=1835214899]
 tile_set = SubResource("TileSet_35kre")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1707801358]
+z_index = -2
+offset_left = -960.0
+offset_top = -704.0
+offset_right = 1088.0
+offset_bottom = 640.0
+stretch_mode = 1
