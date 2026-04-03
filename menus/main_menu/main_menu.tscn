@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6quvpkxril6v"]
 
 [ext_resource type="Script" uid="uid://oigmf8excuue" path="res://menus/main_menu/main_menu.gd" id="1_xbn2l"]
+[ext_resource type="Texture2D" uid="uid://dxanrysp0584q" path="res://slime_character_icon.png" id="2_1nwmw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8s8hf"]
 font_size = 32
@@ -14,33 +15,44 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xbn2l")
 
-[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=554863509]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=922905956]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -45.0
-offset_right = 115.0
-offset_bottom = 45.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=2017467485]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=354914522]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1005533476]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("2_1nwmw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=554863509]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2017467485]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Slime-vania"
 label_settings = SubResource("LabelSettings_8s8hf")
 
-[node name="LevelSelectButton" type="Button" parent="HBoxContainer" unique_id=980923488]
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=980923488]
 layout_mode = 2
 text = "Level Select"
 
-[node name="SettingsButton" type="Button" parent="HBoxContainer" unique_id=213699226]
+[node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=213699226]
 layout_mode = 2
 text = "Settings"
 
-[connection signal="pressed" from="HBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

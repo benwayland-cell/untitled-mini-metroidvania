@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dcdjbrjsetgcc"]
 
-[ext_resource type="Script" uid="uid://d0blb1vna8rxt" path="res://levels/level_script.gd" id="1_lpgdq"]
+[ext_resource type="Script" uid="uid://dryrrmkny7vbr" path="res://levels/tutorial_scripts/dash_tutorial.gd" id="1_x3x6f"]
 [ext_resource type="PackedScene" uid="uid://bkheuco5fglkp" path="res://levels/tile_map/tile_map.tscn" id="2_1jw75"]
 [ext_resource type="PackedScene" uid="uid://lflfkoygygy" path="res://levels/level_overlay/level_overlay.tscn" id="3_8s3b3"]
 [ext_resource type="PackedScene" uid="uid://cddi0r54m7fcc" path="res://player/player.tscn" id="4_cc5tm"]
@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://codac1uvx58lj" path="res://upgrades/dash_upgrade.tscn" id="6_x3x6f"]
 [ext_resource type="PackedScene" uid="uid://glyi2gedwf0m" path="res://enemies/basic_slime/basic_slime.tscn" id="9_vx6g7"]
 
-[node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("player", "level_overlay")]
-script = ExtResource("1_lpgdq")
+[node name="EmptyLevel" type="Node2D" unique_id=1148693249 node_paths=PackedStringArray("dash_ability", "player", "level_overlay")]
+script = ExtResource("1_x3x6f")
+dash_ability = NodePath("Upgrades/DashUpgrade")
 player = NodePath("Player")
 level_overlay = NodePath("LevelOverlay")
 metadata/_custom_type_script = "uid://d0blb1vna8rxt"
@@ -43,3 +44,11 @@ position = Vector2(-120, 120)
 [node name="Player" parent="." unique_id=1532672824 node_paths=PackedStringArray("level_overlay") instance=ExtResource("4_cc5tm")]
 position = Vector2(-160, 128)
 level_overlay = NodePath("../LevelOverlay")
+
+[node name="TutorialLabel" type="Label" parent="." unique_id=887979123]
+unique_name_in_owner = true
+offset_left = -136.0
+offset_top = 136.0
+offset_right = -64.0
+offset_bottom = 159.0
+text = "C to dash"
