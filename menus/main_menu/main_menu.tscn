@@ -46,6 +46,10 @@ size_flags_horizontal = 4
 text = "Slime-vania"
 label_settings = SubResource("LabelSettings_8s8hf")
 
+[node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1917618118]
+layout_mode = 2
+text = "Continue"
+
 [node name="LevelSelectButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=980923488]
 layout_mode = 2
 text = "Level Select"
@@ -54,5 +58,11 @@ text = "Level Select"
 layout_mode = 2
 text = "Settings"
 
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=487627805]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

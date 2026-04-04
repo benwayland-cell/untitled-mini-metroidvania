@@ -65,12 +65,14 @@ func pause() -> void:
 	
 	get_tree().paused = true
 	pause_menu.show()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func unpause() -> void:
 	pause_menu.hide()
 	get_tree().paused = false
 	paused = false
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 
 func _on_continue_button_pressed() -> void:
