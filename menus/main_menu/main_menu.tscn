@@ -47,6 +47,7 @@ text = "Slime-vania"
 label_settings = SubResource("LabelSettings_8s8hf")
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1917618118]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 

@@ -1,5 +1,12 @@
 extends Control
 
+@onready var continue_button: Button = %ContinueButton
+
+
+func _ready() -> void:
+	if LevelLoader.last_unlocked_level == 1:
+		continue_button.text = "New Game"
+
 
 func _on_continue_button_pressed() -> void:
 	LevelLoader.load_last_unlocked_level()
