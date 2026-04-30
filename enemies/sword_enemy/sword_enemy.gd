@@ -39,11 +39,14 @@ enum State {DEFAULT, APPROACHING, WINDUP, ATTACKING, FLEEING}
 var state: State:
 	set = _set_state
 
+enum EyeDirection {CENTER, LEFT, RIGHT}
+var eye_direction: EyeDirection = EyeDirection.CENTER
+
 # eye animation
 const EYE_SPEED: float = 50.0
+const EYE_MIDDLE_POS: float = 0
 const EYE_LEFT_POS: float = -3
 const EYE_RIGHT_POS: float = 3
-const EYE_MIDDLE_POS: float = 0
 @onready var target_eye_pos := eye_sprite.position
 
 var squashed_vector: Vector2 = Vector2(1 + squash_stretch_amount, 1 - squash_stretch_amount)
@@ -57,17 +60,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	super._process(delta)
 	
-	_handle_eye_animation(delta)
 	_run_state_process(delta)
+	_handle_eye_animation(delta)
 	
 	move_and_slide()
 
 
 func _handle_eye_animation(delta: float):
-	if velocity.x > 0:
-		target_eye_pos.x = EYE_RIGHT_POS
-	elif velocity.x < 0:
-		target_eye_pos.x = EYE_LEFT_POS
+	match eye_direction:
+		EyeDirection.CENTER:
+			target_eye_pos.x = EYE_MIDDLE_POS
+		EyeDirection.LEFT:
+			target_eye_pos.x = EYE_LEFT_POS
+		EyeDirection.RIGHT:
+			target_eye_pos.x = EYE_RIGHT_POS
 	
 	eye_sprite.position = eye_sprite.position.move_toward(target_eye_pos, EYE_SPEED * delta)
 
@@ -124,6 +130,7 @@ func _on_timer_timeout() -> void:
 
 func _default_ready() -> void:
 	current_speed = default_speed
+	eye_direction = EyeDirection.CENTER
 
 
 func _default_process() -> void:
@@ -151,6 +158,13 @@ func _approaching_process() -> void:
 	for body in attack_range.get_overlapping_bodies():
 		if body is Player:
 			state = State.WINDUP
+	
+	# get where to look for animation
+	var relative_player_x_pos: float = get_distance_from_player().x
+	if relative_player_x_pos < 0:
+		eye_direction = EyeDirection.LEFT
+	if relative_player_x_pos > 0:
+		eye_direction = EyeDirection.RIGHT
 
 
 ################    Windup
@@ -239,6 +253,13 @@ func _fleeing_process() -> void:
 		velocity.x = -current_speed
 	else:
 		velocity.x = current_speed
+	
+	# get where to look for animation
+	var relative_player_x_pos: float = get_distance_from_player().x
+	if relative_player_x_pos < 0:
+		eye_direction = EyeDirection.RIGHT
+	if relative_player_x_pos > 0:
+		eye_direction = EyeDirection.LEFT
 
 
 func _on_fleeing_timer_timeout() -> void:
