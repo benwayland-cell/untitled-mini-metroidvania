@@ -15,9 +15,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Slime-vania"
+config/version="0.1"
 run/main_scene="uid://6quvpkxril6v"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dxanrysp0584q"
 
 [autoload]
 
@@ -35,11 +36,6 @@ window/size/viewport_height=324
 window/size/mode=3
 window/size/initial_position_type=0
 window/stretch/mode="canvas_items"
-
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 
 [input]
 

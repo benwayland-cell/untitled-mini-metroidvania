@@ -49,9 +49,6 @@ const EYE_MIDDLE_POS: float = 0
 
 var disabled: bool = false
 
-enum Consumables {DOUBLE_JUMP, DASH}
-
-var current_consumables: Array[Consumables] = []
 
 # abililities unlocked
 var has_sword :bool= false:
